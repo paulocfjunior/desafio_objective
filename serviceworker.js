@@ -16,13 +16,6 @@ var CURRENT_CACHES = {
     heroes: 'heroes-cache-v' + CACHE_VERSION
 };
 
-// var urlsToCache = [
-//     '/',
-//     '/_css/',
-//     '/_js/',
-//     '/_fonts/'
-// ];
-
 self.addEventListener('install', function(event) {
     var urlsToPrefetch = [
         'index.html',

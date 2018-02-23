@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function(){
     let marvelAPI = "https://gateway.marvel.com:443/v1/public/characters?orderBy=name%2Cmodified&apikey=5e8ca1959f7f23db54436ae4b3661243";
 
     request(marvelAPI).then(function(response){
-        console.log(response);
+        caches.open("heroes")
     }, function(error){
         console.error(error);
     });
@@ -43,25 +43,195 @@ function render(url) {
          */
         '': function() {
 
-            // https://gateway.marvel.com:443/v1/public/characters?orderBy=name%2Cmodified&limit=3&apikey=5e8ca1959f7f23db54436ae4b3661243
-            // https://gateway.marvel.com:443/v1/public/characters?orderBy=name%2Cmodified&offset=3&apikey=5e8ca1959f7f23db54436ae4b3661243
-
+            /**
+             *  Root element
+             */
+            var root = get("root");
+            /**
+             *  Page Header
+             */
             new Element({
-                content:  [
+                type: "header",
+                properties: {
+                    className: "app-header"
+                },
+                content: [
                     new Element({
                         type: "h1",
-                        content: "Marvel Heroes!!!"
-                    }),
-
-                    new Element({
-                        type: "input",
+                        content: "APPLICATION",
                         properties: {
-                            id: "searchbox",
-                            placeholder: "Pesquisar"
+                            className: "app-title"
+                        }
+                    }),
+                    new Element({
+                        type: "h2",
+                        content: "DETAIL",
+                        properties: {
+                            className: "app-subtitle"
+                        }
+                    }),
+                    new Element({
+                        properties: {
+                            className: "app-spacer"
+                        }
+                    }),
+                    new Element({
+                        type: "h3",
+                        content: "Paulo Cézar",
+                        properties: {
+                            className: "app-developer"
                         }
                     })
                 ]
-            }, get("root"));
+            }, root);
+
+            /**
+             *  Search box
+             */
+            new Element({
+                properties: {
+                    id: "searchbox",
+                    placeholder: "Pesquisar"
+                },
+                content: [
+                    new Element({
+                        type: "label",
+                        content: "Nome do Personagem",
+                        properties: {
+                            htmlFor: "search-box",
+                            className: "app-search-label"
+                        }
+                    }),
+                    new Element({
+                        type: "input",
+                        properties: {
+                            id: "search-box",
+                            className: "app-search-box",
+                            placeholder: "e.g. Iron Man"
+                        }
+                    }),
+                ]
+            }, root);
+
+            /**
+             *  Heroes List
+             */
+            new Element({
+                properties: {
+                    className: "app-hero-list",
+                },
+                type: "div",
+                content: [
+                    new Element({
+                        properties: {
+                            className: "app-hero-list-header",
+                        },
+                        content: [
+                            new Element({
+                                content: "Personagem"
+                            }),
+                            new Element({
+                                content: "Séries"
+                            }),
+                            new Element({
+                                content: "Eventos"
+                            })
+                        ]
+                    }),
+                    new Element({
+                        properties: {
+                            className: "app-hero-list-rows",
+                        },
+                        content: [
+                            new Element({
+                                properties: {
+                                    className: "app-hero-list-row",
+                                },
+                                content: [
+                                    /**
+                                     * First Column
+                                     */
+                                    new Element({
+                                        content: [
+                                            new Element({
+                                                type: "img",
+                                                properties: {
+                                                    src: "test",
+                                                    alt: "Test",
+                                                    style: {
+                                                        height: "58px",
+                                                        width: "58px"
+                                                    }
+                                                }
+                                            }),
+                                            new Element({
+                                                type: "span",
+                                                content: "Iron Man"
+                                            })
+                                        ]
+                                    }),
+                                    /**
+                                     * Series Column
+                                     */
+                                    new Element({
+                                        content: [
+                                            new Element({
+                                                content: "Serie 1"
+                                            }),
+                                            new Element({
+                                                content: "Serie 2"
+                                            }),
+                                            new Element({
+                                                content: "Serie 3"
+                                            })
+                                        ]
+                                    }),
+                                    /**
+                                     * Events Column
+                                     */
+                                    new Element({
+                                        content: [
+                                            new Element({
+                                                content: "Evento 1"
+                                            }),
+                                            new Element({
+                                                content: "Evento 2"
+                                            }),
+                                            new Element({
+                                                content: "Evento 3"
+                                            })
+                                        ]
+                                    })
+                                ]
+                            })
+                        ]
+                    }),
+                ]
+            }, root);
+
+            new Element({
+                properties: {
+                    className: "app-pagination",
+                },
+                type: "div",
+                content: []
+            }, root);
+
+            new Element({
+                properties: {
+                    className: "app-footer",
+                },
+                type: "div",
+                content: [
+                    new Element({
+                        type: "span",
+                        properties: {
+                            id: "copyright"
+                        },
+                        content: "Copyright Marvel 2018"
+                    })
+                ]
+            }, root);
         },
 
         /**

@@ -1,4 +1,22 @@
 /**
+ * Init IndexedDB
+ * @type {IDBFactory | *}
+ */
+window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
+
+/**
+ * Init IDBTransaction
+ * @type {IDBFactory | *}
+ */
+window.IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction || window.msIDBTransaction;
+
+/**
+ * Init IDBKeyRange
+ * @type {IDBFactory | *}
+ */
+window.IDBKeyRange = window.IDBKeyRange || window.webkitIDBKeyRange || window.msIDBKeyRange;
+
+/**
  * Select elements based on selector
  * @param selector {string}
  * @returns        {Node | NodeList | null}
@@ -50,7 +68,7 @@ function trigger(event, element) {
 }
 
 /**
- * Function to update some properties in an object
+ * Function to update properties in an object
  * @param source {Object}
  * @param target {Object}
  */
@@ -98,4 +116,62 @@ function Element(props, parent){
         parent.appendChild(element);
     }
     return element;
+}
+
+/**
+ *
+ * @param url      {string}
+ * @param [method] {string}
+ * @param [data]   {Object}
+ * @returns        {Promise<any>}
+ */
+function request(url, method, data) {
+    if(typeof method === 'undefined' || !(["GET", "POST"].includes(method))){
+        method = "GET";
+    }
+
+    if(typeof data === 'undefined'){
+        data = {};
+    }
+
+    data = serialize(data);
+
+    if(method === "GET") {
+        url += data;
+        data = null;
+    }
+
+    return new Promise(function(resolve, reject) {
+        var request = new XMLHttpRequest();
+        request.open(method, url);
+        // When the request loads, check whether it was successful
+        request.onload = function() {
+            if (request.status === 200) {
+                // If successful, resolve the promise by passing back the request response
+                resolve(request.response);
+            } else {
+                // If it fails, reject the promise with a error message
+                reject(Error(request.statusText));
+            }
+        };
+        request.onerror = function() {
+            reject(Error('There was a network error.'));
+        };
+        // Send the request
+        request.send(data);
+    });
+}
+
+/**
+ * Object Serialization Function
+ * @param obj {Object}
+ * @returns {string}
+ */
+function serialize(obj) {
+    var str = [];
+    for(var p in obj)
+        if (obj.hasOwnProperty(p)) {
+            str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+        }
+    return str.join("&");
 }

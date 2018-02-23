@@ -1,15 +1,24 @@
-/**
- *  On url hash changed, render the page requested
- */
-window.addEventListener("hashchange", function () {
-    render(decodeURI(window.location.hash));
-});
 
 /**
  *  Load home page when page loads first time
  */
 document.addEventListener("DOMContentLoaded", function(){
+    let marvelAPI = "https://gateway.marvel.com:443/v1/public/characters?orderBy=name%2Cmodified&apikey=5e8ca1959f7f23db54436ae4b3661243";
+
+    request(marvelAPI).then(function(response){
+        console.log(response);
+    }, function(error){
+        console.error(error);
+    });
+
     trigger("hashchange");
+});
+
+/**
+ *  On url hash changed, render the page requested
+ */
+window.addEventListener("hashchange", function () {
+    render(decodeURI(window.location.hash));
 });
 
 /**
@@ -33,6 +42,10 @@ function render(url) {
          * Home
          */
         '': function() {
+
+            // https://gateway.marvel.com:443/v1/public/characters?orderBy=name%2Cmodified&limit=3&apikey=5e8ca1959f7f23db54436ae4b3661243
+            // https://gateway.marvel.com:443/v1/public/characters?orderBy=name%2Cmodified&offset=3&apikey=5e8ca1959f7f23db54436ae4b3661243
+
             new Element({
                 content:  [
                     new Element({

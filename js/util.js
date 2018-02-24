@@ -127,18 +127,14 @@ HTMLElement.prototype.update = function(newContent){
     this.fadeOut(function () {
         if(typeof newContent === 'string'){
             element.innerHTML = newContent;
-        } if(newContent instanceof Array){
+        } else if(newContent instanceof Array){
             element.innerHTML = "";
             for (let i = 0; i < newContent.length; i++) {
                 element.appendChild(newContent[i]);
             }
         } else {
             element.innerHTML = "";
-            try {
-                element.appendChild(newContent);
-            } catch (e) {
-                console.log(e);
-            }
+            element.appendChild(newContent);
         }
         element.fadeIn();
     });

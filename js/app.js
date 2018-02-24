@@ -363,6 +363,7 @@ function renderHeroPage(name) {
  * @returns {Array}
  */
 function buildListRows(HeroDataArray) {
+    console.log(HeroDataArray);
     let result = [];
     HeroDataArray.forEach(function (HeroData) {
         let series = [], events = [];

@@ -387,94 +387,98 @@ function renderHeroPage(name) {
  * @returns {Array}
  */
 function buildListRows(heroDataResults) {
-    return heroDataResults.map(function (heroData) {
-        let series = [], events = [];
+    if(heroDataResults instanceof Array){
+        return heroDataResults.map(function (heroData) {
+            let series = [], events = [];
 
-        if (heroData.series.returned > 0) {
-            let count = 0, max = 3;
-            heroData.series.items.forEach(function (s) {
-                if (++count <= max) {
-                    if (count === max) {
-                        s += " - e mais " + (heroData.series.returned - count);
-                    }
-                    series.push(
-                        new Element({
-                            content: s.name,
-                        })
-                    );
-                } else {
-                    return false;
-                }
-            });
-        } else {
-            series = new Element({
-                content: "Não foram encontradas séries com este personagem."
-            })
-        }
-
-        if (heroData.events.returned > 0) {
-            let count = 0, max = 3;
-            heroData.events.items.forEach(function (e) {
-                if (++count <= max) {
-                    if (count === max) {
-                        e += " - e mais " + (heroData.events.returned - count);
-                    }
-                    events.push(
-                        new Element({
-                            content: e.name,
-                        })
-                    );
-                } else {
-                    return false;
-                }
-            });
-        } else {
-            events = new Element({
-                content: "Não foram encontrados eventos com este personagem."
-            })
-        }
-
-        return new Element({
-            properties: {
-                className: "app-hero-list-row",
-                id: heroData.id
-            },
-            content: [
-                /**
-                 * First Column
-                 */
-                new Element({
-                    content: [
-                        new Element({
-                            content: new Element({
-                                type: "img",
-                                properties: {
-                                    src: (['path', 'extension'].map(p => heroData.thumbnail[p])).join(".").replace("http://", "https://"),
-                                    alt: heroData.name,
-                                    height: "58",
-                                    width: "58"
-                                }
+            if (heroData.series.returned > 0) {
+                let count = 0, max = 3;
+                heroData.series.items.forEach(function (s) {
+                    if (++count <= max) {
+                        if (count === max) {
+                            s += " - e mais " + (heroData.series.returned - count);
+                        }
+                        series.push(
+                            new Element({
+                                content: s.name,
                             })
-                        }),
-                        new Element({
-                            type: "div",
-                            content: heroData.name
-                        })
-                    ]
-                }),
-                /**
-                 * Series Column
-                 */
-                new Element({
-                    content: series
-                }),
-                /**
-                 * Events Column
-                 */
-                new Element({
-                    content: events
+                        );
+                    } else {
+                        return false;
+                    }
+                });
+            } else {
+                series = new Element({
+                    content: "Não foram encontradas séries com este personagem."
                 })
-            ]
+            }
+
+            if (heroData.events.returned > 0) {
+                let count = 0, max = 3;
+                heroData.events.items.forEach(function (e) {
+                    if (++count <= max) {
+                        if (count === max) {
+                            e += " - e mais " + (heroData.events.returned - count);
+                        }
+                        events.push(
+                            new Element({
+                                content: e.name,
+                            })
+                        );
+                    } else {
+                        return false;
+                    }
+                });
+            } else {
+                events = new Element({
+                    content: "Não foram encontrados eventos com este personagem."
+                })
+            }
+
+            return new Element({
+                properties: {
+                    className: "app-hero-list-row",
+                    id: heroData.id
+                },
+                content: [
+                    /**
+                     * First Column
+                     */
+                    new Element({
+                        content: [
+                            new Element({
+                                content: new Element({
+                                    type: "img",
+                                    properties: {
+                                        src: (['path', 'extension'].map(p => heroData.thumbnail[p])).join(".").replace("http://", "https://"),
+                                        alt: heroData.name,
+                                        height: "58",
+                                        width: "58"
+                                    }
+                                })
+                            }),
+                            new Element({
+                                type: "div",
+                                content: heroData.name
+                            })
+                        ]
+                    }),
+                    /**
+                     * Series Column
+                     */
+                    new Element({
+                        content: series
+                    }),
+                    /**
+                     * Events Column
+                     */
+                    new Element({
+                        content: events
+                    })
+                ]
+            });
         });
-    });
+    } else {
+        return [];
+    }
 }

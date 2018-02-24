@@ -1,21 +1,3 @@
-/**
- * Log if debug is on
- */
-function log() {
-    if(DEBUG === true){
-        console.log(arguments);
-    }
-}
-
-/**
- * Error if debug is on
- */
-function err() {
-    if(DEBUG === true){
-        console.error(arguments);
-    }
-}
-
 if (!Cache.prototype.add) {
     Cache.prototype.add = function add(request) {
         return this.addAll([request]);

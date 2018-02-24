@@ -245,7 +245,7 @@ function render(url) {
                             id: "copyright"
                         },
                         content: HeroData.copyright
-                    })
+                })
                 ]
             }, root);
         },

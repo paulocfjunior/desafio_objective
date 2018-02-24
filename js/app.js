@@ -61,7 +61,11 @@ function render(url) {
              *  Root element
              */
             let root = get("root");
-            let page = new Element;
+            let page = new Element({
+                properties: {
+                    id: "app"
+                }
+            });
             /**
              *  Page Header
              */

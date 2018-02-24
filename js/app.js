@@ -179,7 +179,7 @@ function render(url) {
                             id: "hero-list",
                             className: "app-hero-list-rows",
                         },
-                        content: goPage()
+                        content: []
                     }),
                 ]
             }, page);
@@ -239,6 +239,7 @@ function render(url) {
             }, page);
 
             root.update(page);
+            goPage();
         },
 
         /**

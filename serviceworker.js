@@ -24,8 +24,8 @@ self.addEventListener('install', function(event) {
         'css/all/app.css',
         'css/mobile/app.css',
         'css/desktop/app.css',
-        'css/tablet/app.css',
-        'https://gateway.marvel.com:443/v1/public/characters?orderBy=name%2Cmodified&limit=3&apikey=5e8ca1959f7f23db54436ae4b3661243'
+        'css/tablet/app.css'
+        // 'https://gateway.marvel.com:443/v1/public/characters?orderBy=name%2Cmodified&limit=3&apikey=5e8ca1959f7f23db54436ae4b3661243'
     ];
 
     console.log('Instalando Service Worker');

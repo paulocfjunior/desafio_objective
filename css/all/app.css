@@ -142,7 +142,18 @@ html, body {
     font-weight: 400;
     background: #fff;
     font-size: 16px;
+    outline: none;
     width: 400px;
+
+    -webkit-transition: all 200ms;
+    -moz-transition: all 200ms;
+    -ms-transition: all 200ms;
+    -o-transition: all 200ms;
+    transition: all 200ms;
+}
+
+#search-container input:focus {
+    border: 1px solid #D42026;
 }
 
 .app-hero-list {

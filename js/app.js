@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
     .then(r => r.json())
     .then(json => {
         HERO_DATA = json;
-        HERO_LIST = buildListRows(HERO_DATA.data["results"]);
+        // HERO_LIST = buildListRows(HERO_DATA.data["results"]);
     }).catch (e => {
         errorPage("Infelizmente, não foi possível estabelecer conexão com o servidor e não há dados disponíveis offline para exibir.");
         console.error(e);
@@ -171,7 +171,7 @@ function render(url) {
                             id: "hero-list",
                             className: "app-hero-list-rows",
                         },
-                        content: HERO_LIST
+                        content: buildListRows(HERO_DATA.data["results"])
                     }),
                 ]
             }, page);

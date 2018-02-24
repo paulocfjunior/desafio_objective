@@ -16,9 +16,9 @@ document.addEventListener("DOMContentLoaded", function () {
     fetch(marvelAPI)
     .then(r => r.json())
     .then(json => {
-        console.log(json);
         HERO_DATA = json;
         HERO_LIST = buildListRows(HERO_DATA.data["results"]);
+        console.log(HERO_LIST);
     }).catch (e => {
         errorPage("Infelizmente, não foi possível estabelecer conexão com o servidor e não há dados disponíveis offline para exibir.");
         console.error(e);

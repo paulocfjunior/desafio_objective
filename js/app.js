@@ -16,14 +16,12 @@ document.addEventListener("DOMContentLoaded", function () {
     .then(r => r.json())
     .then(results => {
         HeroData = results.data;
-        console.log(HeroData);
         get("copyright").innerHTML = results.copyright;
+        trigger("hashchange");
     }).catch (e => {
         errorPage("Infelizmente, não foi possível estabelecer conexão com o servidor e não há dados disponíveis offline para exibir.");
         console.error(e);
     });
-
-    trigger("hashchange");
 });
 
 /**

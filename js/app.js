@@ -9,7 +9,6 @@ var HERO_LIST = [];
  *  Load home page when page loads first time
  */
 document.addEventListener("DOMContentLoaded", function () {
-    trigger("hashchange");
     let marvelAPI = "https://gateway.marvel.com:443/v1/public/characters?orderBy=name%2Cmodified&apikey=5e8ca1959f7f23db54436ae4b3661243";
 
     get("loading-status").update("Obtendo dados dos heróis...");
@@ -23,6 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
         errorPage("Infelizmente, não foi possível estabelecer conexão com o servidor e não há dados disponíveis offline para exibir.");
         console.error(e);
     });
+    trigger("hashchange");
 });
 
 /**

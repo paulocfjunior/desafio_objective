@@ -134,7 +134,11 @@ HTMLElement.prototype.update = function(newContent){
             }
         } else {
             element.innerHTML = "";
-            element.appendChild(newContent);
+            try {
+                element.appendChild(newContent);
+            } catch (e) {
+                console.log(e);
+            }
         }
         element.fadeIn();
     });

@@ -11,24 +11,27 @@ html, body {
 
 #root {
     margin: 0;
-    padding: 20px 42px 0 42px;
     min-height: 720px;
     min-width: 1280px;
     width: 100vw;
     height: 100vh;
 }
 
+#root > div#app {
+    padding: 20px 42px 0 42px;
+}
+
 #loading {
+    background-color: #eeeeee;
+    overflow: hidden;
     position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    display: table;
     height: 100%;
     width: 100%;
-    overflow: hidden;
-    background-color: #eeeeee;
-    display: table;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    top: 0;
 
     -webkit-transition: all 200ms;
        -moz-transition: all 200ms;
@@ -38,10 +41,10 @@ html, body {
 }
 
 #loading > div {
+    vertical-align: middle;
     display: table-cell;
     text-align: center;
     padding: 20px 10px;
-    vertical-align: middle;
 }
 
 #loading-status {
@@ -51,7 +54,6 @@ html, body {
     -o-transition: all 100ms;
     transition: all 100ms;
 }
-
 
 .fade-in,
 .fade-out {

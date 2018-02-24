@@ -2,7 +2,7 @@
  * Global Scope
  */
 var CURRENT_PAGE = 1;
-
+var HeroData = {};
 
 /**
  *  Load home page when page loads first time
@@ -11,14 +11,18 @@ document.addEventListener("DOMContentLoaded", function () {
     let marvelAPI = "https://gateway.marvel.com:443/v1/public/characters?orderBy=name%2Cmodified&apikey=5e8ca1959f7f23db54436ae4b3661243";
 
     request(marvelAPI).then(function (response) {
-        caches.open("heroes").then(function(cache) {
-            cache.put(marvelAPI, new Response(response));
-        });
+        try {
+            HeroData = JSON.parse(response);
+            // trigger("hashchange");
+        } catch (e) {
+            errorPage("Não foi possível obter os dados dos Heróis.");
+            console.error("Fail to get HeroData. %s", e);
+            console.error("Response: %O", response);
+        }
     }, function (error) {
+        errorPage("Infelizmente, não foi possível estabelecer conexão com o servidor e não há dados disponíveis offline para exibir.");
         console.error(error);
     });
-
-    trigger("hashchange");
 });
 
 /**
@@ -290,16 +294,17 @@ function render(url) {
      *  If the request is not registered, load error page
      */
     else {
-        badRequest();
+        errorPage("Sorry, the page that you've requested not exists.");
     }
 }
 
 /**
  * Displays error page
+ * @param message
  */
-function badRequest() {
+function errorPage(message) {
     window.location.hash = "error";
-    get("root").innerHTML = "Sorry, the page that you've requested not exists.";
+    get("root").innerHTML = message;
 }
 
 function filterHero(name) {

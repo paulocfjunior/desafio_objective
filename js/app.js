@@ -13,7 +13,11 @@ document.addEventListener("DOMContentLoaded", function () {
     trigger("hashchange");
     let marvelAPI = "https://gateway.marvel.com:443/v1/public/characters?orderBy=name%2Cmodified&apikey=5e8ca1959f7f23db54436ae4b3661243";
 
-    get("loading-status").update("Obtendo dados dos heróis...");
+    try {
+        get("loading-status").update("Obtendo dados dos heróis...");
+    } catch (e) {
+        console.error(e);
+    }
 
     fetch(marvelAPI)
     .then(r => r.json())

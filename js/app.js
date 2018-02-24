@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
     .then(r => r.json())
     .then(json => {
         HERO_DATA = json;
-        // HERO_LIST = buildListRows(HERO_DATA.data["results"]);
+        HERO_LIST = HERO_DATA.data["results"];
         trigger("hashchange");
     }).catch (e => {
         errorPage("Infelizmente, não foi possível estabelecer conexão com o servidor e não há dados disponíveis offline para exibir.");
@@ -132,7 +132,8 @@ function render(url) {
                         properties: {
                             id: "search-box",
                             className: "app-search-box",
-                            placeholder: "e.g. Iron Man",
+                            title: "Digite o nome de um herói da Marvel",
+                            placeholder: "ex. Warlock",
                             onkeyup: function() {
                                 const search = new RegExp(this.value, "i");
 
@@ -141,7 +142,7 @@ function render(url) {
                                         return hero;
                                     }
                                 });
-                                get("hero-list").update(buildListRows(HERO_LIST));
+                                get("hero-list").update(goPage(1, HERO_LIST));
                             }
                         }
                     }),
@@ -178,7 +179,7 @@ function render(url) {
                             id: "hero-list",
                             className: "app-hero-list-rows",
                         },
-                        content: buildListRows(HERO_DATA.data["results"])
+                        content: goPage()
                     }),
                 ]
             }, page);
@@ -202,53 +203,16 @@ function render(url) {
                     }),
                     new Element({
                         type: "ul",
-                        content: [
-                            new Element({
-                                type: "li",
-                                content: "1",
-                                properties: {
-                                    className: "app-pagination-page active",
-                                    onclick: function () {
-                                        goPage(1);
-                                    }
-                                }
-                            }),
-                            new Element({
-                                type: "li",
-                                content: "2",
-                                properties: {
-                                    className: "app-pagination-page",
-                                    onclick: function () {
-                                        goPage(2);
-                                    }
-                                }
-                            }),
-                            new Element({
-                                type: "li",
-                                content: "3",
-                                properties: {
-                                    className: "app-pagination-page",
-                                    onclick: function () {
-                                        goPage(3);
-                                    }
-                                }
-                            }),
-                            new Element({
-                                type: "li",
-                                content: "4",
-                                properties: {
-                                    className: "app-pagination-page",
-                                    onclick: function () {
-                                        goPage(4);
-                                    }
-                                }
-                            })
-                        ]
+                        properties: {
+                            id: "pagination-list"
+                        },
+                        content: []
                     }),
                     new Element({
                         type: "span",
                         content: "&#9654;",
                         properties: {
+                            className: "disabled",
                             id: "app-pagination-next",
                             onclick: function () {
                                 goPage(nextPage());
@@ -356,7 +320,7 @@ function nextPage() {
  *
  * @param p
  */
-function goPage(p) {
+function setPage(p) {
     CURRENT_PAGE = p;
     let pages = select(".app-pagination-page");
     pages.removeClass("active")[(p - 1)].addClass("active");
@@ -383,102 +347,126 @@ function renderHeroPage(name) {
 
 /**
  * Build rows for Heros based on its Objects of data
- * @param heroDataResults {Array}
+ * @param [page] {int}
+ * @param [heroDataResults] {Array}
  * @returns {Array}
  */
-function buildListRows(heroDataResults) {
-    if(heroDataResults instanceof Array){
-        return heroDataResults.map(function (heroData) {
-            let series = [], events = [];
-
-            if (heroData.series.returned > 0) {
-                let count = 0, max = 3;
-                heroData.series.items.forEach(function (s) {
-                    if (++count <= max) {
-                        if (count === max) {
-                            s += " - e mais " + (heroData.series.returned - count);
-                        }
-                        series.push(
-                            new Element({
-                                content: s.name,
-                            })
-                        );
-                    } else {
-                        return false;
-                    }
-                });
-            } else {
-                series = new Element({
-                    content: "Não foram encontradas séries com este personagem."
-                })
-            }
-
-            if (heroData.events.returned > 0) {
-                let count = 0, max = 3;
-                heroData.events.items.forEach(function (e) {
-                    if (++count <= max) {
-                        if (count === max) {
-                            e += " - e mais " + (heroData.events.returned - count);
-                        }
-                        events.push(
-                            new Element({
-                                content: e.name,
-                            })
-                        );
-                    } else {
-                        return false;
-                    }
-                });
-            } else {
-                events = new Element({
-                    content: "Não foram encontrados eventos com este personagem."
-                })
-            }
-
-            return new Element({
-                properties: {
-                    className: "app-hero-list-row",
-                    id: heroData.id
-                },
-                content: [
-                    /**
-                     * First Column
-                     */
-                    new Element({
-                        content: [
-                            new Element({
-                                content: new Element({
-                                    type: "img",
-                                    properties: {
-                                        src: (['path', 'extension'].map(p => heroData.thumbnail[p])).join(".").replace("http://", "https://"),
-                                        alt: heroData.name,
-                                        height: "58",
-                                        width: "58"
-                                    }
-                                })
-                            }),
-                            new Element({
-                                type: "div",
-                                content: heroData.name
-                            })
-                        ]
-                    }),
-                    /**
-                     * Series Column
-                     */
-                    new Element({
-                        content: series
-                    }),
-                    /**
-                     * Events Column
-                     */
-                    new Element({
-                        content: events
-                    })
-                ]
-            });
-        });
-    } else {
-        return [];
+function goPage(page, heroDataResults) {
+    if(typeof page === 'undefined'){
+        page = 1;
     }
+
+    if(typeof heroDataResults === 'undefined') {
+        heroDataResults = HERO_LIST;
+    } else if(!(heroDataResults instanceof Array)){
+        heroDataResults = [];
+    }
+
+    let newPaginationList = new Element();
+    for (let i = 0; i < heroDataResults.length; i++){
+        new Element({
+            type: "li",
+            content: (i + 1).toString(),
+            properties: {
+                className: "app-pagination-page",
+                onclick: function () {
+                    goPage(i + 1);
+                }
+            }
+        }, newPaginationList);
+    }
+    get("pagination-list").update(newPaginationList);
+
+    setPage(page);
+
+    return heroDataResults.slice((page - 1), 3).map(function (heroData) {
+        let series = [], events = [];
+
+        if (heroData.series.returned > 0) {
+            let count = 0, max = 3;
+            heroData.series.items.forEach(function (s) {
+                if (++count <= max) {
+                    if (count === max) {
+                        s += " - e mais " + (heroData.series.returned - count);
+                    }
+                    series.push(
+                        new Element({
+                            content: s.name,
+                        })
+                    );
+                } else {
+                    return false;
+                }
+            });
+        } else {
+            series = new Element({
+                content: "Não foram encontradas séries com este personagem."
+            })
+        }
+
+        if (heroData.events.returned > 0) {
+            let count = 0, max = 3;
+            heroData.events.items.forEach(function (e) {
+                if (++count <= max) {
+                    if (count === max) {
+                        e += " - e mais " + (heroData.events.returned - count);
+                    }
+                    events.push(
+                        new Element({
+                            content: e.name,
+                        })
+                    );
+                } else {
+                    return false;
+                }
+            });
+        } else {
+            events = new Element({
+                content: "Não foram encontrados eventos com este personagem."
+            })
+        }
+
+        return new Element({
+            properties: {
+                className: "app-hero-list-row",
+                id: heroData.id
+            },
+            content: [
+                /**
+                 * First Column
+                 */
+                new Element({
+                    content: [
+                        new Element({
+                            content: new Element({
+                                type: "img",
+                                properties: {
+                                    src: (['path', 'extension'].map(p => heroData.thumbnail[p])).join(".").replace("http://", "https://"),
+                                    alt: heroData.name,
+                                    height: "58",
+                                    width: "58"
+                                }
+                            })
+                        }),
+                        new Element({
+                            type: "div",
+                            content: heroData.name
+                        })
+                    ]
+                }),
+                /**
+                 * Series Column
+                 */
+                new Element({
+                    content: series
+                }),
+                /**
+                 * Events Column
+                 */
+                new Element({
+                    content: events
+                })
+            ]
+        });
+    });
 }

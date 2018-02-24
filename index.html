@@ -39,7 +39,7 @@
                 navigator.serviceWorker.register('./serviceworker.js', {scope: './'}).then(function() {
                     // Registration was successful. Now, check to see whether the service worker is controlling the page.
                     if (!navigator.serviceWorker.controller) {
-                        location.reload();
+                        // location.reload();
                     }
                 }).catch(function(error) {
                     console.log(error);
@@ -52,6 +52,6 @@
                 document.querySelector('#root').appendChild(aElement);
             }
         </script>
-        <!--<script type="text/javascript" src="js/app.js"></script>-->
+        <script type="text/javascript" src="js/app.js"></script>
     </body>
 </html>

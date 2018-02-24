@@ -125,13 +125,14 @@ HTMLElement.prototype.addClass = function(c){
  */
 HTMLElement.prototype.update = function(newContent){
     var element = this;
-    this.fadeOut(function (t) {
-        t.innerHTML = newContent;
-        return t.fadeIn();
-    });
-
     this.fadeOut(function () {
-        element.innerHTML = newContent;
+
+        if(typeof newContent === 'string'){
+            element.innerHTML = newContent;
+        } else {
+            element.innerHTML = "";
+            element.appendChild(newContent);
+        }
         element.fadeIn();
     });
     return this;

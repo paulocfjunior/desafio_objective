@@ -11,18 +11,19 @@ var HERO_LIST = [];
 document.addEventListener("DOMContentLoaded", function () {
     let marvelAPI = "https://gateway.marvel.com:443/v1/public/characters?orderBy=name%2Cmodified&apikey=5e8ca1959f7f23db54436ae4b3661243";
 
-    // get("loading-status").update("Obtendo dados dos heróis...");
+    get("loading-status").update("Obtendo dados dos heróis...");
 
     fetch(marvelAPI)
     .then(r => r.json())
     .then(json => {
         HERO_DATA = json;
         // HERO_LIST = buildListRows(HERO_DATA.data["results"]);
+        trigger("hashchange");
     }).catch (e => {
         errorPage("Infelizmente, não foi possível estabelecer conexão com o servidor e não há dados disponíveis offline para exibir.");
         console.error(e);
     });
-    trigger("hashchange");
+
 });
 
 /**
@@ -44,7 +45,7 @@ function render(url) {
      */
     var request = url.split('/')[0];
 
-    // get("loading-status").update("Organizando as informações...");
+    get("loading-status").update("Organizando as informações...");
 
     // Hide whatever page is currently shown.
     // $('.main-content .page').removeClass('visible');
@@ -289,7 +290,7 @@ function render(url) {
      *  Load the page requested
      */
     if (routes[request]) {
-        // get("loading-status").addClass("hidden");
+        get("loading-status").addClass("hidden");
         routes[request]();
     }
     /**

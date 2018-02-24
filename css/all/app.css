@@ -20,6 +20,8 @@ html, body {
 #root > div#app {
     padding: 20px 42px 0 42px;
     position: relative;
+    height: 100%;
+    width: 100%;
 }
 
 #loading {

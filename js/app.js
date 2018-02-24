@@ -133,7 +133,7 @@ function render(url) {
                             id: "search-box",
                             className: "app-search-box",
                             placeholder: "e.g. Iron Man",
-                            onkeypress: function() {
+                            onkeyup: function() {
                                 const search = new RegExp(this.value, "i");
 
                                 HERO_LIST = HERO_DATA.data["results"].filter(function(hero){

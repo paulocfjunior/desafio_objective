@@ -2,7 +2,6 @@
  *  Global Const
  */
 const ELEMENT_NODE = 1;
-const DEBUG = false;
 
 /**
  * Init IndexedDB
@@ -181,24 +180,6 @@ HTMLElement.prototype.fadeOut = function(callback, duration) {
 function get(id) {
     return document.getElementById(id);
 }
-
-/**
- * Log if debug is on
- */
-window.log = function() {
-    if(DEBUG === true){
-        console.log(arguments);
-    }
-};
-
-/**
- * Error if debug is on
- */
-window.err = function() {
-    if(DEBUG === true){
-        console.error(arguments);
-    }
-};
 
 /**
  * Trigger an event on an element

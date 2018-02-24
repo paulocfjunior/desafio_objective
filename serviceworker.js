@@ -28,7 +28,7 @@ self.addEventListener('install', function(event) {
         'https://gateway.marvel.com:443/v1/public/characters?orderBy=name%2Cmodified&limit=3&apikey=5e8ca1959f7f23db54436ae4b3661243'
     ];
 
-    log('Handling install event. Resources to prefetch: ', urlsToPrefetch);
+    // console.log('Handling install event. Resources to prefetch: ', urlsToPrefetch);
 
     event.waitUntil(
         caches.open(CURRENT_CACHES.heroes).then(function(cache) {
@@ -45,15 +45,15 @@ self.addEventListener('install', function(event) {
                     }
                     return cache.put(urlToPrefetch, response);
                 }).catch(function(error) {
-                    err('Not caching ' + urlToPrefetch + ' due to ' + error);
+                    // console.error('Not caching ' + urlToPrefetch + ' due to ' + error);
                 });
             });
 
             return Promise.all(cachePromises).then(function() {
-                log('Pre-fetching complete.');
+                // console.log('Pre-fetching complete.');
             });
         }).catch(function(error) {
-            err('Pre-fetching failed:', error);
+            // console.error('Pre-fetching failed:', error);
         })
     );
 });
@@ -70,7 +70,7 @@ self.addEventListener('activate', function (event) {
                 cacheNames.map(function (cacheName) {
                     if (expectedCacheNames.indexOf(cacheName) === -1) {
                         // If this cache name isn't present in the array of "expected" cache names, then delete it.
-                        log('Deleting out of date cache:', cacheName);
+                        // console.log('Deleting out of date cache:', cacheName);
                         return caches.delete(cacheName);
                     }
                 })
@@ -80,31 +80,31 @@ self.addEventListener('activate', function (event) {
 });
 
 self.addEventListener('fetch', function (event) {
-    log('Handling fetch event for', event.request.url);
+    // console.log('Handling fetch event for', event.request.url);
 
     event.respondWith(
         caches.open(CURRENT_CACHES.heroes).then(function (cache) {
             return cache.match(event.request).then(function (response) {
                 if (response) {
-                    log(' Found response in cache:', response);
+                    // console.log(' Found response in cache:', response);
                     return response;
                 }
 
-                log(' No response for %s found in cache. About to fetch from network...', event.request.url);
+                // console.log(' No response for %s found in cache. About to fetch from network...', event.request.url);
 
                 return fetch(event.request.clone()).then(function (response) {
-                    log('  Response for %s from network is: %O', event.request.url, response);
+                    // console.log('  Response for %s from network is: %O', event.request.url, response);
 
                     if (response.status < 400) {
-                        log('  Caching the response to', event.request.url);
+                        // console.log('  Caching the response to', event.request.url);
                         cache.put(event.request, response.clone());
                     } else {
-                        log('  Not caching the response to', event.request.url);
+                        // console.log('  Not caching the response to', event.request.url);
                     }
                     return response;
                 });
             }).catch(function (error) {
-                err('  Error in fetch handler:', error);
+                // console.error('  Error in fetch handler:', error);
                 throw error;
             });
         })

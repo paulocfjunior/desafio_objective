@@ -44,7 +44,7 @@ function render(url) {
      */
     var request = url.split('/')[0];
 
-    get("loading-status").update("Organizando as informações...");
+    // get("loading-status").update("Organizando as informações...");
 
     // Hide whatever page is currently shown.
     // $('.main-content .page').removeClass('visible');
@@ -289,7 +289,7 @@ function render(url) {
      *  Load the page requested
      */
     if (routes[request]) {
-        get("loading-status").addClass("hidden");
+        // get("loading-status").addClass("hidden");
         routes[request]();
     }
     /**

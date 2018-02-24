@@ -2,7 +2,9 @@
  * Global Scope
  */
 var CURRENT_PAGE = 1;
-var HeroData = {};
+var HeroData = {
+    results: []
+};
 
 /**
  *  Load home page when page loads first time
@@ -11,6 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let marvelAPI = "https://gateway.marvel.com:443/v1/public/characters?orderBy=name%2Cmodified&apikey=5e8ca1959f7f23db54436ae4b3661243";
 
     request(marvelAPI).then(function (response) {
+        console.log(response);
         try {
             HeroData = JSON.parse(response);
         } catch (e) {
@@ -159,7 +162,7 @@ function render(url) {
                         properties: {
                             className: "app-hero-list-rows",
                         },
-                        content: buildListRows(CURRENT_CACHES.heroes.results)
+                        content: buildListRows(HeroData.results)
                     }),
                 ]
             }, root);

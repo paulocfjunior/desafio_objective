@@ -62,8 +62,8 @@ function render(url) {
             /**
              *  Root element
              */
-            var root = get("root");
-            var page = new Element;
+            let root = get("root");
+            let page = new Element;
             /**
              *  Page Header
              */
@@ -261,6 +261,7 @@ function render(url) {
             }, page);
 
             root.update(page);
+            root.style.overflow = "scroll";
         },
 
         /**

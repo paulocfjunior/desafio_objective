@@ -121,12 +121,11 @@ HTMLElement.prototype.addClass = function(c){
 
 /**
  * Changes the content of an Element with fading effect
- * @param newContent
+ * @param newContent {Node || string}
  */
 HTMLElement.prototype.update = function(newContent){
     var element = this;
     this.fadeOut(function () {
-
         if(typeof newContent === 'string'){
             element.innerHTML = newContent;
         } else {

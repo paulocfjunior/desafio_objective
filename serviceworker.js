@@ -28,7 +28,7 @@ self.addEventListener('install', function(event) {
         'https://gateway.marvel.com:443/v1/public/characters?orderBy=name%2Cmodified&limit=3&apikey=5e8ca1959f7f23db54436ae4b3661243'
     ];
 
-    // console.log('Handling install event. Resources to prefetch: ', urlsToPrefetch);
+    console.log('Instalando Service Worker');
 
     event.waitUntil(
         caches.open(CURRENT_CACHES.heroes).then(function(cache) {
@@ -45,7 +45,7 @@ self.addEventListener('install', function(event) {
                     }
                     return cache.put(urlToPrefetch, response);
                 }).catch(function(error) {
-                    // console.error('Not caching ' + urlToPrefetch + ' due to ' + error);
+                    console.error('Falha no cache de ' + urlToPrefetch + ' devido ao erro ' + error);
                 });
             });
 
@@ -53,7 +53,7 @@ self.addEventListener('install', function(event) {
                 // console.log('Pre-fetching complete.');
             });
         }).catch(function(error) {
-            // console.error('Pre-fetching failed:', error);
+            console.error('Pré-carregamento falhou: %s', error);
         })
     );
 });
@@ -69,8 +69,6 @@ self.addEventListener('activate', function (event) {
             return Promise.all(
                 cacheNames.map(function (cacheName) {
                     if (expectedCacheNames.indexOf(cacheName) === -1) {
-                        // If this cache name isn't present in the array of "expected" cache names, then delete it.
-                        // console.log('Deleting out of date cache:', cacheName);
                         return caches.delete(cacheName);
                     }
                 })
@@ -80,31 +78,26 @@ self.addEventListener('activate', function (event) {
 });
 
 self.addEventListener('fetch', function (event) {
-    // console.log('Handling fetch event for', event.request.url);
-
     event.respondWith(
         caches.open(CURRENT_CACHES.heroes).then(function (cache) {
             return cache.match(event.request).then(function (response) {
+                // Fetch from cache first
                 if (response) {
-                    // console.log(' Found response in cache:', response);
                     return response;
                 }
 
-                // console.log(' No response for %s found in cache. About to fetch from network...', event.request.url);
-
+                // If not available, fetch from network
                 return fetch(event.request.clone()).then(function (response) {
-                    // console.log('  Response for %s from network is: %O', event.request.url, response);
-
                     if (response.status < 400) {
-                        // console.log('  Caching the response to', event.request.url);
+                        // Save response on cache
                         cache.put(event.request, response.clone());
                     } else {
-                        // console.log('  Not caching the response to', event.request.url);
+                        console.log('Não foi possível salvar em cache a requisição: %s', event.request.url);
                     }
                     return response;
                 });
             }).catch(function (error) {
-                // console.error('  Error in fetch handler:', error);
+                console.error('Não foi possível obter o conteúdo via cache nem via internet: %O', error);
                 throw error;
             });
         })

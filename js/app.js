@@ -12,7 +12,7 @@ var HERO_LIST_FILTERED = [];
 document.addEventListener("DOMContentLoaded", function () {
     let marvelAPI = "https://gateway.marvel.com:443/v1/public/characters?orderBy=name%2Cmodified&apikey=5e8ca1959f7f23db54436ae4b3661243";
 
-    select("#loading-status").update("Obtendo dados dos heróis...");
+    get("loading-status").update("Obtendo dados dos heróis...");
 
     fetch(marvelAPI)
     .then(r => r.json())

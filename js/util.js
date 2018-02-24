@@ -2,6 +2,7 @@
  *  Global Const
  */
 const ELEMENT_NODE = 1;
+const DEBUG = false;
 
 /**
  * Init IndexedDB
@@ -101,6 +102,24 @@ NodeList.prototype.removeClass = function (c) {
  */
 function get(id) {
     return document.getElementById(id);
+}
+
+/**
+ * Log if debug is on
+ */
+function log() {
+    if(DEBUG === true){
+        console.log(arguments);
+    }
+}
+
+/**
+ * Error if debug is on
+ */
+function err() {
+    if(DEBUG === true){
+        console.error(arguments);
+    }
 }
 
 /**

@@ -312,9 +312,7 @@ function render(url) {
  * @param message
  */
 function errorPage(message) {
-    let oldHash = window.location.hash;
-    window.location.hash = "error";
-    get("root").innerHTML = message + " (" + oldHash + ")";
+    get("root").innerHTML = message + " (" + window.location.hash + ")";
 }
 
 function filterHero(name) {

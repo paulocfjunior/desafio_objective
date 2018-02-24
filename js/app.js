@@ -362,7 +362,7 @@ function goPage(page, heroDataResults) {
         heroDataResults = [];
     }
 
-    let newPaginationList = new Element();
+    get("pagination-list").update("");
     for (let i = 0; i < heroDataResults.length; i++){
         new Element({
             type: "li",
@@ -373,9 +373,9 @@ function goPage(page, heroDataResults) {
                     goPage(i + 1);
                 }
             }
-        }, newPaginationList);
+        }, get("pagination-list"));
     }
-    get("pagination-list").update(newPaginationList);
+
 
     setPage(page);
 

@@ -134,16 +134,13 @@ function render(url) {
                             className: "app-search-box",
                             placeholder: "e.g. Iron Man",
                             onkeypress: function() {
-                                console.log(this.value);
                                 const search = new RegExp(this.value, "i");
 
-                                HERO_LIST = HERO_DATA.data["results"].map(function(hero){
-                                    console.log(hero);
+                                HERO_LIST = HERO_DATA.data["results"].filter(function(hero){
                                     if(search.test(hero.name)){
                                         return hero;
                                     }
                                 });
-                                console.log(HERO_LIST);
                                 get("hero-list").update(buildListRows(HERO_LIST));
                             }
                         }

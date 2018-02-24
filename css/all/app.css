@@ -36,10 +36,6 @@ html, body {
             transition: all 200ms;
 }
 
-#loading.hidden {
-    display: none;
-}
-
 #loading > div {
     display: table-cell;
     text-align: center;
@@ -71,6 +67,10 @@ html, body {
 
 .fade-out {
     opacity: 0;
+}
+
+#loading.hidden {
+    display: none;
 }
 
 .app-title,

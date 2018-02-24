@@ -180,10 +180,14 @@ HTMLElement.prototype.fadeOut = function(callback, duration) {
 /**
  * Get Element by its ID
  * @param id
- * @returns {HTMLElement | null}
+ * @returns {HTMLElement}
  */
 function get(id) {
-    return document.getElementById(id);
+    if(document.getElementById(id) === null){
+        return document.createElement("div");
+    } else {
+        return document.getElementById(id);
+    }
 }
 
 /**

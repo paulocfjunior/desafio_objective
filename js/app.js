@@ -63,6 +63,7 @@ function render(url) {
              *  Root element
              */
             var root = get("root");
+            var page = new Element;
             /**
              *  Page Header
              */
@@ -94,7 +95,7 @@ function render(url) {
                         }
                     })
                 ]
-            }, root);
+            }, page);
 
             /**
              *  Detail
@@ -104,7 +105,7 @@ function render(url) {
                     className: "app-line"
                 },
                 content: new Element
-            }, root);
+            }, page);
 
             /**
              *  Search box
@@ -132,7 +133,7 @@ function render(url) {
                         }
                     }),
                 ]
-            }, root);
+            }, page);
 
             /**
              *  Heroes List
@@ -166,7 +167,7 @@ function render(url) {
                         content: HERO_LIST_FILTERED
                     }),
                 ]
-            }, root);
+            }, page);
 
             new Element({
                 properties: {
@@ -241,7 +242,7 @@ function render(url) {
                         }
                     }),
                 ]
-            }, root);
+            }, page);
 
             new Element({
                 properties: {
@@ -257,7 +258,9 @@ function render(url) {
                         content: HERO_DATA.copyright
                 })
                 ]
-            }, root);
+            }, page);
+
+            root.update(page);
         },
 
         /**

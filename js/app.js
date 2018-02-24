@@ -130,7 +130,17 @@ function render(url) {
                         properties: {
                             id: "search-box",
                             className: "app-search-box",
-                            placeholder: "e.g. Iron Man"
+                            placeholder: "e.g. Iron Man",
+                            onkeypress: function() {
+                                const search = new RegExp(this.value, "i");
+
+                                HERO_LIST = HERO_DATA.data.results.map(function(hero){
+                                    if(search.test(hero.name)){
+                                        return hero;
+                                    }
+                                });
+                                get("hero-list").update(buildListRows(HERO_LIST));
+                            }
                         }
                     }),
                 ]
@@ -316,15 +326,8 @@ function errorPage(message) {
     get("root").innerHTML = message + " (" + window.location.hash + ")";
 }
 
-function filterHero(name) {
-    const search = new RegExp(name, "i");
+function filterHero() {
 
-    HERO_LIST = HERO_DATA.data.results.map(function(hero){
-        if(search.test(hero.name)){
-            return hero;
-        }
-    });
-    get("hero-list").update(buildListRows(HERO_LIST));
 }
 
 document.addEventListener("keydown", function(ev){

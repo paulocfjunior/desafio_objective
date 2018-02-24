@@ -442,7 +442,7 @@ function buildListRows(heroDataResults) {
                             content: new Element({
                                 type: "img",
                                 properties: {
-                                    src: (['path', 'extension'].map(p => heroData.thumbnail[p])).join("."),
+                                    src: (['path', 'extension'].map(p => heroData.thumbnail[p])).join(".").replace("http://", "https://"),
                                     alt: heroData.name,
                                     height: "58",
                                     width: "58"

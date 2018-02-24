@@ -1,4 +1,9 @@
 /**
+ *  Global Const
+ */
+const ELEMENT_NODE = 1;
+
+/**
  * Init IndexedDB
  * @type {IDBFactory | *}
  */
@@ -16,6 +21,40 @@ window.IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction || 
  */
 window.IDBKeyRange = window.IDBKeyRange || window.webkitIDBKeyRange || window.msIDBKeyRange;
 
+if(!Array.prototype.indexOf) {
+    /**
+     * Array.indexOf function (if not defined)
+     * @param what
+     * @param i
+     * @returns {*}
+     */
+    Array.prototype.indexOf = function(what, i) {
+        i = i || 0;
+        var L = this.length;
+        while (i < L) {
+            if(this[i] === what) return i;
+            ++i;
+        }
+        return -1;
+    };
+}
+
+/**
+ * Remove item from array
+ * @returns {Array}
+ */
+Array.prototype.remove = function() {
+    var what, a = arguments, L = a.length, ax;
+    while (L && this.length) {
+        what = a[--L];
+        while ((ax = this.indexOf(what)) !== -1) {
+            this.splice(ax, 1);
+        }
+    }
+    return this;
+};
+
+
 /**
  * Select elements based on selector
  * @param selector {string}
@@ -31,6 +70,31 @@ function select(selector) {
 }
 
 /**
+ * Process nodelist with a function
+ * @param callback {function}
+ */
+NodeList.prototype.each = function (callback) {
+    var list = this;
+    return Array.prototype.map.call(list, function(e){
+        if(e.nodeType === ELEMENT_NODE) {
+            return callback(e);
+        }
+    });
+};
+
+/**
+ * Process nodelist and remove class from all elements
+ * @param c {string}
+ */
+NodeList.prototype.removeClass = function (c) {
+    return this.each(function(e){
+        if(e.nodeType === ELEMENT_NODE) {
+            return e.removeClass(c);
+        }
+    });
+};
+
+/**
  * Get Element by its ID
  * @param id
  * @returns {HTMLElement | null}
@@ -38,6 +102,29 @@ function select(selector) {
 function get(id) {
     return document.getElementById(id);
 }
+
+/**
+ * Remove a class from element
+ * @param c
+ */
+HTMLElement.prototype.removeClass = function(c){
+    let classes = this.className.split(" ");
+    this.className = classes.remove(c).join(" ");
+    return this;
+};
+
+/**
+ * Add a class to element
+ * @param c
+ */
+HTMLElement.prototype.addClass = function(c){
+    let classes = this.className.split(" ");
+    if(!classes.includes(c)){
+        classes.push(c);
+        this.className= classes.join(" ");
+    }
+    return this;
+};
 
 /**
  * Trigger an event on an element
@@ -85,11 +172,14 @@ function update(source, target) {
 
 /**
  * Generic and recursive element builder
- * @param props    {Object}
- * @param [parent] {HTMLElement}
+ * @param [props]    {Object}
+ * @param [parent]   {HTMLElement}
  * @constructor
  */
 function Element(props, parent){
+    if(typeof props === 'undefined'){
+        props = {};
+    }
     this.type       = props.type        || "div";
     this.content    = props.content     || "";
     this.properties = props.properties  || null;
@@ -175,3 +265,5 @@ function serialize(obj) {
         }
     return str.join("&");
 }
+
+

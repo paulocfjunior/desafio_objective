@@ -10,8 +10,204 @@ html, body {
 }
 
 #root {
+    margin: 0;
+    padding: 20px 42px 0 42px;
+    min-height: 720px;
+    min-width: 1280px;
     width: 100vw;
     height: 100vh;
+}
+
+.app-title,
+.app-subtitle,
+.app-developer {
+    margin: 0;
+    display: inline-block;
+    font-size: 27px;
+    line-height: 1.2em;
+    text-transform: uppercase;
+    color: #D42026;
+}
+
+.app-title {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+}
+
+.app-subtitle {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+}
+
+.app-developer {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    float: right;
+}
+
+.app-line {
+    height: 4px;
+}
+
+.app-line div {
+    width: 52px;
+    height: 100%;
+    background-color: #D42026;
+}
+
+#search-container {
+    padding: 34px 0;
+}
+
+#search-container label,
+#search-container input {
+    display: block;
+}
+
+#search-container label {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    color: #D42026;
+    font-size: 16px;
+    line-height: 1.2em;
+}
+
+#search-container input {
+    border: 1px solid #A5A5A5;
+    border-radius: 4px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    background: #fff;
+    padding: 3px 10px;
+    line-height: 31px;
+    width: 400px;
+}
+
+.app-hero-list {
+    width: 100%;
+}
+
+.app-hero-list-header,
+.app-hero-list-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.app-hero-list-header > div {
+    display: inline-block;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    background-color: #D42026;
+    color: #fff;
+    line-height: 37px;
+    padding: 0 12px;
+    width: 25%;
+}
+
+.app-hero-list-header > div:last-child,
+.app-hero-list-row > div:last-child {
+    width: calc(50% - 20px);
+}
+
+.app-hero-list-row {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    height: 112px;
+    padding: 20px 0;
+    border-bottom: 2px solid rgba(255, 43, 43, 0.5);
+}
+
+.app-hero-list-row:hover,
+.app-hero-list-row:focus {
+    background-color: rgba(212, 32, 38, 0.10);
+    cursor: pointer;
+}
+
+.app-hero-list-row > div {
+    display: table-cell;
+    vertical-align: middle;
+    font-size: 21px;
+    line-height: 1.1em;
+    width: 25%;
+    padding: 0 12px;
+}
+
+.app-hero-list-row > div:first-child {
+    padding-top: 6px;
+}
+
+.app-hero-list-row > div:first-child > div {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: left;
+    /*display: inline-block;*/
+    /*float: left;*/
+    height: 100%;
+    width: calc(100% - 58px - 25px);
+}
+
+.app-hero-list-row > div:first-child > div > img {
+    margin-right: 25px;
+    border-radius: 50%;
+    background-color: #A5A5A5;
+    width: 58px;
+    height: 58px;
+}
+
+.app-pagination {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    text-align: center;
+    margin: 16px 0;
+
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+}
+
+.app-pagination > span,
+.app-pagination > ul > li {
+    -webkit-transition: color 200ms, background-color 200ms;
+       -moz-transition: color 200ms, background-color 200ms;
+        -ms-transition: color 200ms, background-color 200ms;
+         -o-transition: color 200ms, background-color 200ms;
+            transition: color 200ms, background-color 200ms;
+}
+
+.app-pagination > span {
+    cursor: pointer;
+    margin: 0 12px;
+    color: rgba(212, 32, 38, 1);
+}
+
+.app-pagination > span.disabled {
+    color: rgba(212, 32, 38, 0.35);
+}
+
+.app-pagination > ul {
+    display: inline-block;
     margin: 0;
     padding: 0;
+}
+
+.app-pagination > ul > li {
+    cursor: pointer;
+    display: inline-block;
+    border: 1px solid #D42026;
+    color: #D42026;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+}
+
+.app-pagination > ul > li + li {
+    margin-left: 20px;
+}
+
+.app-pagination > ul > li.active {
+    background-color: #D42026;
+    color: #fff;
 }

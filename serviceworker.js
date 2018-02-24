@@ -11,14 +11,14 @@
  limitations under the License.
 */
 
-var CACHE_VERSION = 11;
+var CACHE_VERSION = 12;
 var CURRENT_CACHES = {
     heroes: 'heroes-cache-v' + CACHE_VERSION
 };
 
 self.addEventListener('install', function(event) {
     var urlsToPrefetch = [
-        'css/desktop/app.css',
+        'css/mobile/app.css',
         'css/all/app.css',
         'index.html',
         'js/util.js',

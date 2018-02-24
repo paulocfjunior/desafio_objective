@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
     .then(r => r.json())
     .then(results => {
         HeroData = results.data;
-        get("app-copyright").innerHTML = results.copyright;
+        get("copyright").innerHTML = results.copyright;
     }).catch (e => {
         errorPage("Infelizmente, não foi possível estabelecer conexão com o servidor e não há dados disponíveis offline para exibir.");
         console.error(e);

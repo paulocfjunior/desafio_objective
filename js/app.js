@@ -12,17 +12,13 @@ document.addEventListener("DOMContentLoaded", function () {
     trigger("hashchange");
     let marvelAPI = "https://gateway.marvel.com:443/v1/public/characters?orderBy=name%2Cmodified&apikey=5e8ca1959f7f23db54436ae4b3661243";
 
-    try {
-        get("loading-status").update("Obtendo dados dos heróis...");
-    } catch (e) {
-        console.error(e);
-    }
+    get("loading-status").update("Obtendo dados dos heróis...");
 
     fetch(marvelAPI)
     .then(r => r.json())
-    .then(results => {
-        HERO_DATA = results;
-        HERO_LIST = buildListRows(HERO_DATA.data.results);
+    .then(json => {
+        HERO_DATA = json;
+        HERO_LIST = buildListRows(HERO_DATA.data["results"]);
     }).catch (e => {
         errorPage("Infelizmente, não foi possível estabelecer conexão com o servidor e não há dados disponíveis offline para exibir.");
         console.error(e);
@@ -134,7 +130,7 @@ function render(url) {
                             onkeypress: function() {
                                 const search = new RegExp(this.value, "i");
 
-                                HERO_LIST = HERO_DATA.data.results.map(function(hero){
+                                HERO_LIST = HERO_DATA.data["results"].map(function(hero){
                                     if(search.test(hero.name)){
                                         return hero;
                                     }
@@ -175,7 +171,7 @@ function render(url) {
                             id: "hero-list",
                             className: "app-hero-list-rows",
                         },
-                        content: HERO_LIST
+                        content: [] // HERO_LIST
                     }),
                 ]
             }, page);
@@ -286,20 +282,6 @@ function render(url) {
             var hero = url.split('#hero/')[1].trim();
 
             renderHeroPage(hero);
-        },
-
-        /**
-         * Search heroes by name
-         */
-        '#search': function () {
-
-            /**
-             * Get the search string
-             * @type {string}
-             */
-            var heroName = url.split('#search/')[1].trim();
-
-            filterHero(heroName);
         }
     };
 
@@ -311,10 +293,10 @@ function render(url) {
         routes[request]();
     }
     /**
-     *  If the request is not registered, load error page
+     *  If the request is not registered, load main page
      */
     else {
-        errorPage("A pagina solicitada não foi encontrada.");
+        window.location.hash = "";
     }
 }
 
@@ -327,7 +309,7 @@ function errorPage(message) {
 }
 
 function filterHero() {
-
+    //
 }
 
 document.addEventListener("keydown", function(ev){
@@ -340,6 +322,10 @@ document.addEventListener("keydown", function(ev){
     }
 });
 
+/**
+ *
+ * @returns {number}
+ */
 function prevPage() {
     if (CURRENT_PAGE > 1) {
         CURRENT_PAGE -= 1;
@@ -347,6 +333,10 @@ function prevPage() {
     return CURRENT_PAGE;
 }
 
+/**
+ *
+ * @returns {number}
+ */
 function nextPage() {
     let max = select(".app-pagination-page").length;
     if (CURRENT_PAGE < max) {
@@ -355,6 +345,10 @@ function nextPage() {
     return CURRENT_PAGE;
 }
 
+/**
+ *
+ * @param p
+ */
 function goPage(p) {
     CURRENT_PAGE = p;
     let pages = select(".app-pagination-page");
@@ -372,6 +366,10 @@ function goPage(p) {
     }
 }
 
+/**
+ *
+ * @param name
+ */
 function renderHeroPage(name) {
     get("root").innerHTML = "Hero " + name;
 }

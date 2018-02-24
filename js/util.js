@@ -104,23 +104,7 @@ function get(id) {
     return document.getElementById(id);
 }
 
-/**
- * Log if debug is on
- */
-function log() {
-    if(DEBUG === true){
-        console.log(arguments);
-    }
-}
 
-/**
- * Error if debug is on
- */
-function err() {
-    if(DEBUG === true){
-        console.error(arguments);
-    }
-}
 
 /**
  * Remove a class from element

@@ -1,5 +1,20 @@
-// Via https://github.com/coonsta/cache-polyfill/blob/master/dist/serviceworker-cache-polyfill.js
-// Adds in some functionality missing in Chrome 40.
+/**
+ * Log if debug is on
+ */
+function log() {
+    if(DEBUG === true){
+        console.log(arguments);
+    }
+}
+
+/**
+ * Error if debug is on
+ */
+function err() {
+    if(DEBUG === true){
+        console.error(arguments);
+    }
+}
 
 if (!Cache.prototype.add) {
     Cache.prototype.add = function add(request) {

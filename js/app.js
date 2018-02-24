@@ -113,6 +113,7 @@ function render(url) {
              *  Search box
              */
             new Element({
+                type: "section",
                 properties: {
                     id: "search-container",
                     placeholder: "Pesquisar"
@@ -151,6 +152,7 @@ function render(url) {
              *  Heroes List
              */
             new Element({
+                type: "section",
                 properties: {
                     className: "app-hero-list",
                 },
@@ -185,7 +187,7 @@ function render(url) {
                 properties: {
                     className: "app-pagination",
                 },
-                type: "div",
+                type: "section",
                 content: [
                     new Element({
                         type: "span",
@@ -256,11 +258,13 @@ function render(url) {
                 ]
             }, page);
 
+            root.update(page);
+
             new Element({
                 properties: {
-                    className: "app-footer",
+                    id: "footer",
                 },
-                type: "div",
+                type: "footer",
                 content: [
                     new Element({
                         type: "span",
@@ -270,9 +274,7 @@ function render(url) {
                         content: HERO_DATA.copyright
                 })
                 ]
-            }, page);
-
-            root.update(page);
+            }, root);
         },
 
         /**

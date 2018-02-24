@@ -261,7 +261,6 @@ function render(url) {
             }, page);
 
             root.update(page);
-            root.style.overflow = "scroll";
         },
 
         /**

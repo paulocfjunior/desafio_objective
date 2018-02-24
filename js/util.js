@@ -65,7 +65,7 @@ function select(selector) {
     if(elements.length === 1) {
         return elements[0];
     } else {
-        return elements;
+        return elements || [];
     }
 }
 

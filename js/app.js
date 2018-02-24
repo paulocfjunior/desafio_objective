@@ -324,17 +324,19 @@ function nextPage() {
 function setPage(p) {
     CURRENT_PAGE = p;
     let pages = select(".app-pagination-page");
-    pages.removeClass("active")[(p - 1)].addClass("active");
+    if (pages.length > 0){
+        pages.removeClass("active")[(p - 1)].addClass("active");
 
-    if(CURRENT_PAGE === 1) {
-        get("app-pagination-prev").addClass("disabled");
-    } else {
-        get("app-pagination-prev").removeClass("disabled");
-    }
-    if(CURRENT_PAGE === pages.length) {
-        get("app-pagination-next").addClass("disabled");
-    } else {
-        get("app-pagination-next").removeClass("disabled");
+        if(CURRENT_PAGE === 1) {
+            get("app-pagination-prev").addClass("disabled");
+        } else {
+            get("app-pagination-prev").removeClass("disabled");
+        }
+        if(CURRENT_PAGE === pages.length) {
+            get("app-pagination-next").addClass("disabled");
+        } else {
+            get("app-pagination-next").removeClass("disabled");
+        }
     }
 }
 

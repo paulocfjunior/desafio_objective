@@ -18,6 +18,61 @@ html, body {
     height: 100vh;
 }
 
+#loading {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #eeeeee;
+    display: table;
+
+    -webkit-transition: all 200ms;
+       -moz-transition: all 200ms;
+        -ms-transition: all 200ms;
+         -o-transition: all 200ms;
+            transition: all 200ms;
+}
+
+#loading.hidden {
+    display: none;
+}
+
+#loading > div {
+    display: table-cell;
+    text-align: center;
+    padding: 20px 10px;
+    vertical-align: middle;
+}
+
+#loading-status {
+    -webkit-transition: all 100ms;
+    -moz-transition: all 100ms;
+    -ms-transition: all 100ms;
+    -o-transition: all 100ms;
+    transition: all 100ms;
+}
+
+
+.fade-in,
+.fade-out {
+    -webkit-transition: all 100ms;
+    -moz-transition: all 100ms;
+    -ms-transition: all 100ms;
+    -o-transition: all 100ms;
+    transition: all 100ms;
+}
+
+.fade-in {
+    opacity: 1;
+}
+
+.fade-out {
+    opacity: 0;
+}
+
 .app-title,
 .app-subtitle,
 .app-developer {

@@ -2,6 +2,9 @@
  * Global Scope
  */
 var CURRENT_PAGE = 1;
+var HERO_DATA = {};
+var HERO_LIST = [];
+var HERO_LIST_FILTERED = [];
 
 /**
  *  Load home page when page loads first time
@@ -9,10 +12,15 @@ var CURRENT_PAGE = 1;
 document.addEventListener("DOMContentLoaded", function () {
     let marvelAPI = "https://gateway.marvel.com:443/v1/public/characters?orderBy=name%2Cmodified&apikey=5e8ca1959f7f23db54436ae4b3661243";
 
+    get("loading-status").update("Obtendo dados dos heróis...");
+
     fetch(marvelAPI)
     .then(r => r.json())
     .then(results => {
-        HeroData = results;
+        HERO_DATA = results;
+        HERO_LIST = buildListRows(HERO_DATA.data.results);
+        HERO_LIST_FILTERED = HERO_LIST;
+
         trigger("hashchange");
     }).catch (e => {
         errorPage("Infelizmente, não foi possível estabelecer conexão com o servidor e não há dados disponíveis offline para exibir.");
@@ -38,6 +46,8 @@ function render(url) {
      * @type {string}
      */
     var request = url.split('/')[0];
+
+    get("loading-status").update("Organizando as informações...");
 
     // Hide whatever page is currently shown.
     // $('.main-content .page').removeClass('visible');
@@ -153,7 +163,7 @@ function render(url) {
                         properties: {
                             className: "app-hero-list-rows",
                         },
-                        content: buildListRows(HeroData.data.results)
+                        content: HERO_LIST_FILTERED
                     }),
                 ]
             }, root);
@@ -244,7 +254,7 @@ function render(url) {
                         properties: {
                             id: "copyright"
                         },
-                        content: HeroData.copyright
+                        content: HERO_DATA.copyright
                 })
                 ]
             }, root);
@@ -283,6 +293,7 @@ function render(url) {
      *  Load the page requested
      */
     if (routes[request]) {
+        get("loading-status").addClass("hidden");
         routes[request]();
     }
     /**
@@ -355,21 +366,21 @@ function renderHeroPage(name) {
 
 /**
  * Build rows for Heros based on its Objects of data
- * @param HeroDataArray {Array}
+ * @param HERO_DATAArray {Array}
  * @returns {Array}
  */
-function buildListRows(HeroDataArray) {
-    console.log(HeroDataArray);
+function buildListRows(HERO_DATAArray) {
+    console.log(HERO_DATAArray);
     let result = [];
-    HeroDataArray.forEach(function (HeroData) {
+    HERO_DATAArray.forEach(function (HERO_DATA) {
         let series = [], events = [];
 
-        if (HeroData.series.returned > 0) {
+        if (HERO_DATA.series.returned > 0) {
             let count = 0, max = 3;
-            HeroData.series.items.forEach(function (s) {
+            HERO_DATA.series.items.forEach(function (s) {
                 if (++count <= max) {
                     if (count === max) {
-                        s += " - e mais " + (HeroData.series.returned - count);
+                        s += " - e mais " + (HERO_DATA.series.returned - count);
                     }
                     series.push(
                         new Element({
@@ -386,12 +397,12 @@ function buildListRows(HeroDataArray) {
             })
         }
 
-        if (HeroData.events.returned > 0) {
+        if (HERO_DATA.events.returned > 0) {
             let count = 0, max = 3;
-            HeroData.events.items.forEach(function (e) {
+            HERO_DATA.events.items.forEach(function (e) {
                 if (++count <= max) {
                     if (count === max) {
-                        e += " - e mais " + (HeroData.events.returned - count);
+                        e += " - e mais " + (HERO_DATA.events.returned - count);
                     }
                     events.push(
                         new Element({
@@ -411,7 +422,7 @@ function buildListRows(HeroDataArray) {
         result.push(new Element({
             properties: {
                 className: "app-hero-list-row",
-                id: HeroData.id
+                id: HERO_DATA.id
             },
             content: [
                 /**
@@ -423,8 +434,8 @@ function buildListRows(HeroDataArray) {
                             content: new Element({
                                 type: "img",
                                 properties: {
-                                    src: (['path', 'extension'].map(p => HeroData.thumbnail[p])).join("."),
-                                    alt: HeroData.name,
+                                    src: (['path', 'extension'].map(p => HERO_DATA.thumbnail[p])).join("."),
+                                    alt: HERO_DATA.name,
                                     height: "58",
                                     width: "58"
                                 }
@@ -432,7 +443,7 @@ function buildListRows(HeroDataArray) {
                         }),
                         new Element({
                             type: "div",
-                            content: HeroData.name
+                            content: HERO_DATA.name
                         })
                     ]
                 }),

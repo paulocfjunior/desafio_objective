@@ -25,7 +25,14 @@
         </script>
     </head>
     <body>
-        <div id="root"></div>
+        <div id="root">
+            <div id="loading">
+                <div>
+                    <img src="img/loading.gif" width="90" height="90">
+                    <div id="loading-status">Carregando...</div>
+                </div>
+            </div>
+        </div>
 
         <script>
             if ('serviceWorker' in navigator) {

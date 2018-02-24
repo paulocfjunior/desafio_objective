@@ -95,6 +95,84 @@ NodeList.prototype.removeClass = function (c) {
     });
 };
 
+
+/**
+ * Remove a class from element
+ * @param c
+ */
+HTMLElement.prototype.removeClass = function(c){
+    let classes = this.className.split(" ");
+    this.className = classes.remove(c).join(" ").trim();
+    return this;
+};
+
+/**
+ * Add a class to element
+ * @param c
+ */
+HTMLElement.prototype.addClass = function(c){
+    let classes = this.className.split(" ");
+    if(!classes.includes(c)){
+        classes.push(c);
+        this.className= classes.join(" ").trim();
+    }
+    return this;
+};
+
+/**
+ * Changes the content of an Element with fading effect
+ * @param newContent
+ */
+HTMLElement.prototype.update = function(newContent){
+    var element = this;
+    this.fadeOut(function (t) {
+        t.innerHTML = newContent;
+        return t.fadeIn();
+    });
+
+    this.fadeOut(function () {
+        element.innerHTML = newContent;
+        element.fadeIn();
+    });
+    return this;
+};
+
+/**
+ * Fade In effect
+ * @param [duration] {int}
+ * @param [callback] {function}
+ * @returns {Promise<any>}
+ */
+HTMLElement.prototype.fadeIn = function(callback, duration) {
+    var element = this;
+    duration = duration || 200;
+    return new Promise(function (resolve) {
+        element.removeClass("fade-out");
+        element.addClass("fade-in");
+        setTimeout(function(){
+            resolve((typeof callback !== 'function')? element : callback(element));
+        }, duration);
+    });
+};
+
+/**
+ * Fade Out effect
+ * @param [duration] {int}
+ * @param [callback] {function}
+ * @returns {Promise<any>}
+ */
+HTMLElement.prototype.fadeOut = function(callback, duration) {
+    var element = this;
+    duration = duration || 200;
+    return new Promise(function (resolve) {
+        element.removeClass("fade-in");
+        element.addClass("fade-out");
+        setTimeout(function(){
+            resolve((typeof callback !== 'function')? element : callback(element));
+        }, duration);
+    });
+};
+
 /**
  * Get Element by its ID
  * @param id
@@ -111,7 +189,7 @@ window.log = function() {
     if(DEBUG === true){
         console.log(arguments);
     }
-}
+};
 
 /**
  * Error if debug is on
@@ -120,29 +198,6 @@ window.err = function() {
     if(DEBUG === true){
         console.error(arguments);
     }
-}
-
-/**
- * Remove a class from element
- * @param c
- */
-HTMLElement.prototype.removeClass = function(c){
-    let classes = this.className.split(" ");
-    this.className = classes.remove(c).join(" ");
-    return this;
-};
-
-/**
- * Add a class to element
- * @param c
- */
-HTMLElement.prototype.addClass = function(c){
-    let classes = this.className.split(" ");
-    if(!classes.includes(c)){
-        classes.push(c);
-        this.className= classes.join(" ");
-    }
-    return this;
 };
 
 /**
@@ -284,5 +339,3 @@ function serialize(obj) {
         }
     return str.join("&");
 }
-
-

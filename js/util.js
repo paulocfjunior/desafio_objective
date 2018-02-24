@@ -268,49 +268,49 @@ function Element(props, parent){
     return element;
 }
 
-/**
- *
- * @param url      {string}
- * @param [method] {string}
- * @param [data]   {Object}
- * @returns        {Promise<any>}
- */
-function request(url, method, data) {
-    if(typeof method === 'undefined' || !(["GET", "POST"].includes(method))){
-        method = "GET";
-    }
-
-    if(typeof data === 'undefined'){
-        data = {};
-    }
-
-    data = serialize(data);
-
-    if(method === "GET") {
-        url += data;
-        data = null;
-    }
-
-    return new Promise(function(resolve, reject) {
-        var request = new XMLHttpRequest();
-        request.open(method, url);
-        // When the request loads, check whether it was successful
-        request.onload = function() {
-            if (request.status === 200) {
-                // If successful, resolve the promise by passing back the request response
-                resolve(new Response(request.response));
-            } else {
-                // If it fails, reject the promise with a error message
-                reject(Error(request.statusText));
-            }
-        };
-        request.onerror = function() {
-            reject(Error('There was a network error.'));
-        };
-        // Send the request
-        request.send(data);
-    });
-}
+// /**
+//  *
+//  * @param url      {string}
+//  * @param [method] {string}
+//  * @param [data]   {Object}
+//  * @returns        {Promise<any>}
+//  */
+// function request(url, method, data) {
+//     if(typeof method === 'undefined' || !(["GET", "POST"].includes(method))){
+//         method = "GET";
+//     }
+//
+//     if(typeof data === 'undefined'){
+//         data = {};
+//     }
+//
+//     data = serialize(data);
+//
+//     if(method === "GET") {
+//         url += data;
+//         data = null;
+//     }
+//
+//     return new Promise(function(resolve, reject) {
+//         var request = new XMLHttpRequest();
+//         request.open(method, url);
+//         // When the request loads, check whether it was successful
+//         request.onload = function() {
+//             if (request.status === 200) {
+//                 // If successful, resolve the promise by passing back the request response
+//                 resolve(new Response(request.response));
+//             } else {
+//                 // If it fails, reject the promise with a error message
+//                 reject(Error(request.statusText));
+//             }
+//         };
+//         request.onerror = function() {
+//             reject(Error('There was a network error.'));
+//         };
+//         // Send the request
+//         request.send(data);
+//     });
+// }
 
 /**
  * Object Serialization Function

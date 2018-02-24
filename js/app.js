@@ -2,9 +2,6 @@
  * Global Scope
  */
 var CURRENT_PAGE = 1;
-var HeroData = {
-    results: []
-};
 
 /**
  *  Load home page when page loads first time
@@ -15,8 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
     fetch(marvelAPI)
     .then(r => r.json())
     .then(results => {
-        HeroData = results.data;
-        get("copyright").innerHTML = results.copyright;
+        HeroData = results;
         trigger("hashchange");
     }).catch (e => {
         errorPage("Infelizmente, não foi possível estabelecer conexão com o servidor e não há dados disponíveis offline para exibir.");
@@ -157,7 +153,7 @@ function render(url) {
                         properties: {
                             className: "app-hero-list-rows",
                         },
-                        content: buildListRows(HeroData.results)
+                        content: buildListRows(HeroData.data.results)
                     }),
                 ]
             }, root);
@@ -248,7 +244,7 @@ function render(url) {
                         properties: {
                             id: "copyright"
                         },
-                        content: "Copyright Marvel 2018"
+                        content: HeroData.copyright
                     })
                 ]
             }, root);

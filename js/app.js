@@ -258,8 +258,6 @@ function render(url) {
                 ]
             }, page);
 
-            root.update(page);
-
             new Element({
                 properties: {
                     id: "footer",
@@ -274,7 +272,9 @@ function render(url) {
                         content: HERO_DATA.copyright
                 })
                 ]
-            }, root);
+            }, page);
+
+            root.update(page);
         },
 
         /**

@@ -393,7 +393,7 @@ function buildListRows(HeroDataArray) {
                     if (count === max) {
                         e += " - e mais " + (HeroData.events.returned - count);
                     }
-                    series.push(
+                    events.push(
                         new Element({
                             content: e.name,
                         })

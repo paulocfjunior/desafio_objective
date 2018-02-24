@@ -13,7 +13,6 @@ document.addEventListener("DOMContentLoaded", function () {
     request(marvelAPI).then(function (response) {
         try {
             HeroData = JSON.parse(response);
-            // trigger("hashchange");
         } catch (e) {
             errorPage("Não foi possível obter os dados dos Heróis.");
             console.error("Fail to get HeroData. %s", e);
@@ -23,6 +22,8 @@ document.addEventListener("DOMContentLoaded", function () {
         errorPage("Infelizmente, não foi possível estabelecer conexão com o servidor e não há dados disponíveis offline para exibir.");
         console.error(error);
     });
+
+    trigger("hashchange");
 });
 
 /**

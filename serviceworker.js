@@ -98,7 +98,7 @@ self.addEventListener('fetch', function (event) {
                 });
             }).catch(function (error) {
                 console.error('Não foi possível obter o conteúdo via cache nem via internet: %O', error);
-                throw error;
+                // throw error;
             });
         })
     );

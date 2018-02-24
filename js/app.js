@@ -4,7 +4,6 @@
 var CURRENT_PAGE = 1;
 var HERO_DATA = {};
 var HERO_LIST = [];
-var HERO_LIST_FILTERED = [];
 
 /**
  *  Load home page when page loads first time
@@ -24,7 +23,6 @@ document.addEventListener("DOMContentLoaded", function () {
     .then(results => {
         HERO_DATA = results;
         HERO_LIST = buildListRows(HERO_DATA.data.results);
-        HERO_LIST_FILTERED = HERO_LIST;
     }).catch (e => {
         errorPage("Infelizmente, não foi possível estabelecer conexão com o servidor e não há dados disponíveis offline para exibir.");
         console.error(e);
@@ -145,7 +143,6 @@ function render(url) {
                 properties: {
                     className: "app-hero-list",
                 },
-                type: "div",
                 content: [
                     new Element({
                         properties: {
@@ -165,9 +162,10 @@ function render(url) {
                     }),
                     new Element({
                         properties: {
+                            id: "hero-list",
                             className: "app-hero-list-rows",
                         },
-                        content: HERO_LIST_FILTERED
+                        content: HERO_LIST
                     }),
                 ]
             }, page);
@@ -319,7 +317,14 @@ function errorPage(message) {
 }
 
 function filterHero(name) {
+    const search = new RegExp(name, "i");
 
+    HERO_LIST = HERO_DATA.data.results.map(function(hero){
+        if(search.test(hero.name)){
+            return hero;
+        }
+    });
+    get("hero-list").update(buildListRows(HERO_LIST));
 }
 
 document.addEventListener("keydown", function(ev){
@@ -370,21 +375,20 @@ function renderHeroPage(name) {
 
 /**
  * Build rows for Heros based on its Objects of data
- * @param HERO_DATAArray {Array}
+ * @param heroDataResults {Array}
  * @returns {Array}
  */
-function buildListRows(HERO_DATAArray) {
-    console.log(HERO_DATAArray);
+function buildListRows(heroDataResults) {
     let result = [];
-    HERO_DATAArray.forEach(function (HERO_DATA) {
+    heroDataResults.forEach(function (heroData) {
         let series = [], events = [];
 
-        if (HERO_DATA.series.returned > 0) {
+        if (heroData.series.returned > 0) {
             let count = 0, max = 3;
-            HERO_DATA.series.items.forEach(function (s) {
+            heroData.series.items.forEach(function (s) {
                 if (++count <= max) {
                     if (count === max) {
-                        s += " - e mais " + (HERO_DATA.series.returned - count);
+                        s += " - e mais " + (heroData.series.returned - count);
                     }
                     series.push(
                         new Element({
@@ -401,12 +405,12 @@ function buildListRows(HERO_DATAArray) {
             })
         }
 
-        if (HERO_DATA.events.returned > 0) {
+        if (heroData.events.returned > 0) {
             let count = 0, max = 3;
-            HERO_DATA.events.items.forEach(function (e) {
+            heroData.events.items.forEach(function (e) {
                 if (++count <= max) {
                     if (count === max) {
-                        e += " - e mais " + (HERO_DATA.events.returned - count);
+                        e += " - e mais " + (heroData.events.returned - count);
                     }
                     events.push(
                         new Element({
@@ -426,7 +430,7 @@ function buildListRows(HERO_DATAArray) {
         result.push(new Element({
             properties: {
                 className: "app-hero-list-row",
-                id: HERO_DATA.id
+                id: heroData.id
             },
             content: [
                 /**
@@ -438,8 +442,8 @@ function buildListRows(HERO_DATAArray) {
                             content: new Element({
                                 type: "img",
                                 properties: {
-                                    src: (['path', 'extension'].map(p => HERO_DATA.thumbnail[p])).join("."),
-                                    alt: HERO_DATA.name,
+                                    src: (['path', 'extension'].map(p => heroData.thumbnail[p])).join("."),
+                                    alt: heroData.name,
                                     height: "58",
                                     width: "58"
                                 }
@@ -447,7 +451,7 @@ function buildListRows(HERO_DATAArray) {
                         }),
                         new Element({
                             type: "div",
-                            content: HERO_DATA.name
+                            content: heroData.name
                         })
                     ]
                 }),

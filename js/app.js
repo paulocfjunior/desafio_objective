@@ -12,18 +12,14 @@ var HeroData = {
 document.addEventListener("DOMContentLoaded", function () {
     let marvelAPI = "https://gateway.marvel.com:443/v1/public/characters?orderBy=name%2Cmodified&apikey=5e8ca1959f7f23db54436ae4b3661243";
 
-    request(marvelAPI).then(function (response) {
-        console.log(response);
-        try {
-            HeroData = JSON.parse(response);
-        } catch (e) {
-            errorPage("Não foi possível obter os dados dos Heróis.");
-            console.error("Fail to get HeroData. %s", e);
-            console.error("Response: %O", response);
-        }
-    }, function (error) {
+    fetch(marvelAPI)
+    .then(r => r.json())
+    .then(results => {
+        HeroData = results.data;
+        get("app-copyright").innerHTML = results.copyright;
+    }).catch (e => {
         errorPage("Infelizmente, não foi possível estabelecer conexão com o servidor e não há dados disponíveis offline para exibir.");
-        console.error(error);
+        console.error(e);
     });
 
     trigger("hashchange");

@@ -238,7 +238,7 @@ function request(url, method, data) {
         request.onload = function() {
             if (request.status === 200) {
                 // If successful, resolve the promise by passing back the request response
-                resolve(request.response);
+                resolve(new Response(request.response));
             } else {
                 // If it fails, reject the promise with a error message
                 reject(Error(request.statusText));

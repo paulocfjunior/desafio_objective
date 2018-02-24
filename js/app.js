@@ -431,7 +431,7 @@ function buildListRows(HeroDataArray) {
                             content: new Element({
                                 type: "img",
                                 properties: {
-                                    src: (HeroData.thumbnail.path + HeroData.thumbnail.extension),
+                                    src: (['path', 'extension'].map(p => HeroData.thumbnail[p])).join("."),
                                     alt: HeroData.name,
                                     height: "58",
                                     width: "58"
@@ -439,7 +439,7 @@ function buildListRows(HeroDataArray) {
                             })
                         }),
                         new Element({
-                            type: "div", // "span",
+                            type: "div",
                             content: HeroData.name
                         })
                     ]

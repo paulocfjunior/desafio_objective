@@ -11,7 +11,7 @@
  limitations under the License.
 */
 
-var CACHE_VERSION = 7;
+var CACHE_VERSION = 8;
 var CURRENT_CACHES = {
     heroes: 'heroes-cache-v' + CACHE_VERSION
 };
@@ -31,7 +31,7 @@ self.addEventListener('install', function(event) {
     console.log('Handling install event. Resources to prefetch: ', urlsToPrefetch);
 
     event.waitUntil(
-        caches.open(CURRENT_CACHES.prefetch).then(function(cache) {
+        caches.open(CURRENT_CACHES.heroes).then(function(cache) {
             var now = Date.now();
 
             var cachePromises = urlsToPrefetch.map(function(urlToPrefetch) {
@@ -95,8 +95,7 @@ self.addEventListener('fetch', function (event) {
                 return fetch(event.request.clone()).then(function (response) {
                     console.log('  Response for %s from network is: %O', event.request.url, response);
 
-                    if (response.status < 400 &&
-                        response.headers.has('content-type')) {
+                    if (response.status < 400) {
                         console.log('  Caching the response to', event.request.url);
                         cache.put(event.request, response.clone());
                     } else {

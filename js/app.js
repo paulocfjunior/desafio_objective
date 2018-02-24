@@ -373,11 +373,7 @@ function buildListRows(HeroDataArray) {
                     }
                     series.push(
                         new Element({
-                            type: "a",
                             content: s.name,
-                            properties: {
-                                href: s.resourceURI
-                            }
                         })
                     );
                 } else {
@@ -399,11 +395,7 @@ function buildListRows(HeroDataArray) {
                     }
                     series.push(
                         new Element({
-                            type: "a",
                             content: e.name,
-                            properties: {
-                                href: e.resourceURI
-                            }
                         })
                     );
                 } else {

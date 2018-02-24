@@ -295,7 +295,7 @@ function render(url) {
      *  If the request is not registered, load error page
      */
     else {
-        errorPage("Sorry, the page that you've requested not exists.");
+        errorPage("A pagina solicitada não foi encontrada.");
     }
 }
 
@@ -304,8 +304,9 @@ function render(url) {
  * @param message
  */
 function errorPage(message) {
+    let oldHash = window.location.hash;
     window.location.hash = "error";
-    get("root").innerHTML = message;
+    get("root").innerHTML = message + " (" + oldHash + ")";
 }
 
 function filterHero(name) {

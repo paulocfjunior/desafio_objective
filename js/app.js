@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
     fetch(marvelAPI)
     .then(r => r.json())
     .then(json => {
+        console.log(json);
         HERO_DATA = json;
         HERO_LIST = buildListRows(HERO_DATA.data["results"]);
     }).catch (e => {
@@ -380,8 +381,7 @@ function renderHeroPage(name) {
  * @returns {Array}
  */
 function buildListRows(heroDataResults) {
-    let result = [];
-    heroDataResults.forEach(function (heroData) {
+    return heroDataResults.map(function (heroData) {
         let series = [], events = [];
 
         if (heroData.series.returned > 0) {
@@ -428,7 +428,7 @@ function buildListRows(heroDataResults) {
             })
         }
 
-        result.push(new Element({
+        return new Element({
             properties: {
                 className: "app-hero-list-row",
                 id: heroData.id
@@ -469,7 +469,6 @@ function buildListRows(heroDataResults) {
                     content: events
                 })
             ]
-        }));
+        });
     });
-    return result;
 }

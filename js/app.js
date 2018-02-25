@@ -424,10 +424,10 @@ function renderHeroPage(name) {
  * @returns {Array}
  */
 function goPage(page, heroDataResults) {
-    console.log("goPage(%s)...", page.toString());
     if(typeof page === 'undefined'){
         page = 1;
     }
+    console.log("goPage(%s)...", page.toString());
 
     if(typeof heroDataResults === 'undefined') {
         heroDataResults = HERO_LIST;

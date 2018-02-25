@@ -3,6 +3,7 @@
 }
 
 #detail-header {
+    box-shadow: inset 0 0 200px -20px black;
     font-family: 'Roboto', sans-serif;
     background-color: #D42026;
     min-width: 1200px;
@@ -29,11 +30,20 @@
     text-decoration: none;
     border: 3px solid black;
     box-shadow: 0 0 10px #333;
+
+    -webkit-transition: all 200ms;
+       -moz-transition: all 200ms;
+        -ms-transition: all 200ms;
+         -o-transition: all 200ms;
+            transition: all 200ms;
 }
 
 #detail-header #back-home:hover,
 #detail-header #back-home:focus {
-    background: rgba(255,255,255,1);
+    background: rgba(0,0,0,0.7);
+    color: #fff;
+    border: 3px solid #D42026;
+
 }
 
 #detail-header > div {
@@ -66,6 +76,7 @@
 #detail-content {
     font-family: 'Roboto', sans-serif;
     width: 100%;
+    display: table;
 }
 
 #detail-content > .detail-content-section {

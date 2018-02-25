@@ -299,7 +299,7 @@ function render(url) {
                                         properties: {
                                             className: "detail-card-description"
                                         },
-                                        content: data.description || "Sem descrição."
+                                        content: data.description || "No description."
                                     }),
                                     new Element({
                                         type: "a",
@@ -307,9 +307,9 @@ function render(url) {
                                             className: "detail-card-link",
                                             href: data.urls[0].url,
                                             target: "_blank",
-                                            title: "Clique para ver todos os detalhes no site da MARVEL"
+                                            title: "Click to see more on MARVEL"
                                         },
-                                        content: "&#9654; Veja mais em MARVEL.com"
+                                        content: "&#9654; Go to MARVEL.com"
                                     }),
                                     new Element({
                                         properties: {
@@ -318,7 +318,7 @@ function render(url) {
                                         content: [
                                             new Element({
                                                 content: [
-                                                    "Criadores:",
+                                                    "Creators:",
                                                     data.creators.items.map(function(c){
                                                         return c.name;
                                                     }).join(", ")
@@ -329,7 +329,7 @@ function render(url) {
                                 ]
                             }));
                         }).catch(function(err){
-                            get(idSerie).update("Desulpe, não foi possível obter os dados do servidor da MARVEL.");
+                            get(idSerie).update("Sorry, couldn't fetch data from MARVEL.");
                             console.error(err);
                         });
                     }, 300);
@@ -358,7 +358,7 @@ function render(url) {
                                         type: "img",
                                         properties: {
                                             src: "img/loading.gif",
-                                            alt: "Carregando dados das séries...",
+                                            alt: "Fetching data...",
                                             height: "40",
                                             width: "40"
                                         }
@@ -395,7 +395,7 @@ function render(url) {
                                                 },
                                                 content: [
                                                     new Element({
-                                                        content: data.description || "Sem descrição."
+                                                        content: data.description || "No description."
                                                     })
                                                 ]
                                             }),
@@ -408,7 +408,7 @@ function render(url) {
                                         content: [
                                             new Element({
                                                 content: [
-                                                    "Criadores:",
+                                                    "Creators:",
                                                     data.creators.items.map(function(c){
                                                         return c.name;
                                                     }).join(", ")
@@ -419,7 +419,7 @@ function render(url) {
                                 ]
                             }));
                         }).catch(function(err){
-                            get(idSerie).update("Desulpe, não foi possível obter os dados do servidor da MARVEL.");
+                            get(idSerie).update("Sorry, couldn't fetch data from MARVEL.");
                             console.error(err);
                         });
                     }, 300);
@@ -448,7 +448,7 @@ function render(url) {
                                         type: "img",
                                         properties: {
                                             src: "img/loading.gif",
-                                            alt: "Carregando dados dos eventos...",
+                                            alt: "Loading data...",
                                             height: "40",
                                             width: "40"
                                         }
@@ -472,6 +472,14 @@ function render(url) {
                 content: [
                     new Element({
                         content: [
+                            new Element({
+                                id: "back-home",
+                                type: "a",
+                                properties: {
+                                    href: "./",
+                                },
+                                content: "&#9664;"
+                            }),
                             new Element({
                                 id: "detail-img",
                                 type: "img",
@@ -515,7 +523,7 @@ function render(url) {
                         content: [
                             new Element({
                                 type: "header",
-                                content: "Séries"
+                                content: "Series"
                             }),
                             new Element({
                                 type: "section",
@@ -531,7 +539,7 @@ function render(url) {
                         content: [
                             new Element({
                                 type: "header",
-                                content: "Eventos"
+                                content: "Events"
                             }),
                             new Element({
                                 type: "section",

@@ -399,7 +399,7 @@ document.addEventListener("list-updated", function(){
 
 /**
  * Build pagination
- * @returns {Element}
+ * @returns {Array}
  */
 function buildPagination() {
     console.log("Build pagination...");
@@ -424,7 +424,7 @@ function buildPagination() {
     get("pagination-list").update(result);
     setPage(CURRENT_PAGE);
 
-    return list;
+    return result;
 }
 
 /**

@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
         trigger("hashchange");
     }).catch (e => {
         errorPage("Infelizmente, não foi possível estabelecer conexão com o servidor e não há dados disponíveis offline para exibir.");
-        console.error(e);
+        // console.error(e);
     });
 
 });
@@ -71,7 +71,7 @@ function render(url) {
          * Home
          */
         '': function () {
-            console.log("Main initialization...");
+            // console.log("Main initialization...");
 
             /**
              *  Page Header
@@ -204,6 +204,7 @@ function render(url) {
 
             new Element({
                 properties: {
+                    id: "pagination-container",
                     className: "app-pagination-container",
                 },
                 type: "section",
@@ -389,12 +390,13 @@ function nextPage() {
  */
 function setPage(p) {
     let pages = select(".app-pagination-page");
-    console.log("setPage(%s): pages.length = %s", p, pages.length);
+    // console.log("setPage(%s): pages.length = %s", p, pages.length);
     if (pages.length > 0){
         pages.removeClass("active")[(p - 1)].addClass("active");
 
         if(p === 1) {
             get("app-pagination-prev").addClass("disabled");
+            get("app-pagination-next").addClass("disabled");
         } else {
             get("app-pagination-prev").removeClass("disabled");
         }
@@ -420,7 +422,7 @@ document.addEventListener("list-updated", function(){
  * @returns {Array}
  */
 function buildPagination() {
-    console.log("Build pagination...");
+    // console.log("Build pagination...");
     let result = [];
 
     for (let i = 0; i < HERO_LIST.length; i += 3){
@@ -437,8 +439,8 @@ function buildPagination() {
         }));
     }
 
-    console.log(get("pagination-list"));
-    console.log(result);
+    // console.log(get("pagination-list"));
+    // console.log(result);
 
     get("pagination-list").update(result);
     return result;
@@ -465,7 +467,7 @@ function goPage(page, heroDataResults, updatePagination) {
         page = 1;
     }
 
-    console.log("Went to page %s...", page.toString());
+    // console.log("Went to page %s...", page.toString());
 
     setPage(page);
 
@@ -477,7 +479,11 @@ function goPage(page, heroDataResults, updatePagination) {
 
     let sliceFrom = (page - 1) * 3;
     let sliceQtd = 3;
-    let result = heroDataResults.slice(sliceFrom, (sliceFrom + sliceQtd)).map(function (heroData) {
+    let sliceArr = heroDataResults.slice(sliceFrom, (sliceFrom + sliceQtd));
+
+    get("pagination-container").className = "app-pagination-container row-" + sliceArr.length;
+
+    let result = sliceArr.map(function (heroData) {
         let series = [], events = [];
 
         if (heroData.series.returned > 0) {
@@ -571,7 +577,7 @@ function goPage(page, heroDataResults, updatePagination) {
         });
     });
 
-    console.log(result);
+    // console.log(result);
 
     if(updatePagination === true) {
         trigger("list-updated");

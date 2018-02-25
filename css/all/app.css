@@ -222,8 +222,8 @@ html, body {
 .app-pagination-container {
     font-family: 'Roboto', sans-serif;
     text-align: center;
-    height: 100%;
     min-height: 64px;
+    display: flex;
 
     -webkit-user-select: none;
        -moz-user-select: none;
@@ -231,8 +231,20 @@ html, body {
             user-select: none;
 }
 
+.app-pagination-container.row-1 {
+    height: calc(100% - 174px - 149px);
+}
+
+.app-pagination-container.row-2 {
+    height: calc(100% - 174px - 261px);
+}
+
+.app-pagination-container.row-3 {
+    height: calc(100% - 174px - 373px);
+}
+
 .app-pagination {
-    display: flex;
+    margin: auto;
 }
 
 .app-pagination > span,

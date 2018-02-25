@@ -106,21 +106,23 @@ function render(url) {
                             onkeyup: function(ev) {
                                 let e = ev.keyCode || window.event.keyCode;
 
-                                const rgx = new RegExp(/[a-zA-Z0-9-_ ]/);
+                                if((e !== 37) && (e !== 39)) {
+                                    const rgx = new RegExp(/[a-zA-Z0-9-_ ]/);
 
-                                let input = String.fromCharCode(e);
-                                if ((rgx.test(input)) || (e === 8)){ // Alphanumeric or Backspace/Delete
-                                    const search = new RegExp(this.value, "i");
-                                    let oldList = HERO_LIST;
+                                    let input = String.fromCharCode(e);
+                                    if ((rgx.test(input)) || (e === 8)){ // Alphanumeric or Backspace/Delete
+                                        const search = new RegExp(this.value, "i");
+                                        let oldList = HERO_LIST;
 
-                                    HERO_LIST = HERO_DATA.data["results"].filter(function(hero){
-                                        if(search.test(hero.name)){
-                                            return hero;
+                                        HERO_LIST = HERO_DATA.data["results"].filter(function(hero){
+                                            if(search.test(hero.name)){
+                                                return hero;
+                                            }
+                                        });
+
+                                        if(oldList !== HERO_LIST){
+                                            get("hero-list").update(goPage(1, HERO_LIST, true));
                                         }
-                                    });
-
-                                    if(oldList !== HERO_LIST){
-                                        get("hero-list").update(goPage(1, HERO_LIST, true));
                                     }
                                 }
                             }

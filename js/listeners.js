@@ -39,7 +39,6 @@ document.addEventListener("keydown", function(ev){
     }
 });
 
-
 /**
  * Rebuild pagination on 'list-update' event
  */

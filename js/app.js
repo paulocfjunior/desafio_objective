@@ -365,7 +365,11 @@ function setPage(p) {
 
         pages.removeClass("mobile-visible");
         if((pages.length > 4) && (p > 2)) {
-            pages.splice((p - 2), (p + 1)).addClass("mobile-visible");
+            for(let i = 0; i < pages.length; i++){
+                if((i >= (p - 2)) && (i <= (p + 1))){
+                    pages[i].addClass("mobile-visible");
+                }
+            }
         }
     }
     CURRENT_PAGE = p;

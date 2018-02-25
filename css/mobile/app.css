@@ -8,7 +8,7 @@
 }
 
 #root > div#app {
-    padding: 20px 42px 0 42px;
+    padding: 0;
     height: 100vh;
 }
 

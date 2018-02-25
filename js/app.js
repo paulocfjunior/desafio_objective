@@ -364,7 +364,7 @@ function setPage(p) {
         }
 
         pages.removeClass("mobile-visible");
-        if((pages.length > 4) && (p > 2)) {
+        if((pages.length > 4) && (p > 2) && (p < pages.length - 1)) {
             for(let i = 0; i < pages.length; i++){
                 if((i >= (p - 2)) && (i <= (p + 1))){
                     pages[i].addClass("mobile-visible");
@@ -389,7 +389,11 @@ function buildPagination() {
             type: "li",
             content: j.toString(),
             properties: {
-                className: "app-pagination-page " + ((j === CURRENT_PAGE)? "active" : ""),
+                className: [
+                    "app-pagination-page",
+                    ((j === CURRENT_PAGE)? "active" : ""),
+                    ((j <= 4)? "mobile-visible" : "")
+                ].join(" ").trim(),
                 onclick: function () {
                     goPage(j);
                 }

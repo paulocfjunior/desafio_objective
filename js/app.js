@@ -253,18 +253,6 @@ function render(url) {
         },
 
         /**
-         *  Go To page n
-         */
-        '#page': function() {
-            /**
-             * Get the hero name
-             * @type {string}
-             */
-            let page = url.split('#page/')[1].trim();
-            goPage(page);
-        },
-
-        /**
          * Detail page
          */
         '#hero': function () {
@@ -337,10 +325,10 @@ function errorPage(message) {
 document.addEventListener("keydown", function(ev){
     let e = ev.keyCode || window.event.keyCode;
     if (parseInt(e) === 37) {
-        window.location.hash = "#page/" + prevPage();
+        goPage(prevPage());
     }
     if (parseInt(e) === 39) {
-        window.location.hash = "#page/" + nextPage();
+        goPage(nextPage());
     }
 });
 
@@ -368,26 +356,29 @@ function nextPage() {
 }
 
 /**
- * Set pagination to page number 'p'
+ * Set global pagination to page number 'p'
  * @param p
+ * @returns {number}
  */
 function setPage(p) {
-    CURRENT_PAGE = p;
     let pages = select(".app-pagination-page");
+    console.log("setPage(%s): pages.length = %s", p, pages.length);
     if (pages.length > 0){
         pages.removeClass("active")[(p - 1)].addClass("active");
 
-        if(CURRENT_PAGE === 1) {
+        if(p === 1) {
             get("app-pagination-prev").addClass("disabled");
         } else {
             get("app-pagination-prev").removeClass("disabled");
         }
-        if(CURRENT_PAGE === pages.length) {
+        if(p === pages.length) {
             get("app-pagination-next").addClass("disabled");
         } else {
             get("app-pagination-next").removeClass("disabled");
         }
     }
+    CURRENT_PAGE = p;
+    return p;
 }
 
 /**
@@ -439,17 +430,15 @@ function renderHeroPage(name) {
  * @returns {Array}
  */
 function goPage(page, heroDataResults, updatePagination) {
-    if(updatePagination) trigger("list-updated");
+    if(updatePagination === true) trigger("list-updated");
 
     if(typeof page === 'undefined'){
-        CURRENT_PAGE = 1;
-    } else {
-        CURRENT_PAGE = page;
+        page = 1;
     }
 
-    setPage(CURRENT_PAGE);
+    setPage(page);
 
-    console.log("Went to page %s...", CURRENT_PAGE.toString());
+    console.log("Went to page %s...", page.toString());
 
     if(typeof heroDataResults === 'undefined') {
         heroDataResults = HERO_LIST;
@@ -457,7 +446,7 @@ function goPage(page, heroDataResults, updatePagination) {
         heroDataResults = [];
     }
 
-    let result = heroDataResults.slice((CURRENT_PAGE - 1) * 3, 3).map(function (heroData) {
+    let result = heroDataResults.slice((page - 1) * 3, 3).map(function (heroData) {
         let series = [], events = [];
 
         if (heroData.series.returned > 0) {
@@ -551,7 +540,8 @@ function goPage(page, heroDataResults, updatePagination) {
         });
     });
 
-    if(!updatePagination) get("hero-list").update(result);
-
+    if(!updatePagination) {
+        get("hero-list").update(result);
+    }
     return result;
 }

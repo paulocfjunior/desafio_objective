@@ -295,4 +295,9 @@ html, body {
     height: 12px;
     right: 0;
     left: 0;
+
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
 }

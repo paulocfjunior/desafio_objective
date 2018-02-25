@@ -27,7 +27,7 @@ self.addEventListener('install', function(event) {
         'js/prototypes.js',
         'js/Element.js',
         'js/window.functions.js',
-        'js/app.js',
+        'js/app.js'
     ];
 
     console.log('Instalando Service Worker');

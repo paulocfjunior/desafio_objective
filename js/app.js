@@ -328,7 +328,6 @@ function render(url) {
                                 }),
                             ]
                         }));
-                        console.log("detail-serie-" + data.id + ": %O", get("detail-serie-" + data.id));
                     }).catch(function(err){
                         get(idSerie).update("Desulpe, não foi possível obter os dados do servidor da MARVEL.");
                         console.error(err);
@@ -402,19 +401,10 @@ function render(url) {
                                     content: [
                                         new Element({
                                             content: [
-                                                "Período: ",
-                                                // [
-                                                //     (data.startYear || "Não definido"),
-                                                //     (data.endYear || "até o momento")
-                                                // ].join(" - ")
-                                            ].join(" ").trim()
-                                        }),
-                                        new Element({
-                                            content: [
                                                 "Criadores: ",
-                                                // data.creators.items.map(function(c){
-                                                //     return c.name;
-                                                // })
+                                                data.creators.items.map(function(c){
+                                                    return c.name;
+                                                })
                                             ].join(" ").trim()
                                         })
                                     ]

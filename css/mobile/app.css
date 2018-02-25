@@ -55,7 +55,6 @@
 }
 
 .app-hero-list-row {
-    border-bottom: 2px solid rgba(255, 43, 43, 0.5);
     padding: 10px 0;
     height: 13vh;
     cursor: pointer;
@@ -73,13 +72,18 @@
 
 .app-hero-list-row > div:first-child > div {
     width: calc(100% - 58px - 25px);
-    font-size: 3.5vh;
+    font-size: 4.5vw;
+}
+
+.app-hero-list-row > div:first-child > div > img {
+    width: 12vw;
+    height: 12vw;
 }
 
 .app-pagination-container {
     margin: 18px 30px 24px;
     min-height: 38px;
-    font-size: 3vh;
+    font-size: 5vw;
 }
 
 .app-pagination-container.row-1,

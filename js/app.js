@@ -341,10 +341,12 @@ function render(url) {
                                 }),
                             ]
                         }, get("detail-serie-" + data.id));
+                        console.log("detail-serie-" + data.id + ": %O", get("detail-serie-" + data.id));
                     }).catch(function(err){
                         get(idSerie).update("Desulpe, não foi possível obter os dados do servidor da MARVEL.");
                         console.error(err);
                     });
+
                     return new Element({
                         content: [
                             new Element({
@@ -420,7 +422,10 @@ function render(url) {
                 },
                 type: "section",
                 content: [
-
+                    series,
+                    events,
+                    comics,
+                    stories
                 ]
             }, page);
 

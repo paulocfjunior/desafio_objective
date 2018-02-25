@@ -249,8 +249,9 @@ function render(url) {
                 ]
             }, page);
 
-            ROOT.update(page);
-            trigger("list-updated");
+            ROOT.update(page, function(){
+                trigger("list-updated");
+            });
         },
 
         /**

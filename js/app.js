@@ -173,7 +173,7 @@ function render(url) {
             new Element({
                 type: "section",
                 properties: {
-                    className: "app-hero-list",
+                    className: "app-hero-list row-3",
                 },
                 content: [
                     new Element({
@@ -422,7 +422,6 @@ document.addEventListener("list-updated", function(){
  * @returns {Array}
  */
 function buildPagination() {
-    // console.log("Build pagination...");
     let result = [];
 
     for (let i = 0; i < HERO_LIST.length; i += 3){
@@ -438,9 +437,6 @@ function buildPagination() {
             }
         }));
     }
-
-    // console.log(get("pagination-list"));
-    // console.log(result);
 
     get("pagination-list").update(result);
     return result;
@@ -467,8 +463,6 @@ function goPage(page, heroDataResults, updatePagination) {
         page = 1;
     }
 
-    // console.log("Went to page %s...", page.toString());
-
     setPage(page);
 
     if(typeof heroDataResults === 'undefined') {
@@ -481,7 +475,7 @@ function goPage(page, heroDataResults, updatePagination) {
     let sliceQtd = 3;
     let sliceArr = heroDataResults.slice(sliceFrom, (sliceFrom + sliceQtd));
 
-    get("pagination-container").className = "app-pagination-container row-" + sliceArr.length;
+    select(".app-hero-list")[0].className = "app-hero-list row-" + sliceArr.length;
 
     let result = sliceArr.map(function (heroData) {
         let series = [], events = [];
@@ -577,12 +571,13 @@ function goPage(page, heroDataResults, updatePagination) {
         });
     });
 
-    // console.log(result);
-
     if(updatePagination === true) {
         trigger("list-updated");
     } else {
         get("hero-list").update(result);
     }
+
+    get("pagination-container").className = "app-pagination-container row-" + sliceArr.length;
+
     return result;
 }

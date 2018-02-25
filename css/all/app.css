@@ -158,6 +158,18 @@ html, body {
     width: 100%;
 }
 
+.app-hero-list.row-1 {
+    height: 149px;
+}
+
+.app-hero-list.row-2 {
+    height: 261px;
+}
+
+.app-hero-list.row-3 {
+    height: 373px;
+}
+
 .app-hero-list-header,
 .app-hero-list-row {
     justify-content: space-between;

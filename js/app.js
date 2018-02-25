@@ -152,8 +152,7 @@ function render(url) {
                                 });
 
                                 if(oldList !== HERO_LIST){
-                                    get("hero-list").update(goPage(1, HERO_LIST));
-                                    trigger("list-updated");
+                                    get("hero-list").update(goPage(1, HERO_LIST, true));
                                 }
                             }
                         }
@@ -191,7 +190,7 @@ function render(url) {
                             id: "hero-list",
                             className: "app-hero-list-rows",
                         },
-                        content: goPage()
+                        content: goPage(1, HERO_LIST, true)
                     }),
                 ]
             }, page);
@@ -439,9 +438,10 @@ function renderHeroPage(name) {
  * Build rows for Heros based on its Objects of data
  * @param [page] {int}
  * @param [heroDataResults] {Array}
+ * @param [updatePagination] {boolean}
  * @returns {Array}
  */
-function goPage(page, heroDataResults) {
+function goPage(page, heroDataResults, updatePagination) {
     if(typeof page === 'undefined'){
         CURRENT_PAGE = 1;
     } else {
@@ -549,6 +549,6 @@ function goPage(page, heroDataResults) {
         });
     });
 
-    trigger("list-updated");
+    if(updatePagination) trigger("list-updated");
     return result;
 }

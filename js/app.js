@@ -8,7 +8,7 @@ let HERO_LIST = [];
 /**
  *  Root element
  */
-let root = get("root");
+let ROOT = get("root");
 
 /**
  *  Load home page when page loads first time
@@ -261,7 +261,7 @@ function render(url) {
                 ]
             }, page);
 
-            root.update(page);
+            ROOT.update(page);
         },
 
         /**
@@ -304,7 +304,7 @@ function render(url) {
                 ]
             }, page);
 
-            root.update(page);
+            ROOT.update(page);
         }
     };
 
@@ -328,7 +328,7 @@ function render(url) {
  * @param message
  */
 function errorPage(message) {
-    get("root").innerHTML = message + " (" + window.location.hash + ")";
+    ROOT.innerHTML = message + " (" + window.location.hash + ")";
 }
 
 /**
@@ -408,13 +408,12 @@ function buildPagination() {
         properties: {
             id: "pagination-list"
         }
-    }, root);
+    });
 
     CURRENT_PAGE = 1;
 
     for (let i = 0; i < HERO_LIST.length; i += 3){
         let j = (i/3) + 1;
-        console.log("Iteration");
         new Element({
             type: "li",
             content: j.toString(),
@@ -425,12 +424,9 @@ function buildPagination() {
                 }
             }
         }, list);
-        get("pagination-list").update(list);
     }
 
-    console.log(get("pagination-list"));
-    console.log(list);
-
+    get("pagination-list").update(list);
     setPage(CURRENT_PAGE);
 
     return list;
@@ -441,7 +437,7 @@ function buildPagination() {
  * @param name
  */
 function renderHeroPage(name) {
-    get("root").innerHTML = "Hero " + name;
+    ROOT.innerHTML = "Hero " + name;
 }
 
 /**

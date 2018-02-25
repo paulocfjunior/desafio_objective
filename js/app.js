@@ -364,10 +364,11 @@ function setPage(p) {
         }
 
         if((pages.length > 4) && (p > 1) && (p < pages.length)) {
-            pages.removeClass("mobile-visible");
             for(let i = 0; i < pages.length; i++){
-                if((i >= (p - 2)) && (i <= (p + 3))){
+                if((i >= (p - 2)) && (i <= (p + 1))){
                     pages[i].addClass("mobile-visible");
+                } else {
+                    pages[i].removeClass("mobile-visible");
                 }
             }
         }

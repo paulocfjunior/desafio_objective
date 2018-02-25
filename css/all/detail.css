@@ -1,5 +1,6 @@
 #root div#app.detail {
     padding: 0;
+    overflow-y: auto;
 }
 
 #root div#app.detail #back-home {

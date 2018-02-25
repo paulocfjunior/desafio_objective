@@ -153,6 +153,7 @@ function render(url) {
 
                                 if(oldList !== HERO_LIST){
                                     get("hero-list").update(goPage(1, HERO_LIST));
+                                    trigger("list-updated");
                                 }
                             }
                         }
@@ -222,7 +223,7 @@ function render(url) {
                                 type: "li",
                                 content: 1,
                                 properties: {
-                                    className: "app-pagination-page",
+                                    className: "app-pagination-page active",
                                     onclick: function () {
                                         goPage(1);
                                     }
@@ -392,7 +393,7 @@ function setPage(p) {
 
 document.addEventListener("list-updated", function(){
     console.log("List Update Event Handler");
-    // buildPagination();
+    buildPagination();
 });
 
 /**
@@ -445,6 +446,7 @@ function renderHeroPage(name) {
  * @returns {Array}
  */
 function goPage(page, heroDataResults) {
+    let listUpdated = false;
     if(typeof page === 'undefined'){
         page = 1;
     }
@@ -454,6 +456,8 @@ function goPage(page, heroDataResults) {
         heroDataResults = HERO_LIST;
     } else if(!(heroDataResults instanceof Array)){
         heroDataResults = [];
+    } else {
+        listUpdated = true;
     }
 
     let result = heroDataResults.slice((page - 1), 3).map(function (heroData) {
@@ -552,6 +556,8 @@ function goPage(page, heroDataResults) {
         });
     });
 
-    trigger("list-updated");
+    if(listUpdated){
+        trigger("list-updated");
+    }
     return result;
 }

@@ -451,7 +451,8 @@ function goPage(page, heroDataResults, updatePagination) {
         heroDataResults = [];
     }
 
-    console.error(heroDataResults.length);
+    console.error(heroDataResults.slice((page - 1) * 3, 3));
+    console.error(heroDataResults.slice((parseInt(page) - 1) * 3, 3));
 
     let result = heroDataResults.slice((page - 1) * 3, 3).map(function (heroData) {
         let series = [], events = [];

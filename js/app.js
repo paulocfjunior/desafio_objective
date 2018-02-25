@@ -368,7 +368,7 @@ function render(url) {
                     fetch(s.resourceURI.toString().replace("http://", "https://") + "?apikey=5e8ca1959f7f23db54436ae4b3661243").then(r => r.json()).then(function(json){
                         let data = json.data.results[0];
                         console.log(data);
-                        get("detail-storie-" + data.id).update(new Element({
+                        get("detail-event-" + data.id).update(new Element({
                             properties: {
                                 className: "detail-card"
                             },

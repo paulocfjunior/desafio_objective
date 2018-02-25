@@ -137,7 +137,9 @@ HTMLElement.prototype.update = function(newContent, callback){
             element.innerHTML = "";
             element.appendChild(newContent);
         }
-        element.fadeIn(callback);
+        element.fadeIn(function(){
+            callback(element);
+        });
     });
     return this;
 };

@@ -249,8 +249,11 @@ function render(url) {
                 ]
             }, page);
 
+            console.log("Root building");
             root.update(page, function(){
+                console.log("Root Built");
                 buildPagination();
+                console.log("Pagination Built");
             });
         },
 

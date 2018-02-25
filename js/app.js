@@ -308,6 +308,7 @@ function render(url) {
                                                 properties: {
                                                     className: "detail-card-link",
                                                     href: data.urls[0].url,
+                                                    target: "_blank",
                                                     title: "Clique para ver todos os detalhes no site da MARVEL"
                                                 },
                                                 content: "&#9654; Veja mais em MARVEL.com"

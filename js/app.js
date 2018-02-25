@@ -141,18 +141,25 @@ function render(url) {
                             className: "app-search-box",
                             title: "Digite o nome de um herói da Marvel",
                             placeholder: "ex. Warlock",
-                            onkeyup: function() {
-                                const search = new RegExp(this.value, "i");
-                                let oldList = HERO_LIST;
+                            onkeyup: function(ev) {
+                                let e = ev.keyCode || window.event.keyCode;
 
-                                HERO_LIST = HERO_DATA.data["results"].filter(function(hero){
-                                    if(search.test(hero.name)){
-                                        return hero;
+                                const rgx = new RegExp(/[a-zA-Z0-9-_ ]/);
+
+                                let input = String.fromCharCode(e);
+                                if (rgx.test(input)){
+                                    const search = new RegExp(this.value, "i");
+                                    let oldList = HERO_LIST;
+
+                                    HERO_LIST = HERO_DATA.data["results"].filter(function(hero){
+                                        if(search.test(hero.name)){
+                                            return hero;
+                                        }
+                                    });
+
+                                    if(oldList !== HERO_LIST){
+                                        get("hero-list").update(goPage(1, HERO_LIST, true));
                                     }
-                                });
-
-                                if(oldList !== HERO_LIST){
-                                    get("hero-list").update(goPage(1, HERO_LIST, true));
                                 }
                             }
                         }

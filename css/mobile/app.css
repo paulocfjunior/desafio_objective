@@ -7,20 +7,24 @@
     min-width: 360px;
 }
 
+#root > div#app {
+    padding: 20px 42px 0 42px;
+    height: 100vh;
+}
+
+.app-header {
+    margin-top: 12px;
+    padding: 0 40px;
+}
+
 .app-title,
-.app-subtitle,
-.app-developer {
+.app-subtitle {
     line-height: 1.2em;
     font-size: 16px;
 }
 
-.app-title {
-}
-
-.app-subtitle {
-}
-
 .app-line {
+    padding: 0 40px;
     height: 2px;
 }
 
@@ -29,7 +33,11 @@
 }
 
 #search-container {
-    padding: 12px 0;
+    padding: 12px 40px;
+}
+
+#search-container input {
+    width: 100%;
 }
 
 .app-hero-list-header,
@@ -40,16 +48,16 @@
 
 .app-hero-list-header > div {
     display: block;
-    text-align: center;
+    text-align: left;
     line-height: 37px;
-    padding: 18px;
+    padding: 0 0 0 100px;
     width: 100%;
 }
 
 .app-hero-list-row {
     border-bottom: 2px solid rgba(255, 43, 43, 0.5);
-    padding: 18px 0;
-    height: 112px;
+    padding: 10px 0;
+    height: 90px;
     cursor: pointer;
 }
 

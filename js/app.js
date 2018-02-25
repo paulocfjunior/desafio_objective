@@ -254,6 +254,20 @@ function render(url) {
         },
 
         /**
+         *  Go To page n
+         */
+        '#page': function() {
+            /**
+             * Get the hero name
+             * @type {string}
+             */
+            let page = url.split('#page/')[1].trim();
+
+            routes['']();
+            goPage(page);
+        },
+
+        /**
          * Detail page
          */
         '#hero': function () {
@@ -396,6 +410,8 @@ function buildPagination() {
 
     CURRENT_PAGE = 1;
 
+    console.error(HERO_LIST.length);
+
     for (let i = 0; i < HERO_LIST.length; i += 3){
         let j = (i/3) + 1;
         result.push(new Element({
@@ -404,10 +420,11 @@ function buildPagination() {
             properties: {
                 className: "app-pagination-page " + ((j === 1)? "active" : ""),
                 onclick: function () {
-                    goPage(j);
+                    window.location.hash = "#page/" + j;
                 }
             }
         }));
+        console.error(result[j-1]);
     }
 
     get("pagination-list").update(result);
@@ -433,6 +450,8 @@ function renderHeroPage(name) {
 function goPage(page, heroDataResults) {
     if(typeof page === 'undefined'){
         CURRENT_PAGE = 1;
+    } else {
+        CURRENT_PAGE = page;
     }
     console.log("goPage(%s)...", CURRENT_PAGE.toString());
 

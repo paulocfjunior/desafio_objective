@@ -513,10 +513,8 @@ function goPage(page, heroDataResults) {
             properties: {
                 className: "app-hero-list-row",
                 id: heroData.id,
-                properties: {
-                    onclick: function() {
-                        window.location.hash = "#hero/" + heroData.id;
-                    }
+                onclick: function() {
+                    window.location.hash = "#hero/" + heroData.id;
                 }
             },
             content: [
@@ -558,8 +556,11 @@ function goPage(page, heroDataResults) {
         });
     });
 
+    console.log(listUpdated);
     if(listUpdated){
         trigger("list-updated");
+    } else {
+        console.error("Passou direto");
     }
     return result;
 }

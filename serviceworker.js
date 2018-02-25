@@ -11,7 +11,7 @@
  limitations under the License.
 */
 
-var CACHE_VERSION = 13;
+var CACHE_VERSION = 15;
 var CURRENT_CACHES = {
     heroes: 'heroes-cache-v' + CACHE_VERSION
 };

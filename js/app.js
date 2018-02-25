@@ -444,17 +444,15 @@ function goPage(page, heroDataResults, updatePagination) {
 
     setPage(page);
 
-
     if(typeof heroDataResults === 'undefined') {
         heroDataResults = HERO_LIST;
     } else if(!(heroDataResults instanceof Array)){
         heroDataResults = [];
     }
 
-    console.log(heroDataResults);
-    console.error(heroDataResults.slice((page - 1) * 3, 3));
-
-    let result = heroDataResults.slice((page - 1) * 3, 3).map(function (heroData) {
+    let sliceFrom = (page - 1) * 3;
+    let sliceQtd = 3;
+    let result = heroDataResults.slice(sliceFrom, (sliceFrom + sliceQtd)).map(function (heroData) {
         let series = [], events = [];
 
         if (heroData.series.returned > 0) {

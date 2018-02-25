@@ -249,12 +249,7 @@ function render(url) {
                 ]
             }, page);
 
-            console.log("Root building");
-            root.update(page, function(){
-                console.log("Root Built");
-                buildPagination(get("pagination-list"));
-                console.log("Pagination Built");
-            });
+            root.update(page);
         },
 
         /**

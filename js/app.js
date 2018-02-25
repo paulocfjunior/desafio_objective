@@ -17,9 +17,6 @@ function render(url) {
 
     get("loading-status").update("Organizando as informações...");
 
-    // Hide whatever page is currently shown.
-    // $('.main-content .page').removeClass('visible');
-
     /**
      * App Page element
      * @type {Element}

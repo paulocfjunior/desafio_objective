@@ -22,6 +22,7 @@ self.addEventListener('install', function(event) {
         'css/all/app.css',
         'index.html',
         'js/util.js',
+        'js/listeners.js',
         'js/global.js',
         'js/prototypes.js',
         'js/Element.js',

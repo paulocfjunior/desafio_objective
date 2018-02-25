@@ -363,10 +363,10 @@ function setPage(p) {
             get("app-pagination-next").removeClass("disabled");
         }
 
-        if((pages.length > 4) && (p > 1) && (p < pages.length - 1)) {
+        if((pages.length > 4) && (p > 1) && (p < pages.length)) {
             pages.removeClass("mobile-visible");
             for(let i = 0; i < pages.length; i++){
-                if((i >= (p - 2)) && (i <= (p + 2))){
+                if((i >= (p - 2)) && (i <= (p + 3))){
                     pages[i].addClass("mobile-visible");
                 }
             }

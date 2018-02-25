@@ -374,6 +374,110 @@ function render(url) {
                 });
             }
 
+            if(hero.stories.returned > 0){
+
+                stories = hero.stories.items.map(function(s){
+                    idStorie = "detail-storie-" + s.resourceURI.toString().split("/").slice(-1).toString().trim();
+                    fetch(s.resourceURI.toString().replace("http://", "https://") + "?apikey=5e8ca1959f7f23db54436ae4b3661243").then(r => r.json()).then(function(json){
+                        let data = json.data.results[0];
+                        get("detail-storie-" + data.id).update(new Element({
+                            properties: {
+                                className: "detail-card"
+                            },
+                            content: [
+                                new Element({
+                                    content: [
+                                        new Element({
+                                            type: "img",
+                                            properties: {
+                                                className: "detail-card-thumbnail",
+                                                src: (['path', 'extension'].map(p => hero.thumbnail[p])).join(".").replace("http://", "https://"),
+                                                alt: data.title,
+                                                height: "80",
+                                                width: "40"
+                                            }
+                                        }),
+                                        new Element({
+                                            properties: {
+                                                className: "detail-card-header"
+                                            },
+                                            content: [
+                                                new Element({
+                                                    content: data.title
+                                                }),
+                                                new Element({
+                                                    content: data.description || "Sem descrição."
+                                                }),
+                                                new Element({
+                                                    type: "a",
+                                                    properties: {
+                                                        href: data.urls[0].url,
+                                                        title: "Ver mais detalhes no site da MARVEL"
+                                                    },
+                                                    content: "Detalhes"
+                                                }),
+                                            ]
+                                        }),
+                                    ]
+                                }),
+                                new Element({
+                                    properties: {
+                                        className: "detail-card-properties"
+                                    },
+                                    content: [
+                                        new Element({
+                                            content: [
+                                                "Período: ",
+                                                [
+                                                    (data.startYear || "Não definido"),
+                                                    (data.endYear || "até o momento")
+                                                ].join(" - ")
+                                            ].join(" ").trim()
+                                        }),
+                                        new Element({
+                                            content: [
+                                                "Criadores: ",
+                                                data.creators.items.map(function(c){
+                                                    return c.name;
+                                                })
+                                            ].join(" ").trim()
+                                        })
+                                    ]
+                                }),
+                            ]
+                        }));
+                    }).catch(function(err){
+                        get(idSerie).update("Desulpe, não foi possível obter os dados do servidor da MARVEL.");
+                        console.error(err);
+                    });
+
+                    return new Element({
+                        content: [
+                            new Element({
+                                content: s.name
+                            }),
+                            new Element({
+                                properties: {
+                                    id: idSerie
+                                },
+                                content: [
+                                    new Element({
+                                        className: "detail-loading",
+                                        type: "img",
+                                        properties: {
+                                            src: "img/loading.gif",
+                                            alt: "Carregando dados das histórias...",
+                                            height: "40",
+                                            width: "40"
+                                        }
+                                    }),
+                                ]
+                            })
+                        ]
+                    });
+                });
+            }
+
             console.log(hero);
 
             /**

@@ -331,10 +331,9 @@ function errorPage(message) {
     get("root").innerHTML = message + " (" + window.location.hash + ")";
 }
 
-function filterHero() {
-    //
-}
-
+/**
+ *  Control of pagination with arrows left & right
+ */
 document.addEventListener("keydown", function(ev){
     let e = ev.keyCode || window.event.keyCode;
     if (parseInt(e) === 37) {
@@ -346,7 +345,7 @@ document.addEventListener("keydown", function(ev){
 });
 
 /**
- *
+ * Return the number of previous page
  * @returns {number}
  */
 function prevPage() {
@@ -357,7 +356,7 @@ function prevPage() {
 }
 
 /**
- *
+ * Return the number of next page
  * @returns {number}
  */
 function nextPage() {
@@ -369,7 +368,7 @@ function nextPage() {
 }
 
 /**
- *
+ * Set pagination to page number 'p'
  * @param p
  */
 function setPage(p) {
@@ -391,17 +390,18 @@ function setPage(p) {
     }
 }
 
+/**
+ * Rebuild pagination on 'list-update' event
+ */
 document.addEventListener("list-updated", function(){
-    console.log("List Update Event Handler");
     buildPagination();
 });
 
 /**
- * Build page selectors
- * @param [targetElement] {Element}
+ * Build pagination
  * @returns {Element}
  */
-function buildPagination(targetElement) {
+function buildPagination() {
     console.log("Build pagination...");
     let list = new Element({
         type: "ul",
@@ -412,24 +412,24 @@ function buildPagination(targetElement) {
 
     console.log(HERO_LIST.length);
     for (let i = 0; i < HERO_LIST.length; i += 3){
+        let j = (i/3) + 1;
         console.log("Iteration");
         new Element({
             type: "li",
-            content: (i/3).toString(),
+            content: j.toString(),
             properties: {
-                className: "app-pagination-page",
+                className: "app-pagination-page " + ((j === 1)? "active" : ""),
                 onclick: function () {
-                    goPage((i/3));
+                    goPage(j);
                 }
             }
         }, list);
     }
 
-    console.log(list);
-    if(typeof targetElement !== 'undefined'){
-        console.log("List was updated");
-        targetElement.update(list);
-    }
+    CURRENT_PAGE = 1;
+    get("pagination-list").update(list);
+    setPage(CURRENT_PAGE);
+
     return list;
 }
 
@@ -450,9 +450,9 @@ function renderHeroPage(name) {
 function goPage(page, heroDataResults) {
     let listUpdated = false;
     if(typeof page === 'undefined'){
-        page = 1;
+        CURRENT_PAGE = 1;
     }
-    console.log("goPage(%s)...", page.toString());
+    console.log("goPage(%s)...", CURRENT_PAGE.toString());
 
     if(typeof heroDataResults === 'undefined') {
         heroDataResults = HERO_LIST;
@@ -462,7 +462,7 @@ function goPage(page, heroDataResults) {
         listUpdated = true;
     }
 
-    let result = heroDataResults.slice((page - 1), 3).map(function (heroData) {
+    let result = heroDataResults.slice((CURRENT_PAGE - 1), 3).map(function (heroData) {
         let series = [], events = [];
 
         if (heroData.series.returned > 0) {

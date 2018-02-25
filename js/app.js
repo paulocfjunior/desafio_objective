@@ -261,8 +261,7 @@ function render(url) {
              * @type {string}
              */
             let page = url.split('#page/')[1].trim();
-
-            routes['']();
+            setPage(page);
             goPage(page);
         },
 
@@ -375,7 +374,6 @@ function nextPage() {
  */
 function setPage(p) {
     CURRENT_PAGE = p;
-    window.location.hash = "#page/" + CURRENT_PAGE;
     let pages = select(".app-pagination-page");
     if (pages.length > 0){
         pages.removeClass("active")[(p - 1)].addClass("active");
@@ -416,7 +414,7 @@ function buildPagination() {
             properties: {
                 className: "app-pagination-page " + ((j === CURRENT_PAGE)? "active" : ""),
                 onclick: function () {
-                    setPage(j);
+                    window.location.hash = "#page/" + j;
                 }
             }
         }));
@@ -442,12 +440,17 @@ function renderHeroPage(name) {
  * @returns {Array}
  */
 function goPage(page, heroDataResults, updatePagination) {
+    if(updatePagination) trigger("list-updated");
+
     if(typeof page === 'undefined'){
         CURRENT_PAGE = 1;
     } else {
         CURRENT_PAGE = page;
     }
-    console.log("goPage(%s)...", CURRENT_PAGE.toString());
+
+    setPage(CURRENT_PAGE);
+
+    console.log("Went to page %s...", CURRENT_PAGE.toString());
 
     if(typeof heroDataResults === 'undefined') {
         heroDataResults = HERO_LIST;
@@ -455,7 +458,7 @@ function goPage(page, heroDataResults, updatePagination) {
         heroDataResults = [];
     }
 
-    let result = heroDataResults.slice((CURRENT_PAGE - 1), 3).map(function (heroData) {
+    get("hero-list").update(heroDataResults.slice((CURRENT_PAGE - 1), 3).map(function (heroData) {
         let series = [], events = [];
 
         if (heroData.series.returned > 0) {
@@ -547,8 +550,5 @@ function goPage(page, heroDataResults, updatePagination) {
                 })
             ]
         });
-    });
-
-    if(updatePagination) trigger("list-updated");
-    return result;
+    }));
 }

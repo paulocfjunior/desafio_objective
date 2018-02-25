@@ -3,6 +3,7 @@
  *  Global constants
  */
 const ELEMENT_NODE = 1;
+const SHOW_ITEMS = 4;
 
 /**
  * Global Scope

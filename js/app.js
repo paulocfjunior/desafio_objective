@@ -175,7 +175,7 @@ function render(url) {
             new Element({
                 properties: {
                     id: "pagination-container",
-                    className: "app-pagination-container row-3",
+                    className: "app-pagination-container row-4",
                 },
                 type: "section",
                 content: [
@@ -374,8 +374,8 @@ function setPage(p) {
 function buildPagination() {
     let result = [];
 
-    for (let i = 0; i < HERO_LIST.length; i += 3){
-        let j = (i/3) + 1;
+    for (let i = 0; i < HERO_LIST.length; i += SHOW_ITEMS){
+        let j = (i/SHOW_ITEMS) + 1;
         result.push(new Element({
             type: "li",
             content: j.toString(),
@@ -422,9 +422,8 @@ function goPage(page, heroDataResults, updatePagination) {
         heroDataResults = [];
     }
 
-    let sliceQtd = 4;
-    let sliceFrom = (page - 1) * sliceQtd;
-    let sliceArr = heroDataResults.slice(sliceFrom, (sliceFrom + sliceQtd));
+    let sliceFrom = (page - 1) * SHOW_ITEMS;
+    let sliceArr = heroDataResults.slice(sliceFrom, (sliceFrom + SHOW_ITEMS));
 
     let visibleRows = sliceArr.length;
 

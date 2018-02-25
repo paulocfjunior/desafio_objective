@@ -1,44 +1,4 @@
 /**
- * Global Scope
- */
-let CURRENT_PAGE = 1;
-let HERO_DATA = {};
-let HERO_LIST = [];
-
-/**
- *  Root element
- */
-let ROOT = get("root");
-
-/**
- *  Load home page when page loads first time
- */
-document.addEventListener("DOMContentLoaded", function () {
-    let marvelAPI = "https://gateway.marvel.com:443/v1/public/characters?orderBy=name%2Cmodified&apikey=5e8ca1959f7f23db54436ae4b3661243";
-
-    get("loading-status").update("Obtendo dados dos heróis...");
-
-    fetch(marvelAPI)
-    .then(r => r.json())
-    .then(json => {
-        HERO_DATA = json;
-        HERO_LIST = HERO_DATA.data["results"];
-        trigger("hashchange");
-    }).catch (e => {
-        errorPage("Infelizmente, não foi possível estabelecer conexão com o servidor e não há dados disponíveis offline para exibir.");
-        // console.error(e);
-    });
-
-});
-
-/**
- *  On url hash changed, render the page requested
- */
-window.addEventListener("hashchange", function () {
-    render(decodeURI(window.location.hash));
-});
-
-/**
  * Render the page requested
  * @param url
  */
@@ -348,19 +308,6 @@ function errorPage(message) {
 }
 
 /**
- *  Control of pagination with arrows left & right
- */
-document.addEventListener("keydown", function(ev){
-    let e = ev.keyCode || window.event.keyCode;
-    if (parseInt(e) === 37) {
-        goPage(prevPage());
-    }
-    if (parseInt(e) === 39) {
-        goPage(nextPage());
-    }
-});
-
-/**
  * Return the number of previous page
  * @returns {number}
  */
@@ -409,13 +356,6 @@ function setPage(p) {
     CURRENT_PAGE = p;
     return p;
 }
-
-/**
- * Rebuild pagination on 'list-update' event
- */
-document.addEventListener("list-updated", function(){
-    buildPagination();
-});
 
 /**
  * Build pagination

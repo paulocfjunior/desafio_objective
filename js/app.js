@@ -205,7 +205,7 @@ function render(url) {
             new Element({
                 properties: {
                     id: "pagination-container",
-                    className: "app-pagination-container",
+                    className: "app-pagination-container row-3",
                 },
                 type: "section",
                 content: [

@@ -301,6 +301,7 @@ html, body {
 
 #footer {
     font-family: 'Roboto', sans-serif;
+    border-bottom: 1px solid #D42026;
     background-color: #D42026;
     position: absolute;
     text-align: center;

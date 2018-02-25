@@ -283,23 +283,10 @@ function render(url) {
                                 new Element({
                                     content: [
                                         new Element({
-                                            type: "img",
-                                            properties: {
-                                                className: "detail-card-thumbnail",
-                                                src: (['path', 'extension'].map(p => hero.thumbnail[p])).join(".").replace("http://", "https://"),
-                                                alt: data.title,
-                                                height: "80",
-                                                width: "40"
-                                            }
-                                        }),
-                                        new Element({
                                             properties: {
                                                 className: "detail-card-header"
                                             },
                                             content: [
-                                                new Element({
-                                                    content: data.title
-                                                }),
                                                 new Element({
                                                     content: data.description || "Sem descrição."
                                                 }),
@@ -389,23 +376,10 @@ function render(url) {
                                 new Element({
                                     content: [
                                         new Element({
-                                            type: "img",
-                                            properties: {
-                                                className: "detail-card-thumbnail",
-                                                src: (['path', 'extension'].map(p => hero.thumbnail[p])).join(".").replace("http://", "https://"),
-                                                alt: data.title,
-                                                height: "80",
-                                                width: "40"
-                                            }
-                                        }),
-                                        new Element({
                                             properties: {
                                                 className: "detail-card-header"
                                             },
                                             content: [
-                                                new Element({
-                                                    content: data.title
-                                                }),
                                                 new Element({
                                                     content: data.description || "Sem descrição."
                                                 }),
@@ -459,7 +433,7 @@ function render(url) {
                             }),
                             new Element({
                                 properties: {
-                                    id: idSerie
+                                    id: idStorie
                                 },
                                 content: [
                                     new Element({

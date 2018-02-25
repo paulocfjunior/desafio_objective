@@ -408,7 +408,9 @@ function buildPagination(targetElement) {
         }, list);
     }
 
+    console.log(list);
     if(typeof targetElement !== 'undefined'){
+        console.log("List was updated");
         targetElement.update(list);
     }
     return list;

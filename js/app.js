@@ -217,7 +217,7 @@ function render(url) {
                         properties: {
                             id: "pagination-list"
                         },
-                        content: buildPagination()
+                        content: []
                     }),
                     new Element({
                         type: "span",
@@ -250,6 +250,7 @@ function render(url) {
             }, page);
 
             ROOT.update(page);
+            trigger("list-updated");
         },
 
         /**
@@ -433,7 +434,7 @@ function renderHeroPage(name) {
  * @returns {Array}
  */
 function goPage(page, heroDataResults, updatePagination) {
-    if(updatePagination === true) trigger("list-updated");
+
 
     if(typeof page === 'undefined'){
         page = 1;
@@ -543,7 +544,9 @@ function goPage(page, heroDataResults, updatePagination) {
         });
     });
 
-    if(!updatePagination) {
+    if(updatePagination === true) {
+        trigger("list-updated");
+    } else {
         get("hero-list").update(result);
     }
     return result;

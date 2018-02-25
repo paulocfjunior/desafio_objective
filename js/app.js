@@ -422,10 +422,70 @@ function render(url) {
                 },
                 type: "section",
                 content: [
-                    series,
-                    events,
-                    comics,
-                    stories
+                    new Element({
+                        type: "section",
+                        properties: {
+                            className: "detail-content-section"
+                        },
+                        content: [
+                            new Element({
+                                type: "header",
+                                content: "Séries"
+                            }),
+                            new Element({
+                                type: "section",
+                                content: series
+                            })
+                        ]
+                    }),
+                    new Element({
+                        type: "section",
+                        properties: {
+                            className: "detail-content-section"
+                        },
+                        content: [
+                            new Element({
+                                type: "header",
+                                content: "Histórias"
+                            }),
+                            new Element({
+                                type: "section",
+                                content: stories
+                            })
+                        ]
+                    }),
+                    new Element({
+                        type: "section",
+                        properties: {
+                            className: "detail-content-section"
+                        },
+                        content: [
+                            new Element({
+                                type: "header",
+                                content: "Comics"
+                            }),
+                            new Element({
+                                type: "section",
+                                content: comics
+                            })
+                        ]
+                    }),
+                    new Element({
+                        type: "section",
+                        properties: {
+                            className: "detail-content-section"
+                        },
+                        content: [
+                            new Element({
+                                type: "header",
+                                content: "Eventos"
+                            }),
+                            new Element({
+                                type: "section",
+                                content: events
+                            })
+                        ]
+                    })
                 ]
             }, page);
 

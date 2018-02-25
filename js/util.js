@@ -121,8 +121,9 @@ HTMLElement.prototype.addClass = function(c){
 /**
  * Changes the content of an Element with fading effect
  * @param newContent {Array || Node || string}
+ * @param [callback] {function}
  */
-HTMLElement.prototype.update = function(newContent){
+HTMLElement.prototype.update = function(newContent, callback){
     var element = this;
     this.fadeOut(function () {
         if(typeof newContent === 'string'){
@@ -136,7 +137,7 @@ HTMLElement.prototype.update = function(newContent){
             element.innerHTML = "";
             element.appendChild(newContent);
         }
-        element.fadeIn();
+        element.fadeIn(callback);
     });
     return this;
 };

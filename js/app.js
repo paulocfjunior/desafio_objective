@@ -143,13 +143,17 @@ function render(url) {
                             placeholder: "ex. Warlock",
                             onkeyup: function() {
                                 const search = new RegExp(this.value, "i");
+                                let oldList = HERO_LIST;
 
                                 HERO_LIST = HERO_DATA.data["results"].filter(function(hero){
                                     if(search.test(hero.name)){
                                         return hero;
                                     }
                                 });
-                                get("hero-list").update(goPage(1, HERO_LIST));
+
+                                if(oldList !== HERO_LIST){
+                                    get("hero-list").update(goPage(1, HERO_LIST));
+                                }
                             }
                         }
                     }),
@@ -245,8 +249,9 @@ function render(url) {
                 ]
             }, page);
 
-            root.update(page);
-            // goPage();
+            root.update(page, function(){
+                buildPagination();
+            });
         },
 
         /**

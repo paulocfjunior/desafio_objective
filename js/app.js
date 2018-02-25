@@ -436,20 +436,22 @@ function renderHeroPage(name) {
  */
 function goPage(page, heroDataResults, updatePagination) {
 
-
     if(typeof page === 'undefined'){
         page = 1;
     }
 
+    console.log("Went to page %s...", page.toString());
+
     setPage(page);
 
-    console.log("Went to page %s...", page.toString());
 
     if(typeof heroDataResults === 'undefined') {
         heroDataResults = HERO_LIST;
     } else if(!(heroDataResults instanceof Array)){
         heroDataResults = [];
     }
+
+    console.error(heroDataResults.length);
 
     let result = heroDataResults.slice((page - 1) * 3, 3).map(function (heroData) {
         let series = [], events = [];
@@ -544,6 +546,8 @@ function goPage(page, heroDataResults, updatePagination) {
             ]
         });
     });
+
+    console.log(result);
 
     if(updatePagination === true) {
         trigger("list-updated");

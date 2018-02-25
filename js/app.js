@@ -252,7 +252,7 @@ function render(url) {
             console.log("Root building");
             root.update(page, function(){
                 console.log("Root Built");
-                buildPagination();
+                buildPagination(get("pagination-list"));
                 console.log("Pagination Built");
             });
         },

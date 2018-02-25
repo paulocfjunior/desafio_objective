@@ -475,7 +475,9 @@ function render(url) {
                             new Element({
                                 type: "a",
                                 properties: {
-                                    href: "./",
+                                    onclick: function(){
+                                        routes['']();
+                                    },
                                     id: "back-home"
                                 },
                                 content: "&#9664;"

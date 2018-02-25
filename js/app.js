@@ -339,10 +339,16 @@ function render(url) {
                     return new Element({
                         content: [
                             new Element({
+                                type: "header",
+                                properties: {
+                                    className: "detail-block-header"
+                                },
                                 content: s.name
                             }),
                             new Element({
+                                type: "section",
                                 properties: {
+                                    className: "detail-block-content",
                                     id: idSerie
                                 },
                                 content: [
@@ -425,10 +431,16 @@ function render(url) {
                     return new Element({
                         content: [
                             new Element({
+                                type: "header",
+                                properties: {
+                                    className: "detail-block-header"
+                                },
                                 content: s.name
                             }),
                             new Element({
+                                type: "section",
                                 properties: {
+                                    className: "detail-block-content",
                                     id: idEvent
                                 },
                                 content: [
@@ -457,6 +469,7 @@ function render(url) {
             new Element({
                 type: "header",
                 properties: {
+                    id: "detail-header",
                     className: "app-header"
                 },
                 content: [
@@ -528,22 +541,6 @@ function render(url) {
                                 content: events
                             })
                         ]
-                    })
-                ]
-            }, page);
-
-            new Element({
-                properties: {
-                    id: "footer",
-                },
-                type: "footer",
-                content: [
-                    new Element({
-                        type: "span",
-                        properties: {
-                            id: "copyright"
-                        },
-                        content: HERO_DATA.copyright
                     })
                 ]
             }, page);

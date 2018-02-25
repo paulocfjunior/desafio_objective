@@ -251,6 +251,10 @@ html, body {
     height: calc(100% - 174px - 373px);
 }
 
+.app-pagination-container.row-4 {
+    height: calc(100% - 174px - 485px);
+}
+
 .app-pagination {
     margin: auto;
 }

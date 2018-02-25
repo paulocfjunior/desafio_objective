@@ -173,7 +173,7 @@ function render(url) {
             new Element({
                 type: "section",
                 properties: {
-                    className: "app-hero-list row-3",
+                    className: "app-hero-list",
                 },
                 content: [
                     new Element({
@@ -439,6 +439,7 @@ function buildPagination() {
     }
 
     get("pagination-list").update(result);
+    get("pagination-container").className = "app-pagination-container row-" + select(".app-hero-list").length;
     return result;
 }
 
@@ -474,8 +475,6 @@ function goPage(page, heroDataResults, updatePagination) {
     let sliceFrom = (page - 1) * 3;
     let sliceQtd = 3;
     let sliceArr = heroDataResults.slice(sliceFrom, (sliceFrom + sliceQtd));
-
-    select(".app-hero-list")[0].className = "app-hero-list row-" + sliceArr.length;
 
     let result = sliceArr.map(function (heroData) {
         let series = [], events = [];
@@ -576,8 +575,6 @@ function goPage(page, heroDataResults, updatePagination) {
     } else {
         get("hero-list").update(result);
     }
-
-    get("pagination-container").className = "app-pagination-container row-" + sliceArr.length;
 
     return result;
 }

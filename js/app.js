@@ -376,6 +376,7 @@ function nextPage() {
  */
 function setPage(p) {
     CURRENT_PAGE = p;
+    window.location.hash = "#page/" + CURRENT_PAGE;
     let pages = select(".app-pagination-page");
     if (pages.length > 0){
         pages.removeClass("active")[(p - 1)].addClass("active");
@@ -408,28 +409,21 @@ function buildPagination() {
     console.log("Build pagination...");
     let result = [];
 
-    CURRENT_PAGE = 1;
-
-    console.error(HERO_LIST.length);
-
     for (let i = 0; i < HERO_LIST.length; i += 3){
         let j = (i/3) + 1;
         result.push(new Element({
             type: "li",
             content: j.toString(),
             properties: {
-                className: "app-pagination-page " + ((j === 1)? "active" : ""),
+                className: "app-pagination-page " + ((j === CURRENT_PAGE)? "active" : ""),
                 onclick: function () {
-                    window.location.hash = "#page/" + j;
+                    setPage(j);
                 }
             }
         }));
-        console.error(result[j-1]);
     }
 
     get("pagination-list").update(result);
-    setPage(CURRENT_PAGE);
-
     return result;
 }
 

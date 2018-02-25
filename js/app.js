@@ -337,6 +337,9 @@ function render(url) {
                     }, 300);
 
                     return new Element({
+                        properties: {
+                            className: "detail-block"
+                        },
                         content: [
                             new Element({
                                 type: "header",

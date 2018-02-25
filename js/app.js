@@ -403,18 +403,13 @@ document.addEventListener("list-updated", function(){
  */
 function buildPagination() {
     console.log("Build pagination...");
-    let list = new Element({
-        type: "ul",
-        properties: {
-            id: "pagination-list"
-        }
-    });
+    let result = [];
 
     CURRENT_PAGE = 1;
 
     for (let i = 0; i < HERO_LIST.length; i += 3){
         let j = (i/3) + 1;
-        new Element({
+        result.push(new Element({
             type: "li",
             content: j.toString(),
             properties: {
@@ -423,10 +418,10 @@ function buildPagination() {
                     goPage(j);
                 }
             }
-        }, list);
+        }));
     }
 
-    get("pagination-list").update(list);
+    get("pagination-list").update(result);
     setPage(CURRENT_PAGE);
 
     return list;

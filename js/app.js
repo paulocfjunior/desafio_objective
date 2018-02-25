@@ -9,7 +9,6 @@ let ROOT = get("root");
  */
 function render(url) {
     /**
-     *  TODO: [detail] Arrumar scroll
      *  TODO: [detail] Layout responsivo
      *  TODO: [detail] Colocar imagem de capa
      */
@@ -505,6 +504,21 @@ function render(url) {
             }
 
             /**
+             *  Back home link
+             */
+            new Element({
+                type: "a",
+                properties: {
+                    onclick: function(){
+                        routes['']();
+                    },
+                    id: "back-home",
+                    title: "Voltar à busca"
+                },
+                content: "&#9664;"
+            }, page);
+
+            /**
              *  Page Header
              */
             new Element({
@@ -516,17 +530,6 @@ function render(url) {
                 content: [
                     new Element({
                         content: [
-                            new Element({
-                                type: "a",
-                                properties: {
-                                    onclick: function(){
-                                        routes['']();
-                                    },
-                                    id: "back-home",
-                                    title: "Voltar à busca"
-                                },
-                                content: "&#9664;"
-                            }),
                             new Element({
                                 id: "detail-img",
                                 type: "img",

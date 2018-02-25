@@ -411,16 +411,15 @@ function buildPagination(targetElement) {
     });
 
     console.log(HERO_LIST.length);
-
-    for (let i = 0, j = 1; i < HERO_LIST.length; i+3, j++){
+    for (let i = 0; i < HERO_LIST.length; i+3){
         console.log("Iteration");
         new Element({
             type: "li",
-            content: j.toString(),
+            content: (i/3).toString(),
             properties: {
                 className: "app-pagination-page",
                 onclick: function () {
-                    goPage(j);
+                    goPage((i/3));
                 }
             }
         }, list);

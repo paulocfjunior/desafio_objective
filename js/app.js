@@ -277,7 +277,27 @@ function render(url) {
                 }
             });
 
-            let series = [], events = [];
+            let empty = new Element({
+                properties: {
+                    className: "detail-block"
+                },
+                content: [
+                    new Element({
+                        type: "header",
+                        properties: {
+                            className: "detail-block-header"
+                        },
+                        content: "Não há dados para exibir nesta categoria."
+                    })
+                ]
+            });
+
+            let series = [
+                empty
+            ];
+            let events = [
+                empty
+            ];
 
             if(hero.series.returned > 0){
 
@@ -299,7 +319,7 @@ function render(url) {
                                         properties: {
                                             className: "detail-card-description"
                                         },
-                                        content: data.description || "No description."
+                                        content: data.description || "Sem descrição."
                                     }),
                                     new Element({
                                         type: "a",
@@ -307,9 +327,9 @@ function render(url) {
                                             className: "detail-card-link",
                                             href: data.urls[0].url,
                                             target: "_blank",
-                                            title: "Click to see more on MARVEL"
+                                            title: "Veja mais no site da MARVEL"
                                         },
-                                        content: "&#9654; Go to MARVEL.com"
+                                        content: "&#9654; Veja mais em MARVEL.com"
                                     }),
                                     new Element({
                                         properties: {
@@ -329,7 +349,7 @@ function render(url) {
                                 ]
                             }));
                         }).catch(function(err){
-                            get(idSerie).update("Sorry, couldn't fetch data from MARVEL.");
+                            get(idSerie).update("Desculpe, não foi possível obter dados da MARVEL.");
                             console.error(err);
                         });
                     }, 300);
@@ -350,7 +370,10 @@ function render(url) {
                                 type: "section",
                                 properties: {
                                     className: "detail-block-content",
-                                    id: idSerie
+                                    id: idSerie,
+                                    style: {
+                                        textAlign: "center"
+                                    }
                                 },
                                 content: [
                                     new Element({
@@ -358,7 +381,7 @@ function render(url) {
                                         type: "img",
                                         properties: {
                                             src: "img/loading.gif",
-                                            alt: "Fetching data...",
+                                            alt: "Obtendo dados...",
                                             height: "40",
                                             width: "40"
                                         }
@@ -395,7 +418,7 @@ function render(url) {
                                                 },
                                                 content: [
                                                     new Element({
-                                                        content: data.description || "No description."
+                                                        content: data.description || "Sem descrição."
                                                     })
                                                 ]
                                             }),
@@ -408,7 +431,7 @@ function render(url) {
                                         content: [
                                             new Element({
                                                 content: [
-                                                    "Creators:",
+                                                    "Criadores:",
                                                     data.creators.items.map(function(c){
                                                         return c.name;
                                                     }).join(", ")
@@ -419,7 +442,7 @@ function render(url) {
                                 ]
                             }));
                         }).catch(function(err){
-                            get(idSerie).update("Sorry, couldn't fetch data from MARVEL.");
+                            get(idSerie).update("Desculpe, não foi possível obter dados da MARVEL.");
                             console.error(err);
                         });
                     }, 300);
@@ -440,7 +463,10 @@ function render(url) {
                                 type: "section",
                                 properties: {
                                     className: "detail-block-content",
-                                    id: idEvent
+                                    id: idEvent,
+                                    style: {
+                                        textAlign: "center"
+                                    }
                                 },
                                 content: [
                                     new Element({
@@ -448,7 +474,7 @@ function render(url) {
                                         type: "img",
                                         properties: {
                                             src: "img/loading.gif",
-                                            alt: "Loading data...",
+                                            alt: "Obtendo dados...",
                                             height: "40",
                                             width: "40"
                                         }
@@ -478,7 +504,8 @@ function render(url) {
                                     onclick: function(){
                                         routes['']();
                                     },
-                                    id: "back-home"
+                                    id: "back-home",
+                                    title: "Voltar à busca"
                                 },
                                 content: "&#9664;"
                             }),
@@ -525,7 +552,7 @@ function render(url) {
                         content: [
                             new Element({
                                 type: "header",
-                                content: "Series"
+                                content: "Séries"
                             }),
                             new Element({
                                 type: "section",
@@ -541,7 +568,7 @@ function render(url) {
                         content: [
                             new Element({
                                 type: "header",
-                                content: "Events"
+                                content: "Eventos"
                             }),
                             new Element({
                                 type: "section",

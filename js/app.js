@@ -101,7 +101,7 @@ function render(url) {
                             id: "search-box",
                             className: "app-search-box",
                             title: "Digite o nome de um herói da Marvel",
-                            placeholder: "ex. Warlock",
+                            placeholder: "ex. Iron Man",
                             onkeyup: function(ev) {
                                 let e = ev.keyCode || window.event.keyCode;
 

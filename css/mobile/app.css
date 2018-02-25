@@ -57,7 +57,7 @@
 .app-hero-list-row {
     border-bottom: 2px solid rgba(255, 43, 43, 0.5);
     padding: 10px 0;
-    height: 90px;
+    height: 13vh;
     cursor: pointer;
 }
 
@@ -73,13 +73,13 @@
 
 .app-hero-list-row > div:first-child > div {
     width: calc(100% - 58px - 25px);
+    font-size: 3.5vh;
 }
 
 .app-pagination-container {
     margin: 18px 30px 24px;
-    position: absolute;
-    bottom: 12px;
     min-height: 38px;
+    font-size: 3vh;
 }
 
 .app-pagination-container.row-1,
@@ -110,10 +110,6 @@
 
 .app-pagination > ul {
     margin: 0 30px;
-    padding: 0;
-    width: 160px;
-    height: 28px;
-    overflow: hidden;
 }
 
 .app-pagination > ul > li {
@@ -122,6 +118,9 @@
 
 .app-pagination > ul > li.mobile-visible {
     display: inline-block;
+    height: auto;
+    width: auto;
+    padding: 0 8px;
 }
 
 .app-pagination > ul > li + li {

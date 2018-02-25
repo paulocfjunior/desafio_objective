@@ -267,26 +267,71 @@ function render(url) {
                 }
             });
 
+            console.log(hero);
+
+            /**
+             *  Page Header
+             */
             new Element({
                 type: "header",
+                properties: {
+                    className: "app-header"
+                },
                 content: [
                     new Element({
-                        content: new Element({
-                            id: "detail-img",
-                            type: "img",
-                            properties: {
-                                src: (['path', 'extension'].map(p => hero.thumbnail[p])).join(".").replace("http://", "https://"),
-                                alt: hero.name,
-                                height: "80",
-                                width: "80"
-                            }
-                        })
+                        content: [
+                            new Element({
+                                id: "detail-img",
+                                type: "img",
+                                properties: {
+                                    src: (['path', 'extension'].map(p => hero.thumbnail[p])).join(".").replace("http://", "https://"),
+                                    alt: hero.name,
+                                    height: "80",
+                                    width: "80"
+                                }
+                            }),
+                            new Element({
+                                type: "h1",
+                                content: hero.name,
+                                properties: {
+                                    className: "app-title"
+                                }
+                            }),
+                        ]
                     }),
                     new Element({
-                        id: "detail-name",
-                        type: "h1",
-                        content: hero.name
-                    }),
+                        type: "h3",
+                        content: "MARVEL COMICS",
+                        properties: {
+                            className: "detail-logo hide-on-mobile"
+                        }
+                    })
+                ]
+            }, page);
+
+            new Element({
+                properties: {
+                    id: "detail-content",
+                },
+                type: "section",
+                content: [
+
+                ]
+            }, page);
+
+            new Element({
+                properties: {
+                    id: "footer",
+                },
+                type: "footer",
+                content: [
+                    new Element({
+                        type: "span",
+                        properties: {
+                            id: "copyright"
+                        },
+                        content: HERO_DATA.copyright
+                    })
                 ]
             }, page);
 

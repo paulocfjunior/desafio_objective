@@ -204,50 +204,57 @@ function render(url) {
 
             new Element({
                 properties: {
-                    className: "app-pagination",
+                    className: "app-pagination-container",
                 },
                 type: "section",
                 content: [
                     new Element({
-                        type: "span",
-                        content: "&#9664;",
                         properties: {
-                            className: "disabled",
-                            id: "app-pagination-prev",
-                            onclick: function () {
-                                goPage(prevPage());
-                            }
-                        }
-                    }),
-                    new Element({
-                        type: "ul",
-                        properties: {
-                            id: "pagination-list"
+                            className: "app-pagination"
                         },
                         content: [
                             new Element({
-                                type: "li",
-                                content: "1",
+                                type: "span",
+                                content: "&#9664;",
                                 properties: {
-                                    className: "app-pagination-page active",
+                                    className: "disabled",
+                                    id: "app-pagination-prev",
                                     onclick: function () {
-                                        goPage(1);
+                                        goPage(prevPage());
+                                    }
+                                }
+                            }),
+                            new Element({
+                                type: "ul",
+                                properties: {
+                                    id: "pagination-list"
+                                },
+                                content: [
+                                    new Element({
+                                        type: "li",
+                                        content: "1",
+                                        properties: {
+                                            className: "app-pagination-page active",
+                                            onclick: function () {
+                                                goPage(1);
+                                            }
+                                        }
+                                    })
+                                ]
+                            }),
+                            new Element({
+                                type: "span",
+                                content: "&#9654;",
+                                properties: {
+                                    className: "disabled",
+                                    id: "app-pagination-next",
+                                    onclick: function () {
+                                        goPage(nextPage());
                                     }
                                 }
                             })
                         ]
-                    }),
-                    new Element({
-                        type: "span",
-                        content: "&#9654;",
-                        properties: {
-                            className: "disabled",
-                            id: "app-pagination-next",
-                            onclick: function () {
-                                goPage(nextPage());
-                            }
-                        }
-                    }),
+                    })
                 ]
             }, page);
 

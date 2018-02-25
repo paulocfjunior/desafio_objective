@@ -19,11 +19,6 @@ html, body {
 
 #root > div#app {
     padding: 20px 42px 0 42px;
-    position: relative;
-    flex-flow: column;
-    display: flex;
-    height: 100%;
-    width: 100%;
 }
 
 #loading {
@@ -81,15 +76,6 @@ html, body {
     display: none;
 }
 
-#root > div#app .app-header {
-    flex: 0 1 auto;
-}
-
-#root > div#app .app-header {
-    flex: 0 1 auto;
-}
-
-
 .app-title,
 .app-subtitle,
 .app-developer {
@@ -129,7 +115,6 @@ html, body {
 
 #search-container {
     padding: 34px 0;
-    flex: 0 1 auto;
 }
 
 #search-container label,
@@ -170,7 +155,6 @@ html, body {
 
 .app-hero-list {
     width: 100%;
-    flex: 0 1 auto;
 }
 
 .app-hero-list-header,
@@ -198,21 +182,17 @@ html, body {
 .app-hero-list-row {
     border-bottom: 2px solid rgba(255, 43, 43, 0.5);
     font-family: 'Roboto', sans-serif;
-    font-weight: 400;
     padding: 20px 0;
-    flex: 0 1 auto;
     height: 112px;
+    cursor: pointer;
 }
 
 .app-hero-list-row:hover,
 .app-hero-list-row:focus {
     background-color: rgba(212, 32, 38, 0.10);
-    cursor: pointer;
 }
 
 .app-hero-list-row > div {
-    vertical-align: middle;
-    display: table-cell;
     line-height: 1.1em;
     font-size: 21px;
     padding: 0 12px;
@@ -239,18 +219,20 @@ html, body {
     height: 58px;
 }
 
-.app-pagination {
+.app-pagination-container {
     font-family: 'Roboto', sans-serif;
     text-align: center;
-    font-weight: 400;
+    height: 100%;
     min-height: 64px;
-    margin: auto 0;
-    flex: 1 1 auto;
 
     -webkit-user-select: none;
        -moz-user-select: none;
         -ms-user-select: none;
             user-select: none;
+}
+
+.app-pagination {
+    display: flex;
 }
 
 .app-pagination > span,

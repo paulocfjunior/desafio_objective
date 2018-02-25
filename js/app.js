@@ -371,7 +371,7 @@ function setPage(p) {
         } else {
             get("app-pagination-prev").removeClass("disabled");
         }
-        if(p === pages.length) {
+        if(p >= pages.length) {
             get("app-pagination-next").addClass("disabled");
         } else {
             get("app-pagination-next").removeClass("disabled");
@@ -409,6 +409,9 @@ function buildPagination() {
             }
         }));
     }
+
+    console.log(get("pagination-list"));
+    console.log(result);
 
     get("pagination-list").update(result);
     return result;

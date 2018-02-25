@@ -147,7 +147,7 @@ function render(url) {
                                 const rgx = new RegExp(/[a-zA-Z0-9-_ ]/);
 
                                 let input = String.fromCharCode(e);
-                                if (rgx.test(input)){
+                                if ((rgx.test(input)) || (e === 8)){ // Alphanumeric or Backspace/Delete
                                     const search = new RegExp(this.value, "i");
                                     let oldList = HERO_LIST;
 
@@ -224,7 +224,18 @@ function render(url) {
                         properties: {
                             id: "pagination-list"
                         },
-                        content: []
+                        content: [
+                            new Element({
+                                type: "li",
+                                content: "1",
+                                properties: {
+                                    className: "app-pagination-page active",
+                                    onclick: function () {
+                                        goPage(1);
+                                    }
+                                }
+                            })
+                        ]
                     }),
                     new Element({
                         type: "span",
@@ -413,7 +424,7 @@ function buildPagination() {
             properties: {
                 className: "app-pagination-page " + ((j === CURRENT_PAGE)? "active" : ""),
                 onclick: function () {
-                    window.location.hash = "#page/" + j;
+                    goPage(j);
                 }
             }
         }));

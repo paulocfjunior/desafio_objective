@@ -221,7 +221,7 @@ function render(url) {
                         content: [
                             new Element({
                                 type: "li",
-                                content: 1,
+                                content: "1",
                                 properties: {
                                     className: "app-pagination-page active",
                                     onclick: function () {
@@ -410,7 +410,10 @@ function buildPagination(targetElement) {
         }
     });
 
+    console.log(HERO_LIST.length);
+
     for (let i = 0, j = 1; i < HERO_LIST.length; i+3, j++){
+        console.log("Iteration");
         new Element({
             type: "li",
             content: j.toString(),

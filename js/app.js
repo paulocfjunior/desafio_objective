@@ -218,18 +218,7 @@ function render(url) {
                         properties: {
                             id: "pagination-list"
                         },
-                        content: [
-                            new Element({
-                                type: "li",
-                                content: "1",
-                                properties: {
-                                    className: "app-pagination-page active",
-                                    onclick: function () {
-                                        goPage(1);
-                                    }
-                                }
-                            })
-                        ]
+                        content: buildPagination()
                     }),
                     new Element({
                         type: "span",

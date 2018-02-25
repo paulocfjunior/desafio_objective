@@ -8,6 +8,13 @@ let ROOT = get("root");
  * @param url
  */
 function render(url) {
+    /**
+     *  TODO: [detail] Mostrar div de vazio quando não tiver dados
+     *  TODO: [detail] Arrumar os tamanhos das seções
+     *  TODO: [detail] Arrumar scroll
+     *  TODO: [detail] Layout responsivo
+     *  TODO: [detail] Colocar imagem de capa
+     */
 
     /**
      * Get request keyword from url
@@ -277,26 +284,38 @@ function render(url) {
                 }
             });
 
-            let empty = new Element({
-                properties: {
-                    className: "detail-block"
-                },
-                content: [
-                    new Element({
-                        type: "header",
-                        properties: {
-                            className: "detail-block-header"
-                        },
-                        content: "Não há dados para exibir nesta categoria."
-                    })
-                ]
-            });
-
             let series = [
-                empty
+                new Element({
+                    properties: {
+                        className: "detail-block"
+                    },
+                    content: [
+                        new Element({
+                            type: "header",
+                            properties: {
+                                className: "detail-block-header"
+                            },
+                            content: "Não há dados para exibir nesta categoria."
+                        })
+                    ]
+                })
             ];
+
             let events = [
-                empty
+                new Element({
+                    properties: {
+                        className: "detail-block"
+                    },
+                    content: [
+                        new Element({
+                            type: "header",
+                            properties: {
+                                className: "detail-block-header"
+                            },
+                            content: "Não há dados para exibir nesta categoria."
+                        })
+                    ]
+                })
             ];
 
             if(hero.series.returned > 0){

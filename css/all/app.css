@@ -25,10 +25,10 @@ html, body {
 
 #loading {
     background-color: #eeeeee;
+    flex-flow: column;
     overflow: hidden;
     position: fixed;
     display: flex;
-    flex-flow: column;
     height: 100vh;
     width: 100vw;
     bottom: 0;
@@ -44,25 +44,25 @@ html, body {
 }
 
 #loading > div {
-    margin: auto;
     text-align: center;
+    margin: auto;
 }
 
 #loading-status {
     -webkit-transition: all 100ms;
-    -moz-transition: all 100ms;
-    -ms-transition: all 100ms;
-    -o-transition: all 100ms;
-    transition: all 100ms;
+       -moz-transition: all 100ms;
+        -ms-transition: all 100ms;
+         -o-transition: all 100ms;
+            transition: all 100ms;
 }
 
 .fade-in,
 .fade-out {
     -webkit-transition: all 100ms;
-    -moz-transition: all 100ms;
-    -ms-transition: all 100ms;
-    -o-transition: all 100ms;
-    transition: all 100ms;
+       -moz-transition: all 100ms;
+        -ms-transition: all 100ms;
+         -o-transition: all 100ms;
+            transition: all 100ms;
 }
 
 .fade-in {
@@ -144,10 +144,10 @@ html, body {
     width: 400px;
 
     -webkit-transition: all 200ms;
-    -moz-transition: all 200ms;
-    -ms-transition: all 200ms;
-    -o-transition: all 200ms;
-    transition: all 200ms;
+       -moz-transition: all 200ms;
+        -ms-transition: all 200ms;
+         -o-transition: all 200ms;
+            transition: all 200ms;
 }
 
 #search-container input:focus {

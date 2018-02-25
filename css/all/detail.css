@@ -3,31 +3,37 @@
 }
 
 #detail-header {
-    min-width: 1200px;
     font-family: 'Roboto', sans-serif;
     background-color: #D42026;
+    min-width: 1200px;
     color: #fff;
 }
 
 #detail-header::after {
-    content: '';
     display: block;
+    content: '';
     clear: both;
 }
 
 #detail-header #back-home {
-    background: #fff;
+    background: rgba(255,255,255,0.8);
     display: block;
     position: fixed;
-    padding: 16px;
+    padding: 16px 14px 16px 17px;
     top: 15px;
     left: 15px;
     border-radius: 50%;
-    width: 54px;
+    width: 55px;
+    cursor: pointer;
     color: #D42026;
     text-decoration: none;
     border: 3px solid black;
     box-shadow: 0 0 10px #333;
+}
+
+#detail-header #back-home:hover,
+#detail-header #back-home:focus {
+    background: rgba(255,255,255,1);
 }
 
 #detail-header > div {
@@ -35,27 +41,26 @@
 }
 
 #detail-header > div > img {
-    margin: 20px;
-    display: block;
-    float: left;
-    padding: 5px;
-    background: white;
-    border: 5px solid black;
     border-radius: 50%;
+    background: black;
+    display: block;
+    padding: 5px;
+    margin: 20px;
+    float: left;
 }
 
 #detail-header > div > h1 {
-    font-size: 40px;
     padding: 90px 20px;
+    font-size: 40px;
     display: block;
     float: left;
     color: #fff;
 }
 
 #detail-header > h3 {
+    padding: 20px 30px;
     float: right;
     color: #fff;
-    padding: 20px 30px;
 }
 
 #detail-content {
@@ -64,18 +69,18 @@
 }
 
 #detail-content > .detail-content-section {
-    width: 50%;
-    padding: 20px;
     display: table-cell;
+    padding: 20px;
+    width: 50%;
 }
 
 #detail-content > .detail-content-section > header {
-    font-size: 28px;
-    font-weight: 900;
-    padding: 10px 15px;
-    margin: 10px 0;
     border-bottom: 2px solid #D42026;
     text-transform: uppercase;
+    padding: 10px 15px;
+    font-weight: 900;
+    font-size: 28px;
+    margin: 10px 0;
 }
 
 #detail-content > .detail-content-section > section {
@@ -83,10 +88,10 @@
 }
 
 #detail-content > .detail-content-section > section > .detail-block {
-    margin: 20px 0;
-    padding: 10px 15px;
     border: 1px solid #ccc;
+    padding: 10px 15px;
     position: relative;
+    margin: 20px 0;
 }
 
 #detail-content > .detail-content-section > section > .detail-block > .detail-block-header {
@@ -102,15 +107,15 @@
 }
 
 #detail-content > .detail-content-section > section > .detail-block > .detail-block-content > .detail-card > .detail-card-description {
-    padding: 20px;
     font-style: italic;
+    padding: 20px;
 }
 
 #detail-content > .detail-content-section > section > .detail-block > .detail-block-content > .detail-card > .detail-card-link {
+    text-decoration: none;
     position: absolute;
-    top: 10px;
-    right: 10px;
     font-size: 12px;
     color: #D42026;
-    text-decoration: none;
+    right: 10px;
+    top: 10px;
 }

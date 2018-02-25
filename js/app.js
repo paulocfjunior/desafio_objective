@@ -380,6 +380,7 @@ function render(url) {
                     idStorie = "detail-storie-" + s.resourceURI.toString().split("/").slice(-1).toString().trim();
                     fetch(s.resourceURI.toString().replace("http://", "https://") + "?apikey=5e8ca1959f7f23db54436ae4b3661243").then(r => r.json()).then(function(json){
                         let data = json.data.results[0];
+                        console.log(data);
                         get("detail-storie-" + data.id).update(new Element({
                             properties: {
                                 className: "detail-card"
@@ -411,7 +412,7 @@ function render(url) {
                                                 new Element({
                                                     type: "a",
                                                     properties: {
-                                                        href: data.urls[0].url,
+                                                        href: "", //data.urls[0].url,
                                                         title: "Ver mais detalhes no site da MARVEL"
                                                     },
                                                     content: "Detalhes"

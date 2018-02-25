@@ -272,7 +272,8 @@ function render(url) {
             if(hero.series.returned > 0){
 
                 series = hero.series.items.map(function(s){
-                    idSerie = "detail-serie-" + s.resourceURI.split("/").slice(-1).trim();
+                    console.log(s);
+                    idSerie = "detail-serie-" + s.resourceURI.toString().split("/").slice(-1).trim();
                     fetch(s.resourceURI + "?apikey=5e8ca1959f7f23db54436ae4b3661243").then(r => r.json()).then(function(json){
                         let data = json.results[0];
                         new Element({

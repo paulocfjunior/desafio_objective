@@ -9,8 +9,6 @@ let ROOT = get("root");
  */
 function render(url) {
     /**
-     *  TODO: [detail] Mostrar div de vazio quando não tiver dados
-     *  TODO: [detail] Arrumar os tamanhos das seções
      *  TODO: [detail] Arrumar scroll
      *  TODO: [detail] Layout responsivo
      *  TODO: [detail] Colocar imagem de capa

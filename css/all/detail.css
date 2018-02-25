@@ -76,9 +76,12 @@
 }
 
 #detail-content {
+    box-shadow: 0 0 20px rgba(0,0,0,0.7);
     font-family: 'Roboto', sans-serif;
-    width: 100%;
+    background-color: #fff;
+    margin-top: 220px;
     display: table;
+    width: 100%;
 }
 
 #detail-content > .detail-content-section {

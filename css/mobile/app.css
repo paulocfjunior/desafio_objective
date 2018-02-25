@@ -1,3 +1,10 @@
 .hide-on-mobile {
     display: none;
 }
+
+#root {
+    min-height: 640px;
+    min-width: 360px;
+}
+
+

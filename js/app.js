@@ -217,7 +217,18 @@ function render(url) {
                         properties: {
                             id: "pagination-list"
                         },
-                        content: [] // buildPagination()
+                        content: [
+                            new Element({
+                                type: "li",
+                                content: 1,
+                                properties: {
+                                    className: "app-pagination-page",
+                                    onclick: function () {
+                                        goPage(1);
+                                    }
+                                }
+                            })
+                        ]
                     }),
                     new Element({
                         type: "span",
@@ -379,6 +390,11 @@ function setPage(p) {
     }
 }
 
+document.addEventListener("list-updated", function(){
+    console.log("List Update Event Handler");
+    // buildPagination();
+});
+
 /**
  * Build page selectors
  * @param [targetElement] {Element}
@@ -440,7 +456,7 @@ function goPage(page, heroDataResults) {
         heroDataResults = [];
     }
 
-    return heroDataResults.slice((page - 1), 3).map(function (heroData) {
+    let result = heroDataResults.slice((page - 1), 3).map(function (heroData) {
         let series = [], events = [];
 
         if (heroData.series.returned > 0) {
@@ -535,4 +551,7 @@ function goPage(page, heroDataResults) {
             ]
         });
     });
+
+    trigger("list-updated");
+    return result;
 }

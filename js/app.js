@@ -106,11 +106,11 @@ function render(url) {
                             onkeyup: function(ev) {
                                 let e = ev.keyCode || window.event.keyCode;
 
-                                if((e !== 37) && (e !== 39)) {
+                                if((parseInt(e) !== 37) && (parseInt(e) !== 39)) {
                                     const rgx = new RegExp(/[a-zA-Z0-9-_ ]/);
 
                                     let input = String.fromCharCode(e);
-                                    if ((rgx.test(input)) || (e === 8)){ // Alphanumeric or Backspace/Delete
+                                    if ((rgx.test(input)) || (parseInt(e) === 8)){ // Alphanumeric or Backspace/Delete
                                         const search = new RegExp(this.value, "i");
                                         let oldList = HERO_LIST;
 

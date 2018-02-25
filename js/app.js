@@ -275,7 +275,7 @@ function render(url) {
                     idSerie = "detail-serie-" + s.resourceURI.toString().split("/").slice(-1).toString().trim();
                     fetch(s.resourceURI.toString().replace("http://", "https://") + "?apikey=5e8ca1959f7f23db54436ae4b3661243").then(r => r.json()).then(function(json){
                         let data = json.data.results[0];
-                        new Element({
+                        get("detail-serie-" + data.id).update(new Element({
                             properties: {
                                 className: "detail-card"
                             },
@@ -340,7 +340,7 @@ function render(url) {
                                     ]
                                 }),
                             ]
-                        }, get("detail-serie-" + data.id));
+                        }));
                         console.log("detail-serie-" + data.id + ": %O", get("detail-serie-" + data.id));
                     }).catch(function(err){
                         get(idSerie).update("Desulpe, não foi possível obter os dados do servidor da MARVEL.");

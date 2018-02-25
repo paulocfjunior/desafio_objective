@@ -439,7 +439,9 @@ function buildPagination() {
     }
 
     get("pagination-list").update(result);
-    get("pagination-container").className = "app-pagination-container row-" + select(".app-hero-list").length;
+
+    let rows = select(".app-hero-list-row").length || 3;
+    get("pagination-container").className = "app-pagination-container row-" + rows;
     return result;
 }
 

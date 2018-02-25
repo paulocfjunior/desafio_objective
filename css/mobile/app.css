@@ -115,6 +115,14 @@
     overflow: hidden;
 }
 
+.app-pagination > ul > li {
+    display: none;
+}
+
+.app-pagination > ul > li.mobile-visible {
+    display: inline-block;
+}
+
 .app-pagination > ul > li + li {
     margin-left: 15px;
 }

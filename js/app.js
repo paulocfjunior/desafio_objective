@@ -362,6 +362,11 @@ function setPage(p) {
         } else {
             get("app-pagination-next").removeClass("disabled");
         }
+
+        pages.removeClass("mobile-visible");
+        if((pages.length > 4) && (p > 2)) {
+            pages.splice((p - 2), (p + 1)).addClass("mobile-visible");
+        }
     }
     CURRENT_PAGE = p;
     return p;

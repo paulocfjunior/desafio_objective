@@ -1,4 +1,9 @@
 /**
+ *  Root element
+ */
+let ROOT = get("root");
+
+/**
  * Render the page requested
  * @param url
  */
@@ -60,7 +65,7 @@ function render(url) {
                         type: "h3",
                         content: "Paulo Cézar Francisco Júnior",
                         properties: {
-                            className: "app-developer"
+                            className: "app-developer hide-on-mobile"
                         }
                     })
                 ]
@@ -142,13 +147,19 @@ function render(url) {
                         },
                         content: [
                             new Element({
-                                content: "Personagem"
+                                content: "Nome"
                             }),
                             new Element({
-                                content: "Séries"
+                                content: "Séries",
+                                properties: {
+                                    className: "hide-on-mobile"
+                                }
                             }),
                             new Element({
-                                content: "Eventos"
+                                content: "Eventos",
+                                properties: {
+                                    className: "hide-on-mobile"
+                                }
                             })
                         ]
                     }),
@@ -500,13 +511,19 @@ function goPage(page, heroDataResults, updatePagination) {
                  * Series Column
                  */
                 new Element({
-                    content: series
+                    content: series,
+                    properties: {
+                        className: "hide-on-mobile"
+                    }
                 }),
                 /**
                  * Events Column
                  */
                 new Element({
-                    content: events
+                    content: events,
+                    properties: {
+                        className: "hide-on-mobile"
+                    }
                 })
             ]
         });

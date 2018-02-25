@@ -10,8 +10,3 @@ const ELEMENT_NODE = 1;
 let CURRENT_PAGE = 1;
 let HERO_DATA = {};
 let HERO_LIST = [];
-
-/**
- *  Root element
- */
-let ROOT = get("root");

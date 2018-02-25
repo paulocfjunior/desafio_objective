@@ -410,7 +410,8 @@ function buildPagination() {
         }
     });
 
-    console.log(HERO_LIST.length);
+    CURRENT_PAGE = 1;
+
     for (let i = 0; i < HERO_LIST.length; i += 3){
         let j = (i/3) + 1;
         console.log("Iteration");
@@ -424,10 +425,12 @@ function buildPagination() {
                 }
             }
         }, list);
+        get("pagination-list").update(list);
     }
 
-    CURRENT_PAGE = 1;
-    get("pagination-list").update(list);
+    console.log(get("pagination-list"));
+    console.log(list);
+
     setPage(CURRENT_PAGE);
 
     return list;

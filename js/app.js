@@ -510,7 +510,7 @@ function render(url) {
                 type: "a",
                 properties: {
                     onclick: function(){
-                        routes['']();
+                        window.location.hash = "";
                     },
                     id: "back-home",
                     title: "Voltar à busca"

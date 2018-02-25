@@ -12,6 +12,7 @@ html, body {
 #root {
     min-height: 720px;
     min-width: 1280px;
+    overflow: hidden;
     height: 100%;
     width: 100%;
     margin: 0;
@@ -231,6 +232,8 @@ html, body {
         -ms-transition: all 200ms;
          -o-transition: all 200ms;
             transition: all 200ms;
+
+    transition-delay: 500ms;
 
     -webkit-user-select: none;
        -moz-user-select: none;

@@ -17,23 +17,22 @@ function render(url) {
 
     get("loading-status").update("Organizando as informações...");
 
-    /**
-     * App Page element
-     * @type {Element}
-     */
-    let page = new Element({
-        properties: {
-            id: "app"
-        }
-    });
-
     const routes = {
 
         /**
          * Home
          */
         '': function () {
-            // console.log("Main initialization...");
+            /**
+             * App Page element
+             * @type {Element}
+             */
+            let page = new Element({
+                properties: {
+                    id: "app",
+                    className: ""
+                }
+            });
 
             /**
              *  Page Header
@@ -256,6 +255,17 @@ function render(url) {
         '#hero': function () {
 
             /**
+             * App Page element
+             * @type {Element}
+             */
+            let page = new Element({
+                properties: {
+                    id: "app",
+                    className: "detail"
+                }
+            });
+
+            /**
              * Get the hero name
              * @type {string}
              */
@@ -271,6 +281,9 @@ function render(url) {
 
             if(hero.series.returned > 0){
 
+                /**
+                 *  Fetch (more) information about series
+                 */
                 series = hero.series.items.map(function(s){
                     idSerie = "detail-serie-" + s.resourceURI.toString().split("/").slice(-1).toString().trim();
 
@@ -286,21 +299,18 @@ function render(url) {
                                         content: [
                                             new Element({
                                                 properties: {
-                                                    className: "detail-card-header"
+                                                    className: "detail-card-description"
                                                 },
-                                                content: [
-                                                    new Element({
-                                                        content: data.description || "Sem descrição."
-                                                    }),
-                                                    new Element({
-                                                        type: "a",
-                                                        properties: {
-                                                            href: data.urls[0].url,
-                                                            title: "Ver mais detalhes no site da MARVEL"
-                                                        },
-                                                        content: "Ver mais em Marvel.com"
-                                                    }),
-                                                ]
+                                                content: data.description || "Sem descrição."
+                                            }),
+                                            new Element({
+                                                type: "a",
+                                                properties: {
+                                                    className: "detail-card-link",
+                                                    href: data.urls[0].url,
+                                                    title: "Clique para ver todos os detalhes no site da MARVEL"
+                                                },
+                                                content: "&#9654; Veja mais em MARVEL.com"
                                             }),
                                         ]
                                     }),
@@ -365,6 +375,9 @@ function render(url) {
 
             if(hero.events.returned > 0){
 
+                /**
+                 *  Fetch (more) information about events
+                 */
                 events = hero.events.items.map(function(s){
                     idEvent = "detail-event-" + s.resourceURI.toString().split("/").slice(-1).toString().trim();
 
@@ -415,6 +428,9 @@ function render(url) {
                     }, 300);
 
                     return new Element({
+                        properties: {
+                            className: "detail-block"
+                        },
                         content: [
                             new Element({
                                 type: "header",
@@ -447,8 +463,6 @@ function render(url) {
                 });
             }
 
-            console.log(hero);
-
             /**
              *  Page Header
              */
@@ -467,8 +481,8 @@ function render(url) {
                                 properties: {
                                     src: (['path', 'extension'].map(p => hero.thumbnail[p])).join(".").replace("http://", "https://"),
                                     alt: hero.name,
-                                    height: "80",
-                                    width: "80"
+                                    height: "180",
+                                    width: "180"
                                 }
                             }),
                             new Element({
@@ -482,7 +496,7 @@ function render(url) {
                     }),
                     new Element({
                         type: "h3",
-                        content: "MARVEL COMICS",
+                        content: HERO_DATA.copyright,
                         properties: {
                             className: "detail-logo hide-on-mobile"
                         }

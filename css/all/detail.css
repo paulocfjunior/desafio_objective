@@ -1,6 +1,16 @@
+#root div#app.detail {
+    padding: 0;
+}
+
 #detail-header {
     min-width: 1200px;
     font-family: 'Roboto', sans-serif;
+}
+
+#detail-header::after {
+    content: '';
+    display: block;
+    clear: both;
 }
 
 #detail-header > div {
@@ -14,7 +24,7 @@
 }
 
 #detail-header > div > h1 {
-    font-size: 90px;
+    font-size: 40px;
     padding: 20px;
     display: block;
     float: left;
@@ -23,6 +33,7 @@
 #detail-header > h3 {
     float: right;
     color: #D42026;
+    padding: 20px 30px;
 }
 
 #detail-content {
@@ -51,6 +62,8 @@
 
 #detail-content > .detail-content-section > section > .detail-block {
     margin: 20px 0;
+    padding: 10px 15px;
+    border: 1px solid #ccc;
 }
 
 #detail-content > .detail-content-section > section > .detail-block > .detail-block-header {

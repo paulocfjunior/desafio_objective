@@ -124,8 +124,10 @@ HTMLElement.prototype.addClass = function(c){
  * @param [executeAfter] {function}
  */
 HTMLElement.prototype.update = function(newContent, executeAfter){
+    console.log(executeAfter);
     var element = this;
     this.fadeOut(function () {
+        console.log(executeAfter);
         if(typeof newContent === 'string'){
             element.innerHTML = newContent;
         } else if(newContent instanceof Array){
@@ -138,6 +140,7 @@ HTMLElement.prototype.update = function(newContent, executeAfter){
             element.appendChild(newContent);
         }
         element.fadeIn(function(){
+            console.log(executeAfter);
             executeAfter(element);
         });
     });

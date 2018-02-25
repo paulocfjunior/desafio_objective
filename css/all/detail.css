@@ -106,7 +106,7 @@
     font-style: italic;
 }
 
-#detail-content > .detail-content-section > section .detail-card > .detail-card-header .detail-card-link {
+#detail-content > .detail-content-section > section > .detail-block > .detail-block-content > .detail-card > .detail-card-link {
     position: absolute;
     top: 10px;
     right: 10px;

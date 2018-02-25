@@ -463,10 +463,7 @@ function render(url) {
                                 type: "section",
                                 properties: {
                                     className: "detail-block-content",
-                                    id: idEvent,
-                                    style: {
-                                        textAlign: "center"
-                                    }
+                                    id: idEvent
                                 },
                                 content: [
                                     new Element({
@@ -476,7 +473,11 @@ function render(url) {
                                             src: "img/loading.gif",
                                             alt: "Obtendo dados...",
                                             height: "40",
-                                            width: "40"
+                                            width: "40",
+                                            style: {
+                                                display: "block",
+                                                margin: "10px auto",
+                                            }
                                         }
                                     }),
                                 ]

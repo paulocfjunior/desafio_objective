@@ -320,10 +320,10 @@ function render(url) {
                                             }),
                                             new Element({
                                                 content: [
-                                                    "Criadores: ",
+                                                    "Criadores:",
                                                     data.creators.items.map(function(c){
                                                         return c.name;
-                                                    })
+                                                    }).join(", ")
                                                 ].join(" ").trim()
                                             })
                                         ]
@@ -406,10 +406,10 @@ function render(url) {
                                         content: [
                                             new Element({
                                                 content: [
-                                                    "Criadores: ",
+                                                    "Criadores:",
                                                     data.creators.items.map(function(c){
                                                         return c.name;
-                                                    })
+                                                    }).join(", ")
                                                 ].join(" ").trim()
                                             })
                                         ]

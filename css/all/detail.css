@@ -30,17 +30,18 @@
     padding: 90px 20px;
     display: block;
     float: left;
+    color: #fff;
 }
 
 #detail-header > h3 {
     float: right;
-    color: #D42026;
+    color: #fff;
     padding: 20px 30px;
 }
 
 #detail-content {
     font-family: 'Roboto', sans-serif;
-
+    width: 100%;
 }
 
 #detail-content > .detail-content-section {
@@ -80,6 +81,6 @@
 
 }
 
-#detail-content > .detail-content-section > section > .detail-block > .detail-block-content .detail-card-header a {
+#detail-content > .detail-content-section > section .detail-card > .detail-card-header .detail-card-link {
 
 }

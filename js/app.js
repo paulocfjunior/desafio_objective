@@ -296,24 +296,20 @@ function render(url) {
                                 },
                                 content: [
                                     new Element({
-                                        content: [
-                                            new Element({
-                                                properties: {
-                                                    className: "detail-card-description"
-                                                },
-                                                content: data.description || "Sem descrição."
-                                            }),
-                                            new Element({
-                                                type: "a",
-                                                properties: {
-                                                    className: "detail-card-link",
-                                                    href: data.urls[0].url,
-                                                    target: "_blank",
-                                                    title: "Clique para ver todos os detalhes no site da MARVEL"
-                                                },
-                                                content: "&#9654; Veja mais em MARVEL.com"
-                                            }),
-                                        ]
+                                        properties: {
+                                            className: "detail-card-description"
+                                        },
+                                        content: data.description || "Sem descrição."
+                                    }),
+                                    new Element({
+                                        type: "a",
+                                        properties: {
+                                            className: "detail-card-link",
+                                            href: data.urls[0].url,
+                                            target: "_blank",
+                                            title: "Clique para ver todos os detalhes no site da MARVEL"
+                                        },
+                                        content: "&#9654; Veja mais em MARVEL.com"
                                     }),
                                     new Element({
                                         properties: {

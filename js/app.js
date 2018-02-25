@@ -1,9 +1,14 @@
 /**
  * Global Scope
  */
-var CURRENT_PAGE = 1;
-var HERO_DATA = {};
-var HERO_LIST = [];
+let CURRENT_PAGE = 1;
+let HERO_DATA = {};
+let HERO_LIST = [];
+
+/**
+ *  Root element
+ */
+let root = get("root");
 
 /**
  *  Load home page when page loads first time
@@ -43,29 +48,31 @@ function render(url) {
      * Get request keyword from url
      * @type {string}
      */
-    var request = url.split('/')[0];
+    const request = url.split('/')[0];
 
     get("loading-status").update("Organizando as informações...");
 
     // Hide whatever page is currently shown.
     // $('.main-content .page').removeClass('visible');
 
-    var routes = {
+    /**
+     * App Page element
+     * @type {Element}
+     */
+    let page = new Element({
+        properties: {
+            id: "app"
+        }
+    });
+
+    const routes = {
 
         /**
          * Home
          */
         '': function () {
+            console.log("Main initialization...");
 
-            /**
-             *  Root element
-             */
-            let root = get("root");
-            let page = new Element({
-                properties: {
-                    id: "app"
-                }
-            });
             /**
              *  Page Header
              */
@@ -206,7 +213,7 @@ function render(url) {
                         properties: {
                             id: "pagination-list"
                         },
-                        content: buildPagination()
+                        content: [] // buildPagination()
                     }),
                     new Element({
                         type: "span",
@@ -239,7 +246,7 @@ function render(url) {
             }, page);
 
             root.update(page);
-            goPage();
+            // goPage();
         },
 
         /**
@@ -251,9 +258,38 @@ function render(url) {
              * Get the hero name
              * @type {string}
              */
-            var hero = url.split('#hero/')[1].trim();
+            let idHero = url.split('#hero/')[1].trim();
 
-            renderHeroPage(hero);
+            let hero = HERO_LIST.find(function (h) {
+                if(parseInt(h.id) === parseInt(idHero)){
+                    return h;
+                }
+            });
+
+            new Element({
+                type: "header",
+                content: [
+                    new Element({
+                        content: new Element({
+                            id: "detail-img",
+                            type: "img",
+                            properties: {
+                                src: (['path', 'extension'].map(p => hero.thumbnail[p])).join(".").replace("http://", "https://"),
+                                alt: hero.name,
+                                height: "80",
+                                width: "80"
+                            }
+                        })
+                    }),
+                    new Element({
+                        id: "detail-name",
+                        type: "h1",
+                        content: hero.name
+                    }),
+                ]
+            }, page);
+
+            root.update(page);
         }
     };
 
@@ -346,12 +382,14 @@ function setPage(p) {
  * @returns {Element}
  */
 function buildPagination(targetElement) {
+    console.log("Build pagination...");
     let list = new Element({
         type: "ul",
         properties: {
             id: "pagination-list"
         }
     });
+
     for (let i = 0, j = 1; i < HERO_LIST.length; i+3, j++){
         new Element({
             type: "li",
@@ -376,7 +414,7 @@ function buildPagination(targetElement) {
  * @param name
  */
 function renderHeroPage(name) {
-    // get("root").innerHTML = "Hero " + name;
+    get("root").innerHTML = "Hero " + name;
 }
 
 /**
@@ -386,6 +424,7 @@ function renderHeroPage(name) {
  * @returns {Array}
  */
 function goPage(page, heroDataResults) {
+    console.log("goPage(%s)...", page.toString());
     if(typeof page === 'undefined'){
         page = 1;
     }
@@ -395,8 +434,6 @@ function goPage(page, heroDataResults) {
     } else if(!(heroDataResults instanceof Array)){
         heroDataResults = [];
     }
-
-
 
     return heroDataResults.slice((page - 1), 3).map(function (heroData) {
         let series = [], events = [];
@@ -448,7 +485,12 @@ function goPage(page, heroDataResults) {
         return new Element({
             properties: {
                 className: "app-hero-list-row",
-                id: heroData.id
+                id: heroData.id,
+                properties: {
+                    onclick: function() {
+                        window.location.hash = "#hero/" + heroData.id;
+                    }
+                }
             },
             content: [
                 /**

@@ -4,26 +4,8 @@
 }
 
 #root div#app.detail #back-home {
-    background: rgba(255,255,255,0.8);
-    padding: 16px 14px 16px 17px;
-    box-shadow: 0 0 10px #333;
-    border: 3px solid black;
-    text-decoration: none;
-    border-radius: 50%;
-    cursor: pointer;
-    position: fixed;
-    display: block;
-    color: #D42026;
-    z-index: 10;
-    width: 55px;
-    left: 15px;
-    top: 15px;
-
-    -webkit-transition: all 200ms;
-    -moz-transition: all 200ms;
-    -ms-transition: all 200ms;
-    -o-transition: all 200ms;
-    transition: all 200ms;
+    top: auto;
+    bottom: 15px;
 }
 
 #root div#app.detail #back-home:hover,
@@ -34,55 +16,34 @@
 }
 
 #detail-header {
-    box-shadow: inset 0 0 200px -20px black;
-    font-family: 'Roboto', sans-serif;
-    background-color: #D42026;
-    min-width: 1200px;
-    position: fixed;
-    z-index: -1;
+    box-shadow: inset 0 0 220px black;
+    min-width: 340px;
     color: #fff;
-    right: 0;
-    left: 0;
-    top: 0;
+    margin: 0;
 }
 
 #detail-header > div > img {
-    border-radius: 50%;
-    background: black;
-    display: block;
-    padding: 5px;
-    margin: 20px;
-    float: left;
+    margin: 20px auto;
+    float: none;
 }
 
 #detail-header > div > h1 {
-    padding: 90px 20px;
-    font-size: 40px;
-    display: block;
-    float: left;
-    color: #fff;
-}
-
-#detail-header > h3 {
-    padding: 20px 30px;
-    float: right;
-    color: #fff;
+    text-align: center;
+    font-size: 30px;
+    margin: 0 auto;
+    padding: 20px;
+    float: none;
 }
 
 #detail-content {
-    box-shadow: 0 0 20px rgba(0,0,0,0.7);
-    font-family: 'Roboto', sans-serif;
-    min-height: calc(100% - 400px);
-    background-color: #fff;
-    margin: 220px 0;
-    display: table;
-    width: 100%;
+    box-shadow: 0 0 10px rgba(0,0,0,0.7);
+    margin: 290px 0 150px;
 }
 
 #detail-content > .detail-content-section {
-    display: table-cell;
-    padding: 20px;
-    width: 50%;
+    display: block;
+    padding: 10px;
+    width: 100%;
 }
 
 #detail-content > .detail-content-section > header {
@@ -95,10 +56,7 @@
 }
 
 #detail-content > .detail-content-section > section > .detail-block {
-    border: 1px solid #ccc;
-    padding: 10px 15px;
-    position: relative;
-    margin: 20px 0;
+    padding: 10px 15px 35px;
 }
 
 #detail-content > .detail-content-section > section > .detail-block > .detail-block-header {
@@ -111,32 +69,14 @@
 }
 
 #detail-content > .detail-content-section > section > .detail-block > .detail-block-content > .detail-card > .detail-card-link {
-    text-decoration: none;
-    position: absolute;
-    font-size: 12px;
-    color: #D42026;
-    right: 10px;
-    top: 10px;
+    bottom: 10px;
+    top: auto;
 }
 
 #detail-footer {
-    box-shadow: inset 0 0 200px 0px #D42026;
-    font-family: 'Roboto', sans-serif;
-    text-transform: uppercase;
-    background-color: #000;
-    text-align: center;
-    min-width: 1200px;
-    font-weight: 900;
+    box-shadow: inset 0 0 160px 0px #D42026;
+    min-width: 360px;
     position: fixed;
-    height: 220px;
-    padding: 75px;
-    color: #fff;
-    z-index: -1;
-    bottom: 0;
-    right: 0;
-    left: 0;
-}
-
-#detail-footer > div {
-    padding: 5px;
+    height: 150px;
+    padding: 40px;
 }

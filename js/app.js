@@ -8,10 +8,6 @@ let ROOT = get("root");
  * @param url
  */
 function render(url) {
-    /**
-     *  TODO: [detail] Layout responsivo
-     *  TODO: [detail] Colocar imagem de capa
-     */
 
     /**
      * Get request keyword from url

@@ -3,7 +3,8 @@
  *  Load home page when page loads first time
  */
 document.addEventListener("DOMContentLoaded", function () {
-    let marvelAPI = "https://gateway.marvel.com:443/v1/public/characters?orderBy=name%2Cmodified&limit=36&apikey=5e8ca1959f7f23db54436ae4b3661243";
+    // let marvelAPI = "https://gateway.marvel.com:443/v1/public/characters?orderBy=name%2Cmodified&limit=36&apikey=5e8ca1959f7f23db54436ae4b3661243";
+    let marvelAPI = "https://gateway.marvel.com:443/v1/public/characters?orderBy=-modified&limit=40&apikey=5e8ca1959f7f23db54436ae4b3661243\n";
 
     get("loading-status").update("Obtendo dados dos heróis...");
 

@@ -408,7 +408,7 @@ function buildPagination() {
         properties: {
             id: "pagination-list"
         }
-    });
+    }, root);
 
     CURRENT_PAGE = 1;
 

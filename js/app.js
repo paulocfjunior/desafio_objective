@@ -267,7 +267,7 @@ function render(url) {
                 }
             });
 
-            let series = [], events = [], stories = [], comics = [];
+            let series = [], events = [];
 
             if(hero.series.returned > 0){
 
@@ -361,10 +361,10 @@ function render(url) {
                 });
             }
 
-            if(hero.stories.returned > 0){
+            if(hero.events.returned > 0){
 
-                stories = hero.stories.items.map(function(s){
-                    idStorie = "detail-storie-" + s.resourceURI.toString().split("/").slice(-1).toString().trim();
+                events = hero.events.items.map(function(s){
+                    idEvent = "detail-event-" + s.resourceURI.toString().split("/").slice(-1).toString().trim();
                     fetch(s.resourceURI.toString().replace("http://", "https://") + "?apikey=5e8ca1959f7f23db54436ae4b3661243").then(r => r.json()).then(function(json){
                         let data = json.data.results[0];
                         console.log(data);
@@ -403,18 +403,18 @@ function render(url) {
                                         new Element({
                                             content: [
                                                 "Período: ",
-                                                [
-                                                    (data.startYear || "Não definido"),
-                                                    (data.endYear || "até o momento")
-                                                ].join(" - ")
+                                                // [
+                                                //     (data.startYear || "Não definido"),
+                                                //     (data.endYear || "até o momento")
+                                                // ].join(" - ")
                                             ].join(" ").trim()
                                         }),
                                         new Element({
                                             content: [
                                                 "Criadores: ",
-                                                data.creators.items.map(function(c){
-                                                    return c.name;
-                                                })
+                                                // data.creators.items.map(function(c){
+                                                //     return c.name;
+                                                // })
                                             ].join(" ").trim()
                                         })
                                     ]
@@ -433,7 +433,7 @@ function render(url) {
                             }),
                             new Element({
                                 properties: {
-                                    id: idStorie
+                                    id: idEvent
                                 },
                                 content: [
                                     new Element({
@@ -441,7 +441,7 @@ function render(url) {
                                         type: "img",
                                         properties: {
                                             src: "img/loading.gif",
-                                            alt: "Carregando dados das histórias...",
+                                            alt: "Carregando dados dos eventos...",
                                             height: "40",
                                             width: "40"
                                         }
@@ -514,38 +514,6 @@ function render(url) {
                             new Element({
                                 type: "section",
                                 content: series
-                            })
-                        ]
-                    }),
-                    new Element({
-                        type: "section",
-                        properties: {
-                            className: "detail-content-section"
-                        },
-                        content: [
-                            new Element({
-                                type: "header",
-                                content: "Histórias"
-                            }),
-                            new Element({
-                                type: "section",
-                                content: stories
-                            })
-                        ]
-                    }),
-                    new Element({
-                        type: "section",
-                        properties: {
-                            className: "detail-content-section"
-                        },
-                        content: [
-                            new Element({
-                                type: "header",
-                                content: "Comics"
-                            }),
-                            new Element({
-                                type: "section",
-                                content: comics
                             })
                         ]
                     }),

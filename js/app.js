@@ -422,7 +422,7 @@ function goPage(page, heroDataResults, updatePagination) {
         heroDataResults = [];
     }
 
-    let sliceQtd = 3;
+    let sliceQtd = 4;
     let sliceFrom = (page - 1) * sliceQtd;
     let sliceArr = heroDataResults.slice(sliceFrom, (sliceFrom + sliceQtd));
 

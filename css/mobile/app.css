@@ -78,26 +78,38 @@
 .app-pagination-container {
     min-height: 80px;
     margin: 18px 30px 24px;
+    position: absolute;
+    bottom: 0;
 }
 
-.app-pagination-container.row-1 {
-    height: calc(100% - 174px - 149px);
-}
-
-.app-pagination-container.row-2 {
-    height: calc(100% - 174px - 261px);
-}
-
-.app-pagination-container.row-3 {
-    height: calc(100% - 174px - 373px);
+.app-pagination {
+    width: 100%;
+    height: 30px;
+    margin: auto;
+    display: table;
 }
 
 .app-pagination > span {
-    margin: 0 12px;
+    display: table-cell;
+    width: 40px;
+    vertical-align: middle;
+    height: 30px;
+}
+
+.app-pagination-prev {
+    padding-right: 30px;
+}
+
+.app-pagination-next {
+    padding-left: 30px;
 }
 
 .app-pagination > ul {
-    margin: 0 60px;
+    margin: 0 30px;
+    padding: 0;
+    width: 160px;
+    height: 28px;
+    overflow: hidden;
 }
 
 .app-pagination > ul > li + li {

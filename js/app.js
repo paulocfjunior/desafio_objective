@@ -261,7 +261,6 @@ function render(url) {
              * @type {string}
              */
             let page = url.split('#page/')[1].trim();
-            setPage(page);
             goPage(page);
         },
 
@@ -338,10 +337,10 @@ function errorPage(message) {
 document.addEventListener("keydown", function(ev){
     let e = ev.keyCode || window.event.keyCode;
     if (parseInt(e) === 37) {
-        goPage(prevPage());
+        window.location.hash = "#page/" + prevPage();
     }
     if (parseInt(e) === 39) {
-        goPage(nextPage());
+        window.location.hash = "#page/" + nextPage();
     }
 });
 
@@ -458,7 +457,7 @@ function goPage(page, heroDataResults, updatePagination) {
         heroDataResults = [];
     }
 
-    let result = heroDataResults.slice((CURRENT_PAGE - 1), 3).map(function (heroData) {
+    let result = heroDataResults.slice((CURRENT_PAGE - 1) * 3, 3).map(function (heroData) {
         let series = [], events = [];
 
         if (heroData.series.returned > 0) {

@@ -448,7 +448,6 @@ function renderHeroPage(name) {
  * @returns {Array}
  */
 function goPage(page, heroDataResults) {
-    let listUpdated = false;
     if(typeof page === 'undefined'){
         CURRENT_PAGE = 1;
     }
@@ -458,8 +457,6 @@ function goPage(page, heroDataResults) {
         heroDataResults = HERO_LIST;
     } else if(!(heroDataResults instanceof Array)){
         heroDataResults = [];
-    } else {
-        listUpdated = true;
     }
 
     let result = heroDataResults.slice((CURRENT_PAGE - 1), 3).map(function (heroData) {
@@ -556,11 +553,6 @@ function goPage(page, heroDataResults) {
         });
     });
 
-    console.log(listUpdated);
-    if(listUpdated){
-        trigger("list-updated");
-    } else {
-        console.error("Passou direto");
-    }
+    trigger("list-updated");
     return result;
 }

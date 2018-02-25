@@ -79,6 +79,7 @@
     margin: 18px 30px 24px;
     position: absolute;
     bottom: 12px;
+    min-height: 38px;
 }
 
 .app-pagination-container.row-1,
@@ -121,6 +122,10 @@
 
 .app-pagination > ul > li.mobile-visible {
     display: inline-block;
+}
+
+.app-pagination > ul > li + li {
+    margin-left: 0;
 }
 
 .app-pagination > ul > li.mobile-visible + li.mobile-visible {

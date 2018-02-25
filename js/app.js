@@ -206,7 +206,7 @@ function render(url) {
                         properties: {
                             id: "pagination-list"
                         },
-                        content: []
+                        content: buildPagination()
                     }),
                     new Element({
                         type: "span",
@@ -341,6 +341,37 @@ function setPage(p) {
 }
 
 /**
+ * Build page selectors
+ * @param [targetElement] {Element}
+ * @returns {Element}
+ */
+function buildPagination(targetElement) {
+    let list = new Element({
+        type: "ul",
+        properties: {
+            id: "pagination-list"
+        }
+    });
+    for (let i = 0, j = 1; i < HERO_LIST.length; i+3, j++){
+        new Element({
+            type: "li",
+            content: j.toString(),
+            properties: {
+                className: "app-pagination-page",
+                onclick: function () {
+                    goPage(j);
+                }
+            }
+        }, list);
+    }
+
+    if(typeof targetElement !== 'undefined'){
+        targetElement.update(list);
+    }
+    return list;
+}
+
+/**
  *
  * @param name
  */
@@ -365,21 +396,7 @@ function goPage(page, heroDataResults) {
         heroDataResults = [];
     }
 
-    get("pagination-list").update("");
-    for (let i = 0; i < heroDataResults.length; i++){
-        new Element({
-            type: "li",
-            content: (i + 1).toString(),
-            properties: {
-                className: "app-pagination-page",
-                onclick: function () {
-                    goPage(i + 1);
-                }
-            }
-        }, get("pagination-list"));
-    }
 
-    setPage(page);
 
     return heroDataResults.slice((page - 1), 3).map(function (heroData) {
         let series = [], events = [];

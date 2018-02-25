@@ -473,10 +473,10 @@ function render(url) {
                     new Element({
                         content: [
                             new Element({
-                                id: "back-home",
                                 type: "a",
                                 properties: {
                                     href: "./",
+                                    id: "back-home"
                                 },
                                 content: "&#9664;"
                             }),

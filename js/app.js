@@ -5,8 +5,6 @@ let CURRENT_PAGE = 1;
 let HERO_DATA = {};
 let HERO_LIST = [];
 
-let VISIBLE_ROWS = 3;
-
 /**
  *  Root element
  */
@@ -442,7 +440,6 @@ function buildPagination() {
 
     get("pagination-list").update(result);
 
-    get("pagination-container").className = "app-pagination-container row-" + VISIBLE_ROWS;
     return result;
 }
 
@@ -475,11 +472,11 @@ function goPage(page, heroDataResults, updatePagination) {
         heroDataResults = [];
     }
 
-    let sliceFrom = (page - 1) * 3;
     let sliceQtd = 3;
+    let sliceFrom = (page - 1) * sliceQtd;
     let sliceArr = heroDataResults.slice(sliceFrom, (sliceFrom + sliceQtd));
 
-    VISIBLE_ROWS = sliceArr.length;
+    let visibleRows = sliceArr.length;
 
     let result = sliceArr.map(function (heroData) {
         let series = [], events = [];
@@ -580,6 +577,8 @@ function goPage(page, heroDataResults, updatePagination) {
     } else {
         get("hero-list").update(result);
     }
+
+    get("pagination-container").className = "app-pagination-container row-" + visibleRows;
 
     return result;
 }

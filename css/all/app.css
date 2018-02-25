@@ -45,6 +45,7 @@ html, body {
 
 #loading > div {
     margin: auto;
+    text-align: center;
 }
 
 #loading-status {

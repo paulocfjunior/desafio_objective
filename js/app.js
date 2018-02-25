@@ -411,7 +411,7 @@ function buildPagination(targetElement) {
     });
 
     console.log(HERO_LIST.length);
-    for (let i = 0; i < HERO_LIST.length; i+3){
+    for (let i = 0; i < HERO_LIST.length; i += 3){
         console.log("Iteration");
         new Element({
             type: "li",

@@ -458,7 +458,7 @@ function goPage(page, heroDataResults, updatePagination) {
         heroDataResults = [];
     }
 
-    get("hero-list").update(heroDataResults.slice((CURRENT_PAGE - 1), 3).map(function (heroData) {
+    let result = heroDataResults.slice((CURRENT_PAGE - 1), 3).map(function (heroData) {
         let series = [], events = [];
 
         if (heroData.series.returned > 0) {
@@ -550,5 +550,9 @@ function goPage(page, heroDataResults, updatePagination) {
                 })
             ]
         });
-    }));
+    });
+
+    if(!updatePagination) get("hero-list").update(result);
+
+    return result;
 }

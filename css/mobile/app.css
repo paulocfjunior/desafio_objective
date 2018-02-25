@@ -1,5 +1,5 @@
 .hide-on-mobile {
-    display: none;
+    display: none !important;
 }
 
 #root {
@@ -7,4 +7,97 @@
     min-width: 360px;
 }
 
+.app-title,
+.app-subtitle,
+.app-developer {
+    line-height: 1.2em;
+    font-size: 16px;
+}
 
+.app-title {
+}
+
+.app-subtitle {
+}
+
+.app-line {
+    height: 2px;
+}
+
+.app-line div {
+    width: 52px;
+}
+
+#search-container {
+    padding: 12px 0;
+}
+
+.app-hero-list-header,
+.app-hero-list-row {
+    display: block;
+    width: 100%;
+}
+
+.app-hero-list-header > div {
+    display: block;
+    text-align: center;
+    line-height: 37px;
+    padding: 18px;
+    width: 100%;
+}
+
+.app-hero-list-row {
+    border-bottom: 2px solid rgba(255, 43, 43, 0.5);
+    padding: 18px 0;
+    height: 112px;
+    cursor: pointer;
+}
+
+.app-hero-list-row > div {
+    line-height: 1.1em;
+    padding: 0 18px;
+    width: 100%;
+}
+
+.app-hero-list-row > div:first-child {
+    padding-top: 6px;
+}
+
+.app-hero-list-row > div:first-child > div {
+    width: calc(100% - 58px - 25px);
+}
+
+.app-pagination-container {
+    min-height: 80px;
+    margin: 18px 30px 24px;
+}
+
+.app-pagination-container.row-1 {
+    height: calc(100% - 174px - 149px);
+}
+
+.app-pagination-container.row-2 {
+    height: calc(100% - 174px - 261px);
+}
+
+.app-pagination-container.row-3 {
+    height: calc(100% - 174px - 373px);
+}
+
+.app-pagination > span {
+    margin: 0 12px;
+}
+
+.app-pagination > ul {
+    margin: 0 60px;
+}
+
+.app-pagination > ul > li + li {
+    margin-left: 15px;
+}
+
+#footer {
+    position: absolute;
+    line-height: 12px;
+    font-size: 12px;
+}

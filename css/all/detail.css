@@ -3,35 +3,35 @@
     overflow-y: auto;
 }
 
-#root div#app.detail #back-home {
-    background: rgba(255,255,255,0.8);
-    padding: 16px 14px 16px 17px;
-    box-shadow: 0 0 10px #333;
-    border: 3px solid black;
-    text-decoration: none;
-    border-radius: 50%;
-    cursor: pointer;
-    position: fixed;
-    display: block;
-    color: #D42026;
-    z-index: 10;
-    width: 55px;
-    left: 15px;
-    top: 15px;
+    #root div#app.detail #back-home {
+        background: rgba(255,255,255,0.8);
+        padding: 16px 14px 16px 17px;
+        box-shadow: 0 0 10px #333;
+        border: 3px solid black;
+        text-decoration: none;
+        border-radius: 50%;
+        cursor: pointer;
+        position: fixed;
+        display: block;
+        color: #D42026;
+        z-index: 10;
+        width: 55px;
+        left: 15px;
+        top: 15px;
 
-    -webkit-transition: all 200ms;
-       -moz-transition: all 200ms;
-        -ms-transition: all 200ms;
-         -o-transition: all 200ms;
-            transition: all 200ms;
-}
+        -webkit-transition: all 200ms;
+           -moz-transition: all 200ms;
+            -ms-transition: all 200ms;
+             -o-transition: all 200ms;
+                transition: all 200ms;
+    }
 
-#root div#app.detail #back-home:hover,
-#root div#app.detail #back-home:focus {
-    background: rgba(0,0,0,0.7);
-    color: #fff;
-    border: 3px solid #D42026;
-}
+    #root div#app.detail #back-home:hover,
+    #root div#app.detail #back-home:focus {
+        background: rgba(0,0,0,0.7);
+        color: #fff;
+        border: 3px solid #D42026;
+    }
 
 #detail-header {
     box-shadow: inset 0 0 200px -20px black;
@@ -45,6 +45,79 @@
     left: 0;
     top: 0;
 }
+
+    #detail-header > div > img {
+        border-radius: 50%;
+        background: black;
+        display: block;
+        padding: 5px;
+        margin: 20px;
+        float: left;
+    }
+
+    #detail-header > div > h1 {
+        padding: 90px 20px;
+        font-size: 40px;
+        display: block;
+        float: left;
+        color: #fff;
+    }
+
+    #detail-header > h3 {
+        padding: 20px 30px;
+        float: right;
+        color: #fff;
+    }
+
+#detail-content {
+    box-shadow: 0 0 20px rgba(0,0,0,0.7);
+    font-family: 'Roboto', sans-serif;
+    min-height: calc(100% - 400px);
+    background-color: #fff;
+    margin: 220px 0;
+    display: table;
+    width: 100%;
+}
+
+    #detail-content > .detail-content-section {
+        display: table-cell;
+        padding: 20px;
+        width: 50%;
+    }
+
+    #detail-content > .detail-content-section > header {
+        border-bottom: 2px solid #D42026;
+        text-transform: uppercase;
+        padding: 10px 15px;
+        font-weight: 900;
+        font-size: 28px;
+        margin: 10px 0;
+    }
+
+    #detail-content > .detail-content-section > section > .detail-block {
+        border: 1px solid #ccc;
+        padding: 10px 15px;
+        position: relative;
+        margin: 20px 0;
+    }
+
+    #detail-content > .detail-content-section > section > .detail-block > .detail-block-header {
+        font-weight: 900;
+    }
+
+    #detail-content > .detail-content-section > section > .detail-block > .detail-block-content > .detail-card > .detail-card-description {
+        font-style: italic;
+        padding: 20px;
+    }
+
+    #detail-content > .detail-content-section > section > .detail-block > .detail-block-content > .detail-card > .detail-card-link {
+        text-decoration: none;
+        position: absolute;
+        font-size: 12px;
+        color: #D42026;
+        right: 10px;
+        top: 10px;
+    }
 
 #detail-footer {
     box-shadow: inset 0 0 200px 0px #D42026;
@@ -66,88 +139,4 @@
 
 #detail-footer > div {
     padding: 5px;
-}
-
-#detail-header > div > img {
-    border-radius: 50%;
-    background: black;
-    display: block;
-    padding: 5px;
-    margin: 20px;
-    float: left;
-}
-
-#detail-header > div > h1 {
-    padding: 90px 20px;
-    font-size: 40px;
-    display: block;
-    float: left;
-    color: #fff;
-}
-
-#detail-header > h3 {
-    padding: 20px 30px;
-    float: right;
-    color: #fff;
-}
-
-#detail-content {
-    box-shadow: 0 0 20px rgba(0,0,0,0.7);
-    font-family: 'Roboto', sans-serif;
-    background-color: #fff;
-    margin: 220px 0;
-    display: table;
-    width: 100%;
-}
-
-#detail-content > .detail-content-section {
-    display: table-cell;
-    padding: 20px;
-    width: 50%;
-}
-
-#detail-content > .detail-content-section > header {
-    border-bottom: 2px solid #D42026;
-    text-transform: uppercase;
-    padding: 10px 15px;
-    font-weight: 900;
-    font-size: 28px;
-    margin: 10px 0;
-}
-
-#detail-content > .detail-content-section > section {
-
-}
-
-#detail-content > .detail-content-section > section > .detail-block {
-    border: 1px solid #ccc;
-    padding: 10px 15px;
-    position: relative;
-    margin: 20px 0;
-}
-
-#detail-content > .detail-content-section > section > .detail-block > .detail-block-header {
-    font-weight: 900;
-}
-
-#detail-content > .detail-content-section > section > .detail-block > .detail-block-content {
-
-}
-
-#detail-content > .detail-content-section > section > .detail-block > .detail-block-content > .detail-card {
-
-}
-
-#detail-content > .detail-content-section > section > .detail-block > .detail-block-content > .detail-card > .detail-card-description {
-    font-style: italic;
-    padding: 20px;
-}
-
-#detail-content > .detail-content-section > section > .detail-block > .detail-block-content > .detail-card > .detail-card-link {
-    text-decoration: none;
-    position: absolute;
-    font-size: 12px;
-    color: #D42026;
-    right: 10px;
-    top: 10px;
 }

@@ -18,6 +18,7 @@
 #detail-header {
     box-shadow: inset 0 0 220px black;
     min-width: 340px;
+    height: 360px;
     color: #fff;
     margin: 0;
 }
@@ -37,7 +38,7 @@
 
 #detail-content {
     box-shadow: 0 0 10px rgba(0,0,0,0.7);
-    margin: 290px 0 150px;
+    margin: 360px 0 150px;
 }
 
 #detail-content > .detail-content-section {

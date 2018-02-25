@@ -600,6 +600,23 @@ function render(url) {
                 ]
             }, page);
 
+            /**
+             *  Footer
+             */
+            new Element({
+                properties:{
+                    id: "detail-footer"
+                },
+                content: [
+                    new Element({
+                        content: HERO_DATA.attributionText
+                    }),
+                    new Element({
+                        content: "PAULO CÉZAR FRANCISCO JÚNIOR"
+                    })
+                ]
+            }, page);
+
             ROOT.update(page);
         }
     };

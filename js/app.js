@@ -298,7 +298,7 @@ function render(url) {
                                                             href: data.urls[0].url,
                                                             title: "Ver mais detalhes no site da MARVEL"
                                                         },
-                                                        content: "Detalhes"
+                                                        content: "Ver mais em Marvel.com"
                                                     }),
                                                 ]
                                             }),
@@ -309,15 +309,6 @@ function render(url) {
                                             className: "detail-card-properties"
                                         },
                                         content: [
-                                            new Element({
-                                                content: [
-                                                    "Período: ",
-                                                    [
-                                                        (data.startYear || "Não definido"),
-                                                        (data.endYear || "até o momento")
-                                                    ].join(" - ")
-                                                ].join(" ").trim()
-                                            }),
                                             new Element({
                                                 content: [
                                                     "Criadores:",
@@ -395,15 +386,7 @@ function render(url) {
                                                 content: [
                                                     new Element({
                                                         content: data.description || "Sem descrição."
-                                                    }),
-                                                    new Element({
-                                                        type: "a",
-                                                        properties: {
-                                                            href: "", //data.urls[0].url,
-                                                            title: "Ver mais detalhes no site da MARVEL"
-                                                        },
-                                                        content: "Detalhes"
-                                                    }),
+                                                    })
                                                 ]
                                             }),
                                         ]

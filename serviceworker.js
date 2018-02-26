@@ -11,28 +11,20 @@
  limitations under the License.
 */
 
-var CACHE_VERSION = 15;
+var CACHE_VERSION = 16;
 var CURRENT_CACHES = {
     heroes: 'heroes-cache-v' + CACHE_VERSION
 };
 
 self.addEventListener('install', function(event) {
     var urlsToPrefetch = [
-        'css/mobile/app.css',
-        'css/mobile/detail.css',
-        'css/all/app.css',
-        'css/all/detail.css',
         'index.html',
         'js/util.js',
-        'js/listeners.js',
-        'js/global.js',
-        'js/prototypes.js',
         'js/Element.js',
-        'js/window.functions.js',
         'js/app.js'
     ];
 
-    console.log('Instalando Service Worker');
+    console.log('Instalando Service Worker...');
 
     event.waitUntil(
         caches.open(CURRENT_CACHES.heroes).then(function(cache) {

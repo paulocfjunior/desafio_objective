@@ -102,16 +102,7 @@ function render(url) {
                             className: "app-search-box",
                             title: "Digite o nome de um herói da Marvel",
                             placeholder: "ex. Iron Man",
-                            onkeyup: function() {
-                                filterList();
-                            },
-                            onblur: function() {
-                                filterList();
-                            },
-                            onkeypress: function() {
-                                filterList();
-                            },
-                            onfocus: function() {
+                            oninput: function(){
                                 filterList();
                             }
                         }

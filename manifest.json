@@ -3,7 +3,7 @@
   "short_name": "Busca Marvel",
   "start_url": ".",
   "display": "standalone",
-  "background_color": "#000",
+  "background_color": "#D42026",
   "description": "Busca Marvel - Teste front-end Objective | Paulo Cézar Francisco Júnior.",
   "icons": [{
     "src": "img/touch/favicon48.png",

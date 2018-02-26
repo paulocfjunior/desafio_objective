@@ -102,28 +102,11 @@ function render(url) {
                             className: "app-search-box",
                             title: "Digite o nome de um herói da Marvel",
                             placeholder: "ex. Iron Man",
-                            onkeyup: function(ev) {
-                                let e = ev.keyCode || window.event.keyCode;
-
-                                if((parseInt(e) !== 37) && (parseInt(e) !== 39)) {
-                                    const rgx = new RegExp(/[a-zA-Z0-9-_ ]/);
-
-                                    let input = String.fromCharCode(e);
-                                    if ((rgx.test(input)) || (parseInt(e) === 8)){ // Alphanumeric or Backspace/Delete
-                                        const search = new RegExp(this.value, "i");
-                                        let oldList = HERO_LIST;
-
-                                        HERO_LIST = HERO_DATA.data["results"].filter(function(hero){
-                                            if(search.test(hero.name)){
-                                                return hero;
-                                            }
-                                        });
-
-                                        if(oldList !== HERO_LIST){
-                                            get("hero-list").update(goPage(1, HERO_LIST, true));
-                                        }
-                                    }
-                                }
+                            onkeyup: function() {
+                                filterList();
+                            },
+                            onblur: function() {
+                                filterList();
                             }
                         }
                     }),
@@ -638,6 +621,24 @@ function render(url) {
  */
 function errorPage(message) {
     ROOT.innerHTML = message + " (" + window.location.hash + ")";
+}
+
+/**
+ *  Filter results
+ */
+function filterList() {
+    const search = new RegExp(get("search-box").value, "i");
+    let oldList = HERO_LIST;
+
+    HERO_LIST = HERO_DATA.data["results"].filter(function(hero){
+        if(search.test(hero.name)){
+            return hero;
+        }
+    });
+
+    if(oldList !== HERO_LIST){
+        get("hero-list").update(goPage(1, HERO_LIST, true));
+    }
 }
 
 /**

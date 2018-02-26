@@ -107,6 +107,12 @@ function render(url) {
                             },
                             onblur: function() {
                                 filterList();
+                            },
+                            onkeypress: function() {
+                                filterList();
+                            },
+                            onfocus: function() {
+                                filterList();
                             }
                         }
                     }),

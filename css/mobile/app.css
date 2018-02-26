@@ -128,7 +128,7 @@
     display: inline-block;
     height: 8vw;
     width: 8vw;
-    padding: 0 8px;
+    padding: 0;
 }
 
 .app-pagination > ul > li + li {

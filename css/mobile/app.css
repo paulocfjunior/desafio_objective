@@ -55,7 +55,8 @@
 
 .app-hero-list-row {
     padding: 10px 0;
-    height: 13vh;
+    height: 10vh;
+    min-height: 18vw;
     cursor: pointer;
 }
 
@@ -75,8 +76,12 @@
 }
 
 .app-hero-list-row > div:first-child > div > img {
-    width: 12vw;
-    height: 12vw;
+    width: 10vh;
+    height: 10vh;
+    max-width: 18vw;
+    min-height: 13vw;
+    max-height: 18vw;
+    min-width: 13vw;
 }
 
 .app-pagination-container {
@@ -135,7 +140,7 @@
 }
 
 #footer {
-    position: absolute;
+    position: fixed;
     line-height: 12px;
     font-size: 12px;
 }

@@ -18,7 +18,7 @@ Nesta parte, são apresentadas mais informações a respeito do personagem escol
 Compatibilidade
 ------
 |Sistema     |Chrome|Firefox|Opera|Edge |Safari|
-|------------|:----:|:-----:|:---:|:---:|-----:|
+|------------|:----:|:-----:|:---:|:---:|:----:|
 |Windows     | Sim  |  Sim  | Sim | Sim |  ?   |
 |Linux - Arch| Sim  |  Sim  |  ?  |  ?  |  ?   |
 |Android     | Sim  |  Sim  | Sim | Sim |  ?   |

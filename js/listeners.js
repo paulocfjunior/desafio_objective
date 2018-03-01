@@ -10,13 +10,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     fetch(marvelAPI)
         .then(r => r.json())
-        .then(json => {
+        .then(function(json){
             HERO_DATA = json;
             HERO_LIST = HERO_DATA.data["results"];
             trigger("hashchange");
         }).catch (e => {
         console.error(e);
-        errorPage("Infelizmente, não foi possível estabelecer conexão com o servidor e não há dados disponíveis offline para exibir.");
+        // errorPage("Infelizmente, não foi possível estabelecer conexão com o servidor e não há dados disponíveis offline para exibir.");
     });
 });
 

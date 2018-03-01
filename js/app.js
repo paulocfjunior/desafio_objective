@@ -617,7 +617,7 @@ function render(url) {
  * @param message
  */
 function errorPage(message) {
-    ROOT.innerHTML = message + " (" + window.location.hash + ")";
+    ROOT.innerHTML = message + (window.location.hash !== "")? " (" + window.location.hash + ")" : "";
 }
 
 /**

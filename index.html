@@ -63,9 +63,9 @@
             if ('serviceWorker' in navigator) {
                 navigator.serviceWorker.register('./serviceworker.js', {scope: './'}).then(function() {
                     // Registration was successful. Now, check to see whether the service worker is controlling the page.
-                    if (!navigator.serviceWorker.controller) {
+                    // if (!navigator.serviceWorker.controller) {
                         // location.reload();
-                    }
+                    // }
                 }).catch(function(error) {
                     console.log(error);
                 });

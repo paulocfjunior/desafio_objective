@@ -15,8 +15,8 @@ document.addEventListener("DOMContentLoaded", function () {
             HERO_LIST = HERO_DATA.data["results"];
             trigger("hashchange");
         }).catch (e => {
+        console.error(e);
         errorPage("Infelizmente, não foi possível estabelecer conexão com o servidor e não há dados disponíveis offline para exibir.");
-        // console.error(e);
     });
 });
 

@@ -20,7 +20,7 @@ Compatibilidade
 |Sistema     |Chrome|Firefox|Opera|Edge |Safari|
 |------------|:----:|:-----:|:---:|:---:|:----:|
 |Windows     | Sim  |  Sim  | Sim | Sim |  ?   |
-|Linux - Arch| Sim  |  [Issue](https://github.com/paulojunior95/paulojunior95.github.io/issues/1)  |  ?  |  ?  |  ?   |
+|Linux - Arch| Sim  |  Sim  |  ?  |  ?  |  ?   |
 |Android     | Sim  |  Sim  | Sim | Sim |  ?   |
 |iOS         | Sim  |  Sim  |  ?  |  ?  |  ?   |
 

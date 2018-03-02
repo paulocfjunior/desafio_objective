@@ -19,10 +19,10 @@ Compatibilidade
 ------
 |Sistema     |Chrome|Firefox|Opera|Edge |Safari|
 |------------|:----:|:-----:|:---:|:---:|:----:|
-|Windows     | Sim  |  Sim  | Sim | Sim |  ?   |
-|Linux - Arch| Sim  |  Sim  |  ?  |  ?  |  ?   |
-|Android     | Sim  |  Sim  | Sim | Sim |  ?   |
-|iOS         | Sim  |  Sim  |  ?  |  ?  |  ?   |
+|Windows     | Sim  |  Sim  | Sim | Sim |      |
+|Linux - Arch| Sim  |  Sim  |     |     |      |
+|Android     | Sim  |  Sim  | Sim | Sim |      |
+|iOS         | Sim  |       |     |     | Sim  |
 
 [principal]: https://github.com/paulojunior95/paulojunior95.github.io/blob/master/spec/Pagina%20principal.png "Tela principal"
 [detalhe]: https://github.com/paulojunior95/paulojunior95.github.io/blob/master/spec/Pagina%20detalhe.png "Tela detalhe (exemplo)"

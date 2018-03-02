@@ -403,18 +403,10 @@ function render(url) {
                                 },
                                 content: [
                                     new Element({
-                                        content: [
-                                            new Element({
-                                                properties: {
-                                                    className: "detail-card-header"
-                                                },
-                                                content: [
-                                                    new Element({
-                                                        content: data.description || "Sem descrição."
-                                                    })
-                                                ]
-                                            }),
-                                        ]
+                                        properties: {
+                                            className: "detail-card-description"
+                                        },
+                                        content: data.description || "Sem descrição."
                                     }),
                                     new Element({
                                         properties: {

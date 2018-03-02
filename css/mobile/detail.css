@@ -47,26 +47,8 @@
     width: 100%;
 }
 
-#detail-content > .detail-content-section > header {
-    border-bottom: 2px solid #D42026;
-    text-transform: uppercase;
-    padding: 10px 15px;
-    font-weight: 900;
-    font-size: 28px;
-    margin: 10px 0;
-}
-
 #detail-content > .detail-content-section > section > .detail-block {
     padding: 10px 15px 35px;
-}
-
-#detail-content > .detail-content-section > section > .detail-block > .detail-block-header {
-    font-weight: 900;
-}
-
-#detail-content > .detail-content-section > section > .detail-block > .detail-block-content > .detail-card > .detail-card-description {
-    font-style: italic;
-    padding: 20px;
 }
 
 #detail-content > .detail-content-section > section > .detail-block > .detail-block-content > .detail-card > .detail-card-link {
@@ -75,7 +57,7 @@
 }
 
 #detail-footer {
-    box-shadow: inset 0 0 160px 0px #D42026;
+    box-shadow: inset 0 0 160px 0 #D42026;
     min-width: 360px;
     position: fixed;
     height: 150px;

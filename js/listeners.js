@@ -14,9 +14,17 @@ document.addEventListener("DOMContentLoaded", function () {
             HERO_DATA = json;
             HERO_LIST = HERO_DATA.data["results"];
             trigger("hashchange");
-        }).catch (e => {
+        }).catch (function(e) {
         console.error(e);
-        // errorPage("Infelizmente, não foi possível estabelecer conexão com o servidor e não há dados disponíveis offline para exibir.");
+        fetch("spec/data.sample.json").then(r => r.json()).then(function(sample){
+            console.log("Não foi possível se conectar com o servidor, portanto foram utilizados dados de exemplo.");
+            HERO_DATA = sample;
+            HERO_LIST = HERO_DATA.data["results"];
+            trigger("hashchange");
+        }).catch(function (e) {
+            console.error(e);
+            errorPage("Infelizmente, não foi possível estabelecer conexão com o servidor e não há dados disponíveis offline para exibir.");
+        });
     });
 });
 

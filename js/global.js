@@ -3,7 +3,7 @@
  *  Global constants
  */
 const ELEMENT_NODE = 1;
-const SHOW_ITEMS = 4;
+const SHOW_ITEMS = (isMobile())? 4 : 3;
 
 /**
  * Global Scope

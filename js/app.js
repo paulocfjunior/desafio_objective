@@ -668,7 +668,9 @@ function nextPage() {
  */
 function setPage(p) {
     let pages = select(".app-pagination-page");
+
     // console.log("setPage(%s): pages.length = %s", p, pages.length);
+
     if (pages.length > 0){
         pages.removeClass("active")[(p - 1)].addClass("active");
 
@@ -684,7 +686,7 @@ function setPage(p) {
             get("app-pagination-next").removeClass("disabled");
         }
 
-        if((pages.length > 4) && (p > 1) && (p < pages.length - 1)) {
+        if((pages.length > SHOW_ITEMS) && (p > 1) && (p < pages.length - 1)) {
             for(let i = 0; i < pages.length; i++){
                 if((i >= (p - 2)) && (i <= (p + 1))){
                     // console.log("i: %s | p: %s | visible", i, p);
@@ -707,6 +709,7 @@ function setPage(p) {
 function buildPagination() {
     let result = [];
 
+
     for (let i = 0; i < HERO_LIST.length; i += SHOW_ITEMS){
         let j = (i/SHOW_ITEMS) + 1;
         result.push(new Element({
@@ -716,7 +719,7 @@ function buildPagination() {
                 className: [
                     "app-pagination-page",
                     ((j === CURRENT_PAGE)? "active" : ""),
-                    ((j <= 4)? "mobile-visible" : "")
+                    ((j <= SHOW_ITEMS)? "mobile-visible" : "")
                 ].join(" ").trim(),
                 onclick: function () {
                     goPage(j);

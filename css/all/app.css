@@ -12,15 +12,19 @@ html, body {
 #root {
     min-height: 720px;
     min-width: 1280px;
-    overflow: hidden;
-    height: 100%;
-    width: 100%;
+    height: 100vh;
     margin: 0;
+    display: flex;
+    flex-flow: column;
+    align-items: stretch;
 }
 
 #root > div#app {
     padding: 20px 42px 0 42px;
-    height: 100vh;
+    display: flex;
+    flex-flow: column;
+    flex-grow: 1;
+    align-content: stretch;
 }
 
 #loading {
@@ -222,17 +226,19 @@ html, body {
 
 .app-pagination-container {
     font-family: 'Roboto', sans-serif;
+    transition-delay: 100ms;
+    align-items: center;
     text-align: center;
     min-height: 64px;
     display: flex;
+    flex-grow: 1;
+
 
     -webkit-transition: all 200ms;
        -moz-transition: all 200ms;
         -ms-transition: all 200ms;
          -o-transition: all 200ms;
             transition: all 200ms;
-
-    transition-delay: 500ms;
 
     -webkit-user-select: none;
        -moz-user-select: none;
@@ -309,18 +315,20 @@ html, body {
     font-family: 'Roboto', sans-serif;
     border-bottom: 1px solid #D42026;
     background-color: #D42026;
-    position: absolute;
     text-align: center;
     line-height: 12px;
     font-weight: 900;
     font-size: 12px;
     color: #FFF;
-    bottom: 0;
-    right: 0;
-    left: 0;
+    display: flex;
+    width: 100%;
 
     -webkit-user-select: none;
        -moz-user-select: none;
         -ms-user-select: none;
             user-select: none;
+}
+
+#copyright {
+    margin: auto;
 }
